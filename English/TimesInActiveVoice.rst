@@ -1,7 +1,28 @@
-Twelve times in active voice
-============================
+Времена в активном залоге
+===================================
 
-.. list-table::
+.. list-table:: Future-in-the Past
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 25 30 45 
+    
+    * - Время
+      - Классическая форма
+      - Определение
+    * - Future Simple-in-the Past
+      - |w/s| + **V**
+      - Обозначает действие в будущем, о котором говорилось в прошлом. Самая употребительная форма
+    * - Future Continuous-in-the Past
+      - |w/s| + be + |V_-ing|
+      - Длительное действие в будущем, воспринимаемое с позиции прошлого
+    * - Future Perfect-in-the Past
+      - |w/s| + have + |V_3|
+      - Завершенное действие в будущем, воспринимаемое с позиции прошлого
+    * - Future Perfect Continuous-in-the Past
+      - |w/s| + have been + |V_-ing|
+      - Процесс, который будет длиться в будущем до какого-то момента, воспринимаемый с точки зрения прошлого
+
+.. list-table:: Двенадцать основных времён
     :header-rows: 1
     :stub-columns: 1
     
@@ -109,10 +130,15 @@ Twelve times in active voice
       - * Я буду строить дом уже 3 года, когда выплачу кредит.
         * Он будет сажать деревья уже час, когда она ему поможет.
 
-.. |V_3| replace::   **V**\ :sub:`3`\ 
+.. note::
+    |V_-ing| и |V_4| это одно и то же
+
+.. |V_3| replace::   **V**\ :sub:`3`
+.. |V_4| replace::   **V**\ :sub:`4`
 .. |V_-ing| replace:: **V**\ :sub:`-ing`
 .. |V_-ed| replace:: **V**\ :sub:`-ed`
 .. |V_-es| replace:: **V**\ :sub:`-es`
 .. |V_-s| replace::  **V**\ :sub:`-s`
 .. |plurals| replace:: You, We, They
 .. |3person| replace:: He, She, It
+.. |w/s| replace:: would/should
