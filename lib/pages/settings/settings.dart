@@ -1,6 +1,7 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/material.dart' hide Switch;
 import 'package:provider/provider.dart';
+import 'package:weather_app/data/models/settings.dart';
 import 'package:weather_app/data/providers/settings_provider.dart';
 import 'package:weather_app/pages/settings/widgets/switch.dart';
 import 'package:weather_app/widgets/page_header.dart';

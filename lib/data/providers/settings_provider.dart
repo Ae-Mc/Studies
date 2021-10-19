@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-enum TemperatureUnits { celcius, farenheit }
-enum SpeedUnits { metersPerSecond, kilometersPerHour }
-enum PressureUnits { mmOfMercury, gigaPascal }
+import 'package:weather_app/data/models/settings.dart';
+import 'package:weather_app/data/storage/storage.dart';
 
 extension ParseTempToString on TemperatureUnits {
   String get inString => ['˚c', '˚F'][index];
@@ -19,22 +17,35 @@ extension ParsePressureToString on PressureUnits {
 }
 
 class SettingsProvider extends ChangeNotifier implements ReassembleHandler {
-  TemperatureUnits _temperatureUnits;
-  SpeedUnits _speedUnits;
-  PressureUnits _pressureUnits;
-  ThemeMode _themeMode;
+  TemperatureUnits get temperatureUnits => Storage.settings.temperatureUnits;
+  SpeedUnits get speedUnits => Storage.settings.speedUnits;
+  PressureUnits get pressureUnits => Storage.settings.pressureUnits;
+  ThemeMode get themeMode => Storage.settings.themeMode;
 
-  TemperatureUnits get temperatureUnits => _temperatureUnits;
-  SpeedUnits get speedUnits => _speedUnits;
-  PressureUnits get pressureUnits => _pressureUnits;
-  ThemeMode get themeMode => _themeMode;
-
-  set temperatureUnits(TemperatureUnits newValue) =>
-      notify(() => _temperatureUnits = newValue);
-  set speedUnits(SpeedUnits newValue) => notify(() => _speedUnits = newValue);
-  set pressureUnits(PressureUnits newValue) =>
-      notify(() => _pressureUnits = newValue);
-  set themeMode(ThemeMode newValue) => notify(() => _themeMode = newValue);
+  set temperatureUnits(TemperatureUnits newValue) => notify(
+        () {
+          Storage.settings.temperatureUnits = newValue;
+          Storage.saveSettings();
+        },
+      );
+  set speedUnits(SpeedUnits newValue) => notify(
+        () {
+          Storage.settings.speedUnits = newValue;
+          Storage.saveSettings();
+        },
+      );
+  set pressureUnits(PressureUnits newValue) => notify(
+        () {
+          Storage.settings.pressureUnits = newValue;
+          Storage.saveSettings();
+        },
+      );
+  set themeMode(ThemeMode newValue) => notify(
+        () {
+          Storage.settings.themeMode = newValue;
+          Storage.saveSettings();
+        },
+      );
 
   void switchTemperatureUnits() {
     temperatureUnits = temperatureUnits == TemperatureUnits.celcius
@@ -57,16 +68,6 @@ class SettingsProvider extends ChangeNotifier implements ReassembleHandler {
   void switchTheme() {
     themeMode = themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
   }
-
-  SettingsProvider({
-    required TemperatureUnits temperatureUnits,
-    required SpeedUnits speedUnits,
-    required PressureUnits pressureUnits,
-    required ThemeMode themeMode,
-  })  : _temperatureUnits = temperatureUnits,
-        _speedUnits = speedUnits,
-        _pressureUnits = pressureUnits,
-        _themeMode = themeMode;
 
   void notify(Function f) {
     f();

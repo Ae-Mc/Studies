@@ -15,12 +15,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => SettingsProvider(
-            temperatureUnits: TemperatureUnits.celcius,
-            speedUnits: SpeedUnits.metersPerSecond,
-            pressureUnits: PressureUnits.mmOfMercury,
-            themeMode: ThemeMode.light,
-          ),
+          create: (_) => SettingsProvider(),
         )
       ],
       builder: (context, _) {
