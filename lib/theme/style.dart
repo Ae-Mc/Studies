@@ -26,6 +26,11 @@ class Style {
           fontWeight: FontWeight.w600,
           letterSpacing: -0.15,
         ),
+        overline: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 1,
+        ),
         subtitle1: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         subtitle2: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
         caption: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
@@ -66,6 +71,12 @@ class Style {
             thickness: 1,
           ),
           iconTheme: const IconThemeData(color: Colors.white, size: 24),
+          inputDecorationTheme: InputDecorationTheme(
+            hintStyle:
+                textTheme.overline?.copyWith(color: const Color(0xFF828282)),
+            border: InputBorder.none,
+            contentPadding: const Pad(vertical: 16),
+          ),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: ButtonStyle(
               padding: MaterialStateProperty.all(const Pad(all: 8)),
@@ -99,7 +110,7 @@ class Style {
               )
               .merge(
                 const TextTheme(
-                  caption: TextStyle(color: Color(0xFF828282), inherit: true),
+                  caption: TextStyle(color: Color(0xFFAAAAAA), inherit: true),
                 ),
               ),
           dividerTheme: DividerThemeData(
@@ -107,6 +118,12 @@ class Style {
             thickness: 1,
           ),
           iconTheme: const IconThemeData(color: Colors.white, size: 24),
+          inputDecorationTheme: InputDecorationTheme(
+            hintStyle:
+                textTheme.overline?.copyWith(color: const Color(0xFFD4D4D4)),
+            border: InputBorder.none,
+            contentPadding: const Pad(vertical: 16),
+          ),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: ButtonStyle(
               padding: MaterialStateProperty.all(const Pad(all: 8)),

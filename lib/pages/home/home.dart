@@ -102,7 +102,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     MyIconButton(
-                      onTap: () => {},
+                      onTap: () =>
+                          AutoRouter.of(context).push(const SearchRoute()),
                       icon: const Icon(
                         CupertinoIcons.plus_circle,
                       ),
