@@ -15,6 +15,7 @@ import 'package:weather_app/pages/week_forecast/week_forecast.dart';
     AutoRoute(page: AboutPage),
     AutoRoute(page: WeekForecastPage),
     AutoRoute(page: SearchPage),
+    AutoRoute(page: FavoritesPage),
     AutoRoute(initial: true, page: LoadingPage)
   ],
 )

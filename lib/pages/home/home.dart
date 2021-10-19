@@ -1,3 +1,4 @@
+import 'package:animated_size_and_fade/animated_size_and_fade.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
@@ -139,7 +140,8 @@ class _HomePageState extends State<HomePage> {
                   title: const Text('Настройки'),
                 ),
                 ListTile(
-                  onTap: () => {},
+                  onTap: () =>
+                      AutoRouter.of(context).push(const FavoritesRoute()),
                   leading: const Icon(Icons.favorite_border_rounded),
                   title: const Text('Избранные'),
                 ),
