@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:weather_app/data/models/day_weather.dart';
 import 'package:weather_app/data/models/weather.dart';
 
 part 'onecall_result.g.dart';
@@ -7,7 +8,7 @@ part 'onecall_result.g.dart';
 class OneCallResult {
   final Weather current;
   final List<Weather> hourly;
-  final List<Weather> daily;
+  final List<DayWeather> daily;
 
   OneCallResult({
     required this.current,
