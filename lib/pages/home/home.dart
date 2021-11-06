@@ -70,6 +70,29 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          AnimatedSizeAndFade(
+                            sizeDuration: const Duration(milliseconds: 300),
+                            fadeDuration: const Duration(milliseconds: 300),
+                            child: bottomSheetExpanded
+                                ? Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Padding(
+                                      padding: const Pad(top: 8, bottom: 19),
+                                      child: Text(
+                                        'Санкт-Петербург',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .iconTheme
+                                                  .color,
+                                            ),
+                                      ),
+                                    ),
+                                  )
+                                : const SizedBox(width: double.infinity),
+                          ),
                           Text(
                             '10${Provider.of<SettingsProvider>(context).temperatureUnits.inString}'
                                 .toUpperCase(),
