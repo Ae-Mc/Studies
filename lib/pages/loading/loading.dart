@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/data/providers/weather_provider.dart';
 import 'package:weather_app/data/storage/storage.dart';
 import 'package:weather_app/router/router.gr.dart';
 
@@ -12,7 +14,9 @@ class LoadingPage extends StatelessWidget {
       body: SafeArea(
         child: FutureBuilder(
             future: Future.wait([
-              Storage.initialize(),
+              Storage.initialize().then((value) =>
+                  Provider.of<WeatherProvider>(context, listen: false)
+                      .initialize()),
             ])
               ..then((_) => AutoRouter.of(context).replace(const HomeRoute())),
             builder: (context, snapshot) {

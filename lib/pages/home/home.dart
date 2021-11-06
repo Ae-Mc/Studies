@@ -8,7 +8,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/data/models/settings.dart';
 import 'package:weather_app/data/providers/settings_provider.dart';
+import 'package:weather_app/data/providers/weather_provider.dart';
 import 'package:weather_app/gen/assets.gen.dart';
 import 'package:weather_app/pages/home/widgets/custom_bottom_sheet.dart';
 import 'package:weather_app/router/router.gr.dart';
@@ -23,6 +25,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var bottomSheetExpanded = false;
+
+  String _currentTemp(BuildContext context) {
+    final tempUnits = Provider.of<SettingsProvider>(context).temperatureUnits;
+    var celciusTemp =
+        Provider.of<WeatherProvider>(context).currentWeather.current.temp;
+    if (tempUnits == TemperatureUnits.farenheit) {
+      celciusTemp = celciusTemp * 1.8 + 32;
+    }
+    return '${celciusTemp.toStringAsFixed(1)}${tempUnits.inString}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +108,7 @@ class _HomePageState extends State<HomePage> {
                                 : const SizedBox(width: double.infinity),
                           ),
                           Text(
-                            '10${Provider.of<SettingsProvider>(context).temperatureUnits.inString}'
-                                .toUpperCase(),
+                            _currentTemp(context),
                             style:
                                 Theme.of(context).textTheme.headline1?.copyWith(
                                       color: Theme.of(context).iconTheme.color,
@@ -370,7 +381,11 @@ class _HomePageState extends State<HomePage> {
             TableCell(
               child: weatherIndicatorCard(
                 Assets.icons.universal.humidity.path,
-                '87',
+                Provider.of<WeatherProvider>(context)
+                    .currentWeather
+                    .current
+                    .humidity
+                    .toString(),
                 '%',
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/data/providers/settings_provider.dart';
+import 'package:weather_app/data/providers/weather_provider.dart';
 import 'package:weather_app/router/router.gr.dart';
 import 'package:weather_app/theme/style.dart';
 
@@ -14,9 +15,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => SettingsProvider(),
-        )
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
+        ChangeNotifierProvider(create: (_) => WeatherProvider())
       ],
       builder: (context, _) {
         final style = Style();
