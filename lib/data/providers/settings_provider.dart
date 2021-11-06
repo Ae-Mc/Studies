@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/data/models/place.dart';
 import 'package:weather_app/data/models/settings.dart';
 import 'package:weather_app/data/storage/storage.dart';
 
@@ -21,6 +22,7 @@ class SettingsProvider extends ChangeNotifier implements ReassembleHandler {
   SpeedUnits get speedUnits => Storage.settings.speedUnits;
   PressureUnits get pressureUnits => Storage.settings.pressureUnits;
   ThemeMode get themeMode => Storage.settings.themeMode;
+  Place get activePlace => Storage.settings.activePlace;
 
   set temperatureUnits(TemperatureUnits newValue) => notify(
         () {
@@ -43,6 +45,12 @@ class SettingsProvider extends ChangeNotifier implements ReassembleHandler {
   set themeMode(ThemeMode newValue) => notify(
         () {
           Storage.settings.themeMode = newValue;
+          Storage.saveSettings();
+        },
+      );
+  set activePlace(Place newValue) => notify(
+        () {
+          Storage.settings.activePlace = newValue;
           Storage.saveSettings();
         },
       );

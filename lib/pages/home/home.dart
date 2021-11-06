@@ -79,7 +79,9 @@ class _HomePageState extends State<HomePage> {
                                     child: Padding(
                                       padding: const Pad(top: 8, bottom: 19),
                                       child: Text(
-                                        'Санкт-Петербург',
+                                        Provider.of<SettingsProvider>(context)
+                                            .activePlace
+                                            .name,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline5
