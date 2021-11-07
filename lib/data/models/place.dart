@@ -2,13 +2,15 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'place.g.dart';
 
+String toString(dynamic x) => x.toString();
+
 @JsonSerializable()
 class Place {
   @JsonKey(name: 'countryName')
   final String? country;
-  @JsonKey(name: 'lat', fromJson: double.parse)
+  @JsonKey(name: 'lat', fromJson: double.parse, toJson: toString)
   final double latitude;
-  @JsonKey(name: 'lng', fromJson: double.parse)
+  @JsonKey(name: 'lng', fromJson: double.parse, toJson: toString)
   final double longitude;
   final String name;
   final int population;
