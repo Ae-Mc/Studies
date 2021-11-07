@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/data/models/settings.dart';
 import 'package:weather_app/data/providers/settings_provider.dart';
@@ -123,7 +124,8 @@ class _HomePageState extends State<HomePage> {
                                 : Align(
                                     alignment: Alignment.topCenter,
                                     child: Text(
-                                      '23 сент. 2021',
+                                      DateFormat.yMMMd('ru_RU')
+                                          .format(DateTime.now().toLocal()),
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline2
@@ -233,11 +235,14 @@ class _HomePageState extends State<HomePage> {
             ),
             AnimatedSizeAndFade.showHide(
               show: extended,
-              child: const Align(
+              child: Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
-                  padding: Pad(bottom: 32),
-                  child: Text('23 сентября'),
+                  padding: const Pad(bottom: 32),
+                  child: Text(
+                    DateFormat('d MMMM', 'ru_RU')
+                        .format(DateTime.now().toLocal()),
+                  ),
                 ),
               ),
               sizeDuration: const Duration(milliseconds: 300),
