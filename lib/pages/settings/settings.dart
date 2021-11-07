@@ -85,7 +85,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               text1: 'мм.рт.ст',
                               text2: 'гПа',
                               state: state.pressureUnits ==
-                                  PressureUnits.gigaPascal,
+                                  PressureUnits.hectopascal,
                               onTap: state.switchPressureUnits,
                             ),
                           ],

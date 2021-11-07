@@ -68,9 +68,9 @@ class SettingsProvider extends ChangeNotifier implements ReassembleHandler {
   }
 
   void switchPressureUnits() {
-    pressureUnits = pressureUnits == PressureUnits.gigaPascal
+    pressureUnits = pressureUnits == PressureUnits.hectopascal
         ? PressureUnits.mmOfMercury
-        : PressureUnits.gigaPascal;
+        : PressureUnits.hectopascal;
   }
 
   void switchTheme() {

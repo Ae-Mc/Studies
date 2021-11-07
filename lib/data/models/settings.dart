@@ -33,4 +33,4 @@ class Settings {
 
 enum TemperatureUnits { celcius, farenheit }
 enum SpeedUnits { metersPerSecond, kilometersPerHour }
-enum PressureUnits { mmOfMercury, gigaPascal }
+enum PressureUnits { mmOfMercury, hectopascal }
