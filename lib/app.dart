@@ -30,10 +30,11 @@ class App extends StatelessWidget {
       builder: (context, _) {
         final style = Style();
         return MaterialApp.router(
-          title: 'Flutter Demo',
+          title: 'Weather app',
           theme: style.lightTheme,
           darkTheme: style.darkTheme,
-          themeMode: Provider.of<SettingsProvider>(context).themeMode,
+          themeMode: context
+              .select<SettingsProvider, ThemeMode>((value) => value.themeMode),
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser(),
         );
