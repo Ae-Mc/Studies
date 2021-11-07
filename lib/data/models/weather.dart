@@ -5,7 +5,7 @@ part 'weather.g.dart';
 @JsonSerializable(createToJson: false)
 class Weather {
   final List<WeatherData> weather;
-  @JsonKey(fromJson: _dateTimeFromMillisecondsSinceEpoch)
+  @JsonKey(fromJson: _dateTimeFromSecondsSinceEpoch)
   final DateTime dt;
   final double temp;
   final int pressure;
@@ -25,8 +25,8 @@ class Weather {
   factory Weather.fromJson(Map<String, dynamic> json) =>
       _$WeatherFromJson(json);
 
-  static DateTime _dateTimeFromMillisecondsSinceEpoch(int milliseconds) {
-    return DateTime.fromMillisecondsSinceEpoch(milliseconds, isUtc: true);
+  static DateTime _dateTimeFromSecondsSinceEpoch(int seconds) {
+    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000, isUtc: true);
   }
 }
 
