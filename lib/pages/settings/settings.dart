@@ -106,9 +106,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 title: 'Тема',
                 text1: 'Тёмная',
                 text2: 'Светлая',
-                state: Provider.of<SettingsProvider>(context).themeMode ==
-                    ThemeMode.light,
-                onTap: Provider.of<SettingsProvider>(context).switchTheme,
+                state: context.select<SettingsProvider, bool>(
+                    (value) => value.themeMode == ThemeMode.light),
+                onTap: context.read<SettingsProvider>().switchTheme,
               ),
             ],
           ),

@@ -52,17 +52,15 @@ class WeekForecastPage extends StatelessWidget {
                             buildRow(
                               Assets.icons.universal.thermometer.path,
                               '8',
-                              Provider.of<SettingsProvider>(context)
-                                  .temperatureUnits
-                                  .inString,
+                              context.select<SettingsProvider, String>(
+                                  (value) => value.temperatureUnits.inString),
                             ),
                             const SizedBox(height: 24),
                             buildRow(
                               Assets.icons.universal.breeze.path,
                               '9',
-                              Provider.of<SettingsProvider>(context)
-                                  .speedUnits
-                                  .inString,
+                              context.select<SettingsProvider, String>(
+                                  (value) => value.speedUnits.inString),
                             ),
                             const SizedBox(height: 24),
                             buildRow(
@@ -74,9 +72,8 @@ class WeekForecastPage extends StatelessWidget {
                             buildRow(
                               Assets.icons.universal.barometer.path,
                               '761',
-                              Provider.of<SettingsProvider>(context)
-                                  .pressureUnits
-                                  .inString,
+                              context.select<SettingsProvider, String>(
+                                  (value) => value.pressureUnits.inString),
                             ),
                           ],
                         ),

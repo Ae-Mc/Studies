@@ -11,9 +11,9 @@ class LoadingPage extends StatelessWidget {
 
   Future<void> futures(BuildContext context) async {
     var router = AutoRouter.of(context);
+    var weatherProvider = context.read<WeatherProvider>();
     await Future.wait([
-      Storage.initialize().then((value) =>
-          Provider.of<WeatherProvider>(context, listen: false).initialize()),
+      Storage.initialize().then((value) => weatherProvider.initialize()),
       initializeDateFormatting('ru_RU'),
     ]);
     router.replace(const HomeRoute());

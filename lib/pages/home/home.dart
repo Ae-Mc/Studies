@@ -9,7 +9,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/data/models/settings.dart';
 import 'package:weather_app/data/providers/settings_provider.dart';
 import 'package:weather_app/data/providers/weather_provider.dart';
 import 'package:weather_app/gen/assets.gen.dart';
@@ -26,16 +25,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var bottomSheetExpanded = false;
-
-  String _currentTemp(BuildContext context) {
-    final tempUnits = Provider.of<SettingsProvider>(context).temperatureUnits;
-    var celciusTemp =
-        Provider.of<WeatherProvider>(context).currentWeather.current.temp;
-    if (tempUnits == TemperatureUnits.farenheit) {
-      celciusTemp = celciusTemp * 1.8 + 32;
-    }
-    return '${celciusTemp.toStringAsFixed(1)}${tempUnits.inString}';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,9 +81,9 @@ class _HomePageState extends State<HomePage> {
                                     child: Padding(
                                       padding: const Pad(top: 8, bottom: 19),
                                       child: Text(
-                                        Provider.of<SettingsProvider>(context)
-                                            .activePlace
-                                            .name,
+                                        context.select<SettingsProvider,
+                                                String>(
+                                            (value) => value.activePlace.name),
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline5
@@ -108,12 +97,39 @@ class _HomePageState extends State<HomePage> {
                                   )
                                 : const SizedBox(width: double.infinity),
                           ),
-                          Text(
-                            _currentTemp(context),
-                            style:
-                                Theme.of(context).textTheme.headline1?.copyWith(
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: context.select<WeatherProvider, String>(
+                                    (value) => value
+                                        .getTempInCurrentUnits(
+                                            value.currentWeather.current.temp)
+                                        .toStringAsFixed(1),
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      context.select<SettingsProvider, String>(
+                                    (value) => value.temperatureUnits.inString,
+                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      ?.copyWith(
+                                        color:
+                                            Theme.of(context).iconTheme.color,
+                                        letterSpacing: -11.5,
+                                      ),
+                                ),
+                              ],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  ?.copyWith(
+                                    color: Theme.of(context).iconTheme.color,
+                                  ),
+                            ),
                           ),
                           const SizedBox(height: 8),
                           AnimatedSizeAndFade(
@@ -295,22 +311,22 @@ class _HomePageState extends State<HomePage> {
           timeCard(
             '06:00',
             cardIcon(Assets.icons.light.lightning.svg()),
-            '12${Provider.of<SettingsProvider>(context).temperatureUnits.inString}',
+            getTempOnHour(6),
           ),
           timeCard(
             '12:00',
             cardIcon(Assets.icons.light.sun.svg()),
-            '12${Provider.of<SettingsProvider>(context).temperatureUnits.inString}',
+            getTempOnHour(12),
           ),
           timeCard(
             '18:00',
             cardIcon(Assets.icons.light.rain3Drops.svg()),
-            '12${Provider.of<SettingsProvider>(context).temperatureUnits.inString}',
+            getTempOnHour(18),
           ),
           timeCard(
             '00:00',
             cardIcon(Assets.icons.light.rain.svg()),
-            '12${Provider.of<SettingsProvider>(context).temperatureUnits.inString}',
+            getTempOnHour(0),
           ),
         ],
       );
@@ -346,6 +362,19 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  String getTempOnHour(int hourNum) {
+    final weatherProvider = context.read<WeatherProvider>();
+    return weatherProvider
+            .getTempInCurrentUnits(weatherProvider.currentWeather.hourly
+                .getRange(0, 24)
+                .where((element) => element.dt.hour == hourNum)
+                .first
+                .temp)
+            .round()
+            .toString() +
+        context.read<SettingsProvider>().temperatureUnits.inString;
+  }
+
   Widget cardIcon(Widget icon) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
@@ -376,21 +405,22 @@ class _HomePageState extends State<HomePage> {
             TableCell(
               child: weatherIndicatorCard(
                 Assets.icons.universal.thermometer.path,
-                '8',
-                Provider.of<SettingsProvider>(context)
-                    .temperatureUnits
-                    .inString,
+                context.select<WeatherProvider, String>(
+                  (value) => value
+                      .getTempInCurrentUnits(value.currentWeather.current.temp)
+                      .toStringAsFixed(1),
+                ),
+                context.select<SettingsProvider, String>(
+                    (value) => value.temperatureUnits.inString),
               ),
             ),
             const SizedBox(),
             TableCell(
               child: weatherIndicatorCard(
                 Assets.icons.universal.humidity.path,
-                Provider.of<WeatherProvider>(context)
-                    .currentWeather
-                    .current
-                    .humidity
-                    .toString(),
+                context.select<WeatherProvider, String>(
+                  (value) => value.currentWeather.current.humidity.toString(),
+                ),
                 '%',
               ),
             ),
@@ -403,8 +433,14 @@ class _HomePageState extends State<HomePage> {
                 padding: const Pad(top: 8),
                 child: weatherIndicatorCard(
                   Assets.icons.universal.breeze.path,
-                  '9',
-                  Provider.of<SettingsProvider>(context).speedUnits.inString,
+                  context.select<WeatherProvider, String>(
+                    (value) => value
+                        .getSpeedInCurrentUnits(
+                            value.currentWeather.current.windSpeed)
+                        .toStringAsFixed(1),
+                  ),
+                  context.select<SettingsProvider, String>(
+                      (value) => value.speedUnits.inString),
                 ),
               ),
             ),
@@ -414,8 +450,12 @@ class _HomePageState extends State<HomePage> {
                 padding: const Pad(top: 8),
                 child: weatherIndicatorCard(
                   Assets.icons.universal.barometer.path,
-                  '761',
-                  Provider.of<SettingsProvider>(context).pressureUnits.inString,
+                  context.select<WeatherProvider, String>((value) => value
+                      .getPressureInCurrentUnits(
+                          value.currentWeather.current.pressure)
+                      .toStringAsFixed(0)),
+                  context.select<SettingsProvider, String>(
+                      (value) => value.pressureUnits.inString),
                 ),
               ),
             ),

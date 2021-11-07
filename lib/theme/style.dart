@@ -16,7 +16,7 @@ class Style {
         headline1: TextStyle(
           fontSize: 70,
           fontWeight: FontWeight.w800,
-          letterSpacing: -0.15 * 70,
+          letterSpacing: -7,
         ),
         headline2: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
         headline3: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
