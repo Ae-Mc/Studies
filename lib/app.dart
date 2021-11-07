@@ -16,7 +16,16 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
-        ChangeNotifierProvider(create: (_) => WeatherProvider())
+        ChangeNotifierProxyProvider<SettingsProvider, WeatherProvider>(
+          create: (_) => WeatherProvider(),
+          update: (_, settings, weather) {
+            if (weather == null) {
+              throw ArgumentError.notNull('weather');
+            }
+            weather.settings = settings;
+            return weather;
+          },
+        ),
       ],
       builder: (context, _) {
         final style = Style();
