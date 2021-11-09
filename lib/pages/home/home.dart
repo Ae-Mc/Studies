@@ -8,9 +8,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:weather_app/data/providers/settings_provider.dart';
-import 'package:weather_app/data/providers/weather_provider.dart';
+import 'package:weather_app/data/models/weather.dart';
+import 'package:weather_app/data/providers/providers.dart';
 import 'package:weather_app/gen/assets.gen.dart';
 import 'package:weather_app/pages/home/widgets/custom_bottom_sheet.dart';
 import 'package:weather_app/router/router.gr.dart';
@@ -304,33 +303,38 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget cardsRow() {
-    return Builder(builder: (context) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          timeCard(
-            '06:00',
-            cardIcon(Assets.icons.light.lightning.svg()),
-            getTempOnHour(6),
-          ),
-          timeCard(
-            '12:00',
-            cardIcon(Assets.icons.light.sun.svg()),
-            getTempOnHour(12),
-          ),
-          timeCard(
-            '18:00',
-            cardIcon(Assets.icons.light.rain3Drops.svg()),
-            getTempOnHour(18),
-          ),
-          timeCard(
-            '00:00',
-            cardIcon(Assets.icons.light.rain.svg()),
-            getTempOnHour(0),
-          ),
-        ],
-      );
-    });
+    return Consumer<WeatherProvider>(
+      builder: (context, weatherProvider, _) {
+        final weatherOnHours = <String, Weather>{
+          "06:00": getWeatherOnHour(weatherProvider, 6),
+          "12:00": getWeatherOnHour(weatherProvider, 12),
+          "18:00": getWeatherOnHour(weatherProvider, 18),
+          "00:00": getWeatherOnHour(weatherProvider, 0),
+        };
+
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: weatherOnHours.entries.map(
+            (entry) {
+              var iconAssetGen =
+                  WeatherProvider.getWeatherIconAssetFromWeatherDataIcon(
+                entry.value.weather.first.icon,
+              );
+              return timeCard(
+                  entry.key,
+                  iconAssetGen.image(),
+                  context
+                          .read<WeatherProvider>()
+                          .getTempInCurrentUnits(entry.value.temp)
+                          .toInt()
+                          .toString() +
+                      context.select<SettingsProvider, String>(
+                          (value) => value.temperatureUnits.inString));
+            },
+          ).toList(),
+        );
+      },
+    );
   }
 
   Widget timeCard(
@@ -362,17 +366,11 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  String getTempOnHour(int hourNum) {
-    final weatherProvider = context.read<WeatherProvider>();
-    return weatherProvider
-            .getTempInCurrentUnits(weatherProvider.currentWeather.hourly
-                .getRange(0, 24)
-                .where((element) => element.dt.hour == hourNum)
-                .first
-                .temp)
-            .round()
-            .toString() +
-        context.read<SettingsProvider>().temperatureUnits.inString;
+  Weather getWeatherOnHour(WeatherProvider provider, int hourNum) {
+    return provider.currentWeather.hourly
+        .getRange(0, 24)
+        .where((element) => element.dt.hour == hourNum)
+        .first;
   }
 
   Widget cardIcon(Widget icon) {

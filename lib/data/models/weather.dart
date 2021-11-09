@@ -35,7 +35,7 @@ class WeatherData {
   final int id;
   final String main;
   final String description;
-  final String icon;
+  final WeatherIcon icon;
 
   WeatherData({
     required this.id,
@@ -46,4 +46,43 @@ class WeatherData {
 
   factory WeatherData.fromJson(Map<String, dynamic> json) =>
       _$WeatherDataFromJson(json);
+}
+
+enum WeatherIcon {
+  @JsonValue('01d')
+  d01,
+  @JsonValue('01n')
+  n01,
+  @JsonValue('02d')
+  d02,
+  @JsonValue('02n')
+  n02,
+  @JsonValue('03d')
+  d03,
+  @JsonValue('03n')
+  n03,
+  @JsonValue('04d')
+  d04,
+  @JsonValue('04n')
+  n04,
+  @JsonValue('09d')
+  d09,
+  @JsonValue('09n')
+  n09,
+  @JsonValue('10d')
+  d10,
+  @JsonValue('10n')
+  n10,
+  @JsonValue('11d')
+  d11,
+  @JsonValue('11n')
+  n11,
+  @JsonValue('13d')
+  d13,
+  @JsonValue('13n')
+  n13,
+  @JsonValue('50d')
+  d50,
+  @JsonValue('50n')
+  n50,
 }

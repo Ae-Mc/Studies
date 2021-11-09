@@ -2,7 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:weather_app/data/apis/apis.dart';
 import 'package:weather_app/data/models/onecall_result.dart';
 import 'package:weather_app/data/models/settings.dart';
+import 'package:weather_app/data/models/weather.dart';
 import 'package:weather_app/data/providers/settings_provider.dart';
+import 'package:weather_app/gen/assets.gen.dart';
 
 class WeatherProvider extends ChangeNotifier {
   late OneCallResult currentWeather;
@@ -46,5 +48,38 @@ class WeatherProvider extends ChangeNotifier {
     return getPressureInCurrentUnits(pressureInHectopascal)
             .toStringAsFixed(fractionDigits) +
         settings.pressureUnits.inString;
+  }
+
+  static AssetGenImage getWeatherIconAssetFromWeatherDataIcon(
+      WeatherIcon icon) {
+    switch (icon) {
+      case WeatherIcon.d01:
+      case WeatherIcon.n01:
+        return Assets.icons.universal.sun;
+      case WeatherIcon.d02:
+      case WeatherIcon.n02:
+        return Assets.icons.universal.partlyCloudy;
+      case WeatherIcon.d03:
+      case WeatherIcon.n03:
+      case WeatherIcon.d04:
+      case WeatherIcon.n04:
+        return Assets.icons.universal.cloudy;
+      case WeatherIcon.d09:
+      case WeatherIcon.n09:
+        return Assets.icons.universal.rain;
+      case WeatherIcon.d10:
+      case WeatherIcon.n10:
+        return Assets.icons.universal.rain3Drops;
+      case WeatherIcon.d11:
+        return Assets.icons.universal.thunderstorm;
+      case WeatherIcon.n11:
+        return Assets.icons.universal.thunderstorm;
+      case WeatherIcon.d13:
+      case WeatherIcon.n13:
+        return Assets.icons.universal.snowy;
+      case WeatherIcon.d50:
+      case WeatherIcon.n50:
+        return Assets.icons.universal.mist;
+    }
   }
 }
