@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/apis/apis.dart';
 import 'package:weather_app/data/models/place.dart';
+import 'package:weather_app/data/providers/providers.dart';
 import 'package:weather_app/data/storage/storage.dart';
 
 class SearchPage extends StatefulWidget {
@@ -108,20 +109,27 @@ class _SearchPageState extends State<SearchPage> {
     final isFavorite = Storage.favorites.contains(place);
     return ListTile(
       dense: true,
-      onTap: () {
-        (isFavorite
-                ? Storage.removeFavorite(place)
-                : Storage.addFavorite(place))
-            .then((_) => setState(() {}));
+      onTap: () async {
+        context.read<SettingsProvider>().activePlace = place;
+        await context.read<WeatherProvider>().updateWeatherData();
+        Navigator.of(context).pop();
       },
       contentPadding: Pad.zero,
       title: Text(
         place.country == null ? place.name : '${place.country}, ${place.name}',
         style: Theme.of(context).textTheme.overline,
       ),
-      trailing: Icon(
-        isFavorite ? Icons.star_rounded : Icons.star_border_rounded,
-        color: Theme.of(context).colorScheme.onBackground,
+      trailing: IconButton(
+        onPressed: () {
+          (isFavorite
+                  ? Storage.removeFavorite(place)
+                  : Storage.addFavorite(place))
+              .then((_) => setState(() {}));
+        },
+        icon: Icon(
+          isFavorite ? Icons.star_rounded : Icons.star_border_rounded,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
       ),
     );
   }
