@@ -24,6 +24,10 @@ class SettingsProvider extends ChangeNotifier implements ReassembleHandler {
   ThemeMode get themeMode => Storage.settings.themeMode;
   Place get activePlace => Storage.settings.activePlace;
 
+  void init() {
+    notifyListeners();
+  }
+
   set temperatureUnits(TemperatureUnits newValue) => notify(
         () {
           Storage.settings.temperatureUnits = newValue;

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/data/providers/providers.dart';
 import 'package:weather_app/data/providers/weather_provider.dart';
 import 'package:weather_app/data/storage/storage.dart';
 import 'package:weather_app/router/router.gr.dart';
@@ -12,10 +13,12 @@ class LoadingPage extends StatelessWidget {
   Future<void> futures(BuildContext context) async {
     var router = AutoRouter.of(context);
     var weatherProvider = context.read<WeatherProvider>();
+    var settingsProvider = context.read<SettingsProvider>();
     await Future.wait([
       Storage.initialize().then((value) => weatherProvider.initialize()),
       initializeDateFormatting('ru_RU'),
     ]);
+    settingsProvider.init();
     router.replace(const HomeRoute());
   }
 
@@ -24,7 +27,8 @@ class LoadingPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
-            future: futures(context),
+            future: futures(context)
+              ..onError((error, stackTrace) => throw error!),
             builder: (context, snapshot) {
               return SizedBox.expand(
                 child: Column(
