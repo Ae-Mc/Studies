@@ -27,7 +27,20 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          _header(),
+          RefreshIndicator(
+            color: Theme.of(context).colorScheme.onBackground,
+            onRefresh: () =>
+                context.read<WeatherProvider>().updateWeatherData(),
+            child: LayoutBuilder(
+              builder: (_, constraints) => SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: ConstrainedBox(
+                  constraints: constraints,
+                  child: _header(),
+                ),
+              ),
+            ),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: _bottomSheet(),
@@ -53,6 +66,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
                 padding: const Pad(horizontal: 25, top: 25),
