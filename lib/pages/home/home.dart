@@ -136,8 +136,13 @@ class _HomePageState extends State<HomePage> {
                                 : Align(
                                     alignment: Alignment.topCenter,
                                     child: Text(
-                                      DateFormat.yMMMd('ru_RU')
-                                          .format(DateTime.now().toLocal()),
+                                      DateFormat.yMMMd('ru_RU').format(
+                                        context
+                                            .select<WeatherProvider, DateTime>(
+                                          (value) =>
+                                              value.currentWeather.current.dt,
+                                        ),
+                                      ),
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline2
@@ -252,8 +257,11 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
                   padding: const Pad(bottom: 32),
                   child: Text(
-                    DateFormat('d MMMM', 'ru_RU')
-                        .format(DateTime.now().toLocal()),
+                    DateFormat('d MMMM', 'ru_RU').format(
+                      context.select<WeatherProvider, DateTime>(
+                        (value) => value.currentWeather.current.dt,
+                      ),
+                    ),
                   ),
                 ),
               ),
