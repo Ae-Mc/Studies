@@ -1,8 +1,12 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/data/models/day_weather.dart';
+import 'package:weather_app/data/providers/providers.dart';
 import 'package:weather_app/data/providers/settings_provider.dart';
 import 'package:weather_app/gen/assets.gen.dart';
 
@@ -23,62 +27,30 @@ class WeekForecastPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline3,
                 ),
                 const SizedBox(height: 32),
-                Container(
-                  width: double.infinity,
-                  padding: const Pad(all: 16),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFFCDDAF6),
-                        Color(0xFF9FBEFF),
-                      ],
+                Expanded(
+                  child: OverflowBox(
+                    maxWidth: MediaQuery.of(context).size.width,
+                    child: CarouselSlider.builder(
+                      itemCount: context.select<WeatherProvider, int>(
+                        (value) => value.currentWeather.daily.length,
+                      ),
+                      itemBuilder: (context, index, _) =>
+                          Builder(builder: (context) {
+                        final dayWeather =
+                            context.select<WeatherProvider, DayWeather>(
+                          (value) {
+                            return value.currentWeather.daily[index];
+                          },
+                        );
+                        return WeatherCard(dayWeather);
+                      }),
+                      options: CarouselOptions(
+                        enableInfiniteScroll: false,
+                        viewportFraction: 0.9,
+                        enlargeCenterPage: true,
+                        height: double.infinity,
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        '23 сентября',
-                        style: Theme.of(context).textTheme.headline3,
-                      ),
-                      const SizedBox(height: 16),
-                      const SizedBox(height: 16),
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Column(
-                          children: [
-                            buildRow(
-                              Assets.icons.universal.thermometer.path,
-                              '8',
-                              context.select<SettingsProvider, String>(
-                                  (value) => value.temperatureUnits.inString),
-                            ),
-                            const SizedBox(height: 24),
-                            buildRow(
-                              Assets.icons.universal.breeze.path,
-                              '9',
-                              context.select<SettingsProvider, String>(
-                                  (value) => value.speedUnits.inString),
-                            ),
-                            const SizedBox(height: 24),
-                            buildRow(
-                              Assets.icons.universal.humidity.path,
-                              '87',
-                              '%',
-                            ),
-                            const SizedBox(height: 24),
-                            buildRow(
-                              Assets.icons.universal.barometer.path,
-                              '761',
-                              context.select<SettingsProvider, String>(
-                                  (value) => value.pressureUnits.inString),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
                   ),
                 ),
                 const SizedBox(height: 40),
@@ -95,6 +67,102 @@ class WeekForecastPage extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class WeatherCard extends StatelessWidget {
+  final DayWeather dayWeather;
+  const WeatherCard(this.dayWeather, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Container(
+        width: double.infinity,
+        padding: const Pad(all: 16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: Theme.of(context).brightness == Brightness.light
+                ? [
+                    const Color(0xFFCDDAF6),
+                    const Color(0xFF9FBEFF),
+                  ]
+                : [
+                    const Color(0xFF213A70),
+                    const Color(0xFF102042),
+                  ],
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              DateFormat('d MMMM', 'ru_RU').format(dayWeather.dt),
+              style: Theme.of(context).textTheme.headline3,
+            ),
+            const SizedBox(height: 16),
+            WeatherProvider.getWeatherIconAssetFromWeatherDataIcon(
+              dayWeather.weather.first.icon,
+            ).image(height: 85),
+            const SizedBox(height: 35),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Column(
+                children: [
+                  buildRow(
+                    Assets.icons.universal.thermometer.path,
+                    context.select<WeatherProvider, String>(
+                      (value) => value
+                          .getTempInCurrentUnits(
+                              (dayWeather.temp.min + dayWeather.temp.max) / 2)
+                          .round()
+                          .toString(),
+                    ),
+                    context.select<SettingsProvider, String>(
+                        (value) => value.temperatureUnits.inString),
+                  ),
+                  const SizedBox(height: 24),
+                  buildRow(
+                    Assets.icons.universal.breeze.path,
+                    context.select<WeatherProvider, String>(
+                      (value) => value
+                          .getSpeedInCurrentUnits(dayWeather.windSpeed)
+                          .round()
+                          .toString(),
+                    ),
+                    context.select<SettingsProvider, String>(
+                        (value) => value.speedUnits.inString),
+                  ),
+                  const SizedBox(height: 24),
+                  buildRow(
+                    Assets.icons.universal.humidity.path,
+                    dayWeather.humidity.toString(),
+                    '%',
+                  ),
+                  const SizedBox(height: 24),
+                  buildRow(
+                    Assets.icons.universal.barometer.path,
+                    context.select<WeatherProvider, String>(
+                      (value) => value
+                          .getPressureInCurrentUnits(dayWeather.pressure)
+                          .round()
+                          .toString(),
+                    ),
+                    context.select<SettingsProvider, String>(
+                        (value) => value.pressureUnits.inString),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
