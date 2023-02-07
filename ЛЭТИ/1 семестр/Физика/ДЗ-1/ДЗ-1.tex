@@ -1,0 +1,176 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, right=1cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{ulem}
+\setmainfont[Ligatures=TeX]{Linux Libertine}
+
+\title{Физика. ДЗ-1. Механика}
+\author{Студент группы 2305 Александр Макурин}
+\date{08.12.2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{sloppypar}
+    \setstretch{1.8}
+
+    \section{Задача 1.}
+    \[
+        \tau = \dfrac{a}{V_к}
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            u(y)            & = ey^2 + fy + g \\
+            u(0)            & = 0             \\
+            u(a)            & = 0             \\
+            u(\dfrac{a}{2}) & = u_{max}
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            e \neq 0                                                                                \\
+            -\dfrac{f^2}{4e} + g = u_{max}                                                          \\
+            \dfrac{\sqrt{f^2 - 4eg}}{2e} = \dfrac{a}{2} \Rightarrow \dfrac{\sqrt{f^2 - 4eg}}{e} = a \\
+            -\dfrac{f}{2e} = \dfrac{a}{2} \Rightarrow -\dfrac{f}{e} = a
+        \end{array}
+        \right.
+    \]
+    \[
+        \sqrt{f^2 - 4eg} = -f \Rightarrow f^2 = f^2 - 4eg \Rightarrow eg = 0
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            e \neq 0 \\
+            eg = 0
+        \end{array}
+        \right|
+        \Rightarrow g = 0
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            -\dfrac{f^2}{4e} + g = u_{max} \\
+            -\dfrac{f}{e} = a              \\
+            g = 0
+        \end{array}\right|
+        \Rightarrow \dfrac{fa}{4} = u_{max} \Rightarrow f = \dfrac{4u_{max}}{a}
+    \]
+    \[
+        e = -\dfrac{f}{a} = -\dfrac{4u_{max}}{a^2}
+    \]
+    \[
+        u(y) = -\dfrac{4u_{max}}{a^2}y^2 + \dfrac{4u_{max}}{a}y = \dfrac{4u_{max}}{a}(-\dfrac{y^2}{a} + y)
+    \]
+
+    \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape
+    По непонятным причинам (логически понятно - расстояние по оси Ox зависит от того, сколько времени мы движемся, т. е. с какой скоростью идёт катер, но почему нельзя проинтегрировать по y-ку, если скорость по Ox (u) зависит от него напрямую, непонятно), так нельзя:
+    \[
+        x(y) = \int_0^y{\dfrac{4u_{max}}{a}(-\dfrac{y^2}{a} + y)dy} = \dfrac{4u_{max}}{a} \int_0^y(y - \dfrac{y^2}{a})dy = \dfrac{4u_{max}}{3a^2}(\dfrac{3}{2}y^2a - y^3)
+    \]
+    }}
+
+    \[
+        y(t) = \int{V_ydt} = V_yt
+    \]
+    \[
+        \begin{array}{ll}
+            x(t) & = \int{u(V_yt)dt} = \dfrac{4u_{max}}{a^2}\int{(-V_y^2t^2 + V_yta)dt} = \dfrac{4u_{max}}{a^2}(-\dfrac{V_y^2t^3}{3} + \dfrac{V_yt^2a}{2}) \\
+                 & = \dfrac{2u_{max}V_yt^2}{a} - \dfrac{4u_{max}V_y^2t^3)}{3a^2}
+        \end{array}
+    \]
+    \[
+        t = \dfrac{y}{V_y}
+        \Rightarrow
+        x(y) = \dfrac{2u_{max}y^2}{aV_y} - \dfrac{4u_{max}y^3}{3a^2V_y} = \dfrac{4u_{max}}{3a^2V_y}(\dfrac{3}{2}ay^2 - y^3)
+    \]
+    \[
+        x(y) = \dfrac{4u_{max}}{3a^2V_y}(\dfrac{3}{2}ay^2 - y^3)
+    \]
+    \[
+        d = x(a) = \dfrac{4u_{max}}{3a^2V_y}(\dfrac{3}{2}a^3 - a^3) = \dfrac{2au_{max}}{3V_y}
+    \]
+    \[
+        V_y = V_k
+    \]
+    \fbox{
+        Ответ: $\left|\begin{array}{cl}
+                x(y) & = \dfrac{4u_{max}}{3a^2V_k}(\dfrac{3}{2}ay^2 - y^3) \\
+                d    & = \dfrac{2au_{max}}{3V_k}                           \\
+                \tau & = \dfrac{a}{V_k}
+            \end{array}\right.$
+    }
+
+    \section{Задача 2}
+    \[
+        \left\{\begin{array}{ll}
+            y(\varphi) = b\sin(\varphi) \Rightarrow \cos(\varphi) = \sqrt{1 - \dfrac{y^2}{b^2}} \\
+            x(\varphi) = a\cos(\varphi)
+        \end{array}\right.
+    \]
+    \[
+        x(y) = a\sqrt{1 - \dfrac{y^2}{b^2}} \Rightarrow \dfrac{x^2}{a^2} = 1 - \dfrac{y^2}{b^2} \Rightarrow \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1
+    \]
+    \fbox{Ответ: $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$}
+    \section{Задача 3}
+    \[
+        \left\{\begin{array}{ll}
+            r(\varphi) = 2a(1 + \cos(\varphi)) \\
+            \varphi(t) = bt
+        \end{array}\right|
+        \Rightarrow r(t) = 2a(1 + \cos(bt))
+    \]
+    \[
+        v = \sqrt{v_x^2 + v_y^2}
+    \]
+    \[
+        \begin{array}{ll}
+             & x(t) = r(t)\cos(bt) = 2a\cos(bt)(1 + \cos(bt)) \\
+             & y(t) = r(t)\sin(bt) = 2a\sin(bt)(1 + \cos(bt))
+        \end{array}
+    \]
+    \[
+        \begin{array}{ll}
+            v_x(t) & = x'(t) = -2ab\sin(bt)(1 + cos(bt)) - 2ab\cos(bt)\sin(bt) =           \\
+                   & = -2ab\sin(bt)(1 + 2\cos(bt)) = -2ab(\sin(bt) + \sin(2bt))            \\
+            v_y(t) & = y'(t) = 2ab\cos(bt)(1 + \cos(bt)) - 2ab\sin(bt)\sin(bt) =           \\
+                   & = 2ab(\cos(bt) + \cos^2(bt) - \sin^2(bt)) = 2ab(\cos(bt) + \cos(2bt))
+        \end{array}
+    \]
+    \[
+        \begin{array}{ll}
+            v(t) & = 2ab\sqrt{(\sin(bt) + \sin(2bt))^2 + (\cos(bt) + \cos(2bt))^2} =                              \\
+                 & = 2ab\sqrt{\uline{\sin^2(bt)} + 2\sin(bt)\sin(2bt)
+            + \uwave{\sin^2(2bt)} + \uline{\cos^2(bt)} + 2\cos(bt)\cos(2bt) + \uwave{\cos^2(2bt)}} =              \\
+                 & = 2ab\sqrt{2 + 2\sin(bt)\sin(2bt) + 2\cos(bt)\cos(2bt)} = 2ab\sqrt{2(1 + \cos(bt))} =          \\
+                 & = 2ab\sqrt{2(1 + 2\cos^2(\dfrac{bt}{2}) - 1)} = 4ab\left|\cos\left(\dfrac{bt}{2}\right)\right|
+        \end{array}
+    \]
+    \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape
+            Тоже непонятно, почему имея зависимость скорости от времени нельзя для нахождения ускорения просто взять производную от скорости:
+            \[
+                a(t) = v'(t) = 2ab \dfrac{1}{2\sqrt{4\cos^2\left(\dfrac{bt}{2}\right)}}
+                \cdot 8\cos\left(\dfrac{bt}{2}\right)
+                \cdot -\sin\left(\dfrac{bt}{2}\right)
+                \cdot \dfrac{b}{2} = - \dfrac{ab^2\sin(bt)}{\left|\cos\left(\dfrac{bt}{2}\right)\right|}
+            \]
+        }}
+    \[
+        \begin{array}{ll}
+            a_x(t) & = v_x'(t) = -2ab^2(\cos(bt) + 2\cos(2bt)) \\
+            a_y(t) & = v_y'(t) = -2ab^2(\sin(bt) + 2\sin(2bt)) \\
+        \end{array}
+    \]
+    \[
+        \begin{array}{ll}
+            a(t) & = \sqrt{a_x^2 +a_y^2} =                                                                                           \\
+                 & = 2ab^2\sqrt{\cos^2(bt) + \sin^2(bt) + 4(\cos^2(2bt) + \sin^2(2bt)) + 4(\cos(bt)\cos(2bt) + \sin(bt)\sin(2bt))} = \\
+                 & = 2ab^2\sqrt{5 + 4\cos(bt)}
+        \end{array}
+    \]
+
+
+\end{sloppypar}
+\end{document}

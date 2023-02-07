@@ -1,0 +1,206 @@
+\documentclass[12pt]{article}
+
+\usepackage[fleqn]{amsmath}
+\usepackage[a4paper, portrait, margin=1cm, right=1cm]{geometry}
+\usepackage{polynom}
+\usepackage{setspace}
+\usepackage{stackengine}
+\usepackage{scalerel}
+\usepackage{unicode-math}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine}
+
+\let\ph\phantom
+
+\title{АиГ. ДЗ к 01.11.2022. Вариант №13. Разложение на простейшие}
+\author{Студент группы 2305 Александр Макурин}
+\date{31 октября 2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{sloppypar}
+    \setstretch{1.8}
+    \setstackgap{S}{1}
+
+    \section{$\dfrac{5x^4 + x^3 - 62x^2 - 73x - 25}{(x + 1) (x - 4) (x + 3)}$}
+    \[
+        \dfrac{5x^4 + x^3 - 62x^2 - 73x - 25}{(x + 1) (x - 4) (x + 3)}:
+    \]
+    \[
+        \polylongdiv{5x^4 + x^3 - 62x^2 - 73x - 25}{x^3 - 13x - 12}
+    \]
+    \[
+        \dfrac{A}{x + 1} + \dfrac{B}{x - 4} + \dfrac{C}{x + 3} = \dfrac{3x^2 - 13}{x^3 - 13x - 12}
+    \]
+    \[
+        A(x^2 - x - 12) + B(x^2 + 4x + 3) + C(x^2 - 3x - 4) = 3x^2 - 13
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            A + B + C = 3    \\
+            -A + 4B - 3C = 0 \\
+            -12A + 3B - 4C = -13
+        \end{array}\right.
+    \]
+    \[
+        \begin{array}{ll}
+            A = 4B - 3C \Rightarrow B = \dfrac{3 + 2C}{5}                                      \\
+            -12(4\dfrac{3 + 2C}{5} - 3C) + 3\dfrac{3 + 2C}{5} - 4C = -13 \hspace{1cm} |\cdot 5 \\
+            9 + 6C - 20C + 180C - 96C - 144 = -65                                              \\
+            70C = 70 \Rightarrow C = 1 \Rightarrow A = 1, \hspace{1cm} B = 1
+        \end{array}
+    \]
+    \framebox{Ответ:  $ \dfrac{1}{x + 1} + \dfrac{1}{x - 4} + \dfrac{1}{x + 3} + 5x + 1$}
+
+    \section{$\dfrac{4x^4 + 14x^3 - 26x^2 - 97x - 28}{(x + 2)^3 (x + 4) (x - 5)}$}
+    \[
+        \dfrac{4x^4 + 14x^3 - 26x^2 - 97x - 28}{(x + 2)^3 (x + 4) (x - 5)} =
+        \dfrac{A_1}{x + 2} + \dfrac{A_2}{(x + 2)^2} + \dfrac{A_3}{(x + 2)^3} + \dfrac{A_4}{x + 4} + \dfrac{A_5}{x - 5}
+    \]
+    \begin{multline*}
+        A_1(x + 2)^2(x+4)(x-5) + A_2(x + 2)(x+4)(x-5) + A_3(x+4)(x-5) + A_4(x+2)^3(x-5) + A_5(x+2)^3(x+4) = \\
+        4x^4 + 14x^3 - 26x^2 - 97x - 28
+    \end{multline*}
+    \[
+        \left\{\begin{array}{ll}
+            x = -2 \\
+            -14A_3 = 64 - 112 - 104 + 194 - 28 \Rightarrow A_3 = -\dfrac{14}{14}  = -1
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            x = -4 \\
+            72A_4 = 1024 - 896 - 416 + 388 - 28 \Rightarrow A_4 = \dfrac{72}{72} = 1
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            x = 5 \\
+            3087A_5 = 2500 + 1750 - 650 - 485 - 28 \Rightarrow A_5 = \dfrac{3087}{3087} = 1
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            \left\{\begin{array}{ll}
+                       x = 0 \\
+                       -80A_1 - 40A_2 - 20A_3 - 40A_4 + 32A_5 = -28 \Rightarrow 2A_1 + A_2 = 1
+                   \end{array}\right. \\
+            \left\{\begin{array}{ll}
+                       x = -1 \\
+                       -6A_1 - 6A_2 - 6A_3 - 2A_4 + A_5 = 11 \Rightarrow A_1 + A_2 = -1
+                   \end{array}\right.
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            A_2 = -1 - A_1 \\
+            2A_1 - A_1 - 1 = 1 \Rightarrow A_1 = 2 \Rightarrow A_2 = -3
+        \end{array}\right.
+    \]
+
+    \framebox{Ответ: $\dfrac{2}{x + 2} + \dfrac{-3}{(x + 2)^2} + \dfrac{-1}{(x + 2)^3} + \dfrac{1}{x + 4} + \dfrac{1}{x - 5}$}
+
+    \section{$\dfrac{6x^3 - 21x^2 + 2x - 4}{(x^2 - x + 1)(x - 4)x}$}
+    \[
+        \begin{array}{ll}
+            x^2 - x + 1 = 0 \\
+            D = 1 - 4 = -3 < 0
+        \end{array}
+    \]
+    \[
+        \dfrac{6x^3 - 21x^2 + 2x - 4}{(x^2 - x + 1)(x - 4)x} = \dfrac{Ax + B}{x^2 - x + 1} + \dfrac{C}{x - 4} + \dfrac{D}{x}
+    \]
+    \[
+        Ax(x-4)x + B(x-4)x + C(x^2 - x + 1)x + D(x^2 - x + 1)(x - 4) = 6x^3 - 21x^2 + 2x - 4
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            x = 4 \\
+            52С = 52 \Rightarrow C = 1
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            x = 0 \\
+            -4D = -4 \Rightarrow D = 1
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{ll}
+            \left\{\begin{array}{ll}
+                       x = 1 \\
+                       -3A - 3B + C - 3D = -17 \Rightarrow A + B = 5
+                   \end{array}\right. \\
+            \left\{\begin{array}{ll}
+                       x = 2 \\
+                       -8A - 4B + 6C - 6D = -36 \Rightarrow 2A + B = 9
+                   \end{array}\right.
+        \end{array}\right.
+    \]
+
+    \[
+        \left\{\begin{array}{ll}
+            A + B = 5  & \Rightarrow B = 5 - A               \\
+            2A + B = 9 & \Rightarrow A = 4 \Rightarrow B = 1
+        \end{array}\right.
+    \]
+
+    \framebox{Ответ: $\dfrac{4x + 1}{x^2 - x + 1} + \dfrac{1}{x - 4} + \dfrac{1}{x}$}
+
+    \section{Найти рациональные корни: $-9x^4 + 9x^3 + 28x^2 - 22x + 4 = 0$}
+    \[
+        \forall a_k \in \mathbb{Z} \Rightarrow \dfrac{p}{q} \in \mathbb{Q} - \text{корень} \\
+    \]
+    \[
+        p \in \mathbb{Z}, q \in \mathbb{N}, a_n \vdots q, a_0 \vdots p
+    \]
+    \[
+        p = \{-4, -2, -1, 1, 2, 4\}
+    \]
+    \[
+        q = \{1, 3, 9\}
+    \]
+    \[
+        x_1 = \dfrac13
+    \]
+    \[
+        \polylongdiv{-9x^4 + 9x^3 + 28x^2 - 22x + 4}{x - 1/3}
+    \]
+    \[
+        -9x^3 + 6x^2 + 30x - 12 = 0
+    \]
+    \[
+        p = \{-12, -6, -4, -3 -2, -1, 1, 2, 3, 4, 6, 12\}
+    \]
+    \[
+        q = \{1, 3, 9\}
+    \]
+    \[
+        x_2 = 2
+    \]
+    \[
+        \polylongdiv{-9x^3 + 6x^2 + 30x - 12}{x - 2}
+    \]
+    \[
+        \begin{array}{ll}
+            -9x^2 - 12x + 6 = 0 \\
+            D = 144 + 216 = 360 \\
+            x_{3,4} = \dfrac{-2 \mp \sqrt{10}}{3}
+        \end{array}
+    \]
+
+    \framebox{
+        Ответ:
+        $\left\{\begin{array}{l}
+                x_1 = \dfrac13                  \\
+                x_2 = 2                         \\
+                x_3 = \dfrac{-2 + \sqrt{10}}{3} \\
+                x_4 = \dfrac{-2 - \sqrt{10}}{3}
+            \end{array}\right.$
+    }
+
+
+\end{sloppypar}
+\end{document}

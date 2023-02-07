@@ -1,0 +1,311 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, right=1cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{setspace}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine}
+
+\title{АиГ. ДЗ к 2022-12-27. Вариант №13}
+\author{Студент группы 2305 Александр Макурин}
+\date{18 декабря 2022}
+
+\begin{document}
+
+\maketitle
+
+\begin{sloppypar}
+    \setstretch{1.8}
+
+    \section{Найти вектор $x$ длины $\sqrt{57}$, коллинеарный вектору $a = (12, 15, 12)$ и образующий с вектором $b = (-1, 1, -2) тупой угол.$}
+    \[
+        \left\{\begin{array}{l}
+            x = \lambda a                                                                                                                             \\
+            |x| = \sqrt{57} \Rightarrow |\lambda| \sqrt{12^2 + 15^2 + 12^2} = \sqrt{57} \Rightarrow |\lambda| = \sqrt{\dfrac{57}{513}} = \dfrac{1}{3} \\
+            \cos \angle (x, b) < 0
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{l}
+            x \cdot b = \lambda (x_a \cdot x_b + y_a \cdot y_b + z_a \cdot z_b) \\
+            x \cdot b = |x| |b| \cos {\angle (x, b)}
+        \end{array}\right|
+        \Rightarrow
+        \cos {\angle(x, b)} = \dfrac{\lambda (x_a \cdot x_b + y_a \cdot y_b + z_a \cdot z_b)}{|x| |b|} = \lambda \dfrac{-21}{\sqrt{57} \cdot \sqrt{6}}
+    \]
+    \[
+        \left\{\begin{array}{l}
+            \cos {\angle(x, b)} = \lambda \dfrac{-7}{\sqrt{38}} \\
+            |\lambda| = \dfrac{1}{3}                            \\
+            \cos {\angle (x, b)} < 0
+        \end{array}\right|
+        \Rightarrow
+        \lambda = \dfrac{1}{3}
+        \Rightarrow
+        x = (4, 5, 4)
+    \]
+
+    \fbox{Ответ: $x = (4, 5, 4)$}
+
+    \section{Найти площадь треугольника с вершинами $A(-6, 1, 2)$, $B(-8, -3, 1)$ и $C(-10, -3, 2)$.}
+    \[
+        S_{\triangle ABC} = \dfrac{|\overrightarrow{CB} \times \overrightarrow{CA}|}{2}
+    \]
+    \[
+        \begin{array}{l}
+            \overrightarrow{CB} = (2, 0, -1) \\
+            \overrightarrow{CA} = (4, 4, 0)
+        \end{array}
+    \]
+    \[
+        \overrightarrow{CB} \times \overrightarrow{CA} =
+        \begin{pmatrix}
+            \vec{i} & \vec{j} & \vec{k} \\
+            2       & 0       & -1      \\
+            4       & 4       & 0
+        \end{pmatrix}
+        = 4 \vec{i} - 4 \vec{j} + 8 \vec k = 4 (\vec i - \vec j + 2\vec k)
+    \]
+    \[
+        S_{\triangle ABC} = \dfrac{4 \sqrt{6}}{2} = 2 \sqrt{6}
+    \]
+
+    \fbox{Ответ: $S_{\triangle ABC} = 2 \sqrt{6}$}
+
+    \section{При каком значении $\lambda$ прямые $l_1: \dfrac{x - 2}{1} = \dfrac{y - 7}{3} = \dfrac{z - 2}{2}$ и $l_2: \dfrac{x - 7}{3} = \dfrac{y + 2}{-3} = \dfrac{z - \lambda}{2}$ пересекаются? Найти точку пересечения.}
+    \[
+        \left\{\begin{array}{l}
+            x = A_1t_1 + x_{1_0} \\
+            y = B_1t_1 + y_{1_0} \\
+            z = C_1t_1 + z_{1_0} \\
+            x = A_2t_2 + x_{2_0} \\
+            y = B_2t_2 + y_{2_0} \\
+            z = C_2t_2 + z_{2_0}
+        \end{array}\right|
+        =
+        \left\{\begin{array}{rcrcrcrcl}
+            x &   &   & - & A_1t_1 &   &        & = & x_{1_0} \\
+              & y &   & - & B_1t_1 &   &        & = & x_{1_0} \\
+              &   & z & - & C_1t_1 &   &        & = & z_{1_0} \\
+            x &   &   &   &        & - & A_2t_2 & = & x_{2_0} \\
+              & y &   &   &        & - & B_2t_2 & = & y_{2_0} \\
+              &   & z &   &        & - & B_2t_2 & = & z_{2_0}
+        \end{array}\right.
+    \]
+    \[
+        \left\{\begin{array}{rcrcrcrcl}
+            x &   &   & - & t_1  &   &      & = & 2       \\
+              & y &   & - & 3t_1 &   &      & = & 7       \\
+              &   & z & - & 2t_1 &   &      & = & 2       \\
+            x &   &   &   &      & - & 3t_1 & = & 7       \\
+              & y &   &   &      & + & 3t_1 & = & -2      \\
+              &   & z &   &      & - & 2t_2 & = & \lambda
+        \end{array}\right.
+    \]
+    \[
+        \left(\begin{array}{ccccc|c}
+                1 & 0 & 0 & -1 & 0  & 2       \\
+                0 & 1 & 0 & -3 & 0  & 7       \\
+                0 & 0 & 1 & -2 & 0  & 2       \\
+                1 & 0 & 0 & 0  & -3 & 7       \\
+                0 & 1 & 0 & 0  & 3  & -2      \\
+                0 & 0 & 1 & 0  & -2 & \lambda \\
+            \end{array}\right)
+        \sim
+        \left(\begin{array}{ccccc|c}
+                1 & 0 & 0 & 0 & 0 & 1           \\
+                0 & 1 & 0 & 0 & 0 & 4           \\
+                0 & 0 & 1 & 0 & 0 & 0           \\
+                0 & 0 & 0 & 1 & 0 & -1          \\
+                0 & 0 & 0 & 0 & 1 & -2          \\
+                0 & 0 & 0 & 0 & 0 & \lambda - 4 \\
+            \end{array}\right)
+        \Rightarrow
+    \]
+    \[
+        \Rightarrow \text{ точка пересечения } (1, 4, 0) \text{ при } \lambda = 4
+    \]
+
+    \fbox{Ответ: точка пересечения $(1, 4, 0)$ при $\lambda = 4$}
+
+    \section{При каком значении $\lambda$ прямые $l_1: \dfrac{x - 0}{5} = \dfrac{y + 6}{-4} = \dfrac{z - 8}{3}$ и $l_2: \dfrac{x + 3}{1} = \dfrac{y + 2}{0} = \dfrac{z - \lambda}{1}$ пересекаются? Найти точку пересечения.}
+    \[
+        \left\{\begin{array}{rcrcrcrcl}
+            x &   &   & - & 5t_1 &   &     & = & 0       \\
+              & y &   & + & 4t_1 &   &     & = & -6      \\
+              &   & z & - & 3t_1 &   &     & = & 8       \\
+            x &   &   &   &      & - & t_2 & = & -3      \\
+              & y &   &   &      &   &     & = & -2      \\
+              &   & z &   &      & - & t_2 & = & \lambda
+        \end{array}\right.
+    \]
+    \[
+        \left(\begin{array}{ccccc|c}
+                1 & 0 & 0 & -5 & 0  & 0       \\
+                0 & 1 & 0 & 4  & 0  & -6      \\
+                0 & 0 & 1 & -3 & 0  & 8       \\
+                1 & 0 & 0 & 0  & -1 & -3      \\
+                0 & 1 & 0 & 0  & 0  & -2      \\
+                0 & 0 & 1 & 0  & -1 & \lambda \\
+            \end{array}\right)
+        \sim
+        \left(\begin{array}{ccccc|c}
+                1 & 0 & 0 & -5 & 0  & 0           \\
+                0 & 1 & 0 & 4  & 0  & -6          \\
+                0 & 0 & 1 & -3 & 0  & 8           \\
+                0 & 0 & 0 & 5  & -1 & -3          \\
+                0 & 0 & 0 & 1  & 0  & -1          \\
+                0 & 0 & 0 & 3  & -1 & \lambda - 8 \\
+            \end{array}\right)
+        \sim
+        \left(\begin{array}{ccccc|c}
+                1 & 0 & 0 & 0 & 0 & -5          \\
+                0 & 1 & 0 & 0 & 0 & -2          \\
+                0 & 0 & 1 & 0 & 0 & 5           \\
+                0 & 0 & 0 & 1 & 0 & -1          \\
+                0 & 0 & 0 & 0 & 1 & -2          \\
+                0 & 0 & 0 & 0 & 0 & \lambda - 7 \\
+            \end{array}\right)
+        \Rightarrow
+    \]
+    $\Rightarrow$ точка пересечения $(-5, -2, 5)$ при $\lambda = 7$
+
+    \fbox{Ответ: точка пересечения $(-5, -2, 5)$ при $\lambda = 7$}
+
+    \section{Даны: точка $M(6, 5, -1)$, плоскость $\Gamma_1: 4x + y - z = 12$ и вектора $\overline{a} = (4,7,-4)$ и $\overline{b} = (7, 7, -1)$.}
+    \subsection{a) Написать уравнение плоскости $\Gamma_2$, параллельной векторам $\overline{a}$ и $\overline{b}$, и проходящей через точку $M$.}
+    \[
+        \overline{c} = \overline{a} \times \overline{b} \Rightarrow \Gamma_2: x_c(x - 6) + y_c(y - 5) + z_c(z + 1) = 0
+    \]
+    \[
+        \overline{a} \times \overline{b} =
+        \begin{pmatrix}
+            \vec i & \vec j & \vec k \\
+            4      & 7      & -4     \\
+            7      & 7      & -1     \\
+        \end{pmatrix}
+        = 21 \vec i - 24 \vec j - 21 \vec k
+    \]
+    \[
+        \Gamma_2: 7(x - 6) - 8(y - 5) - 7(z + 1) = 0
+    \]
+    \[
+        \Gamma_2: 7x - 8y - 7z = 9
+    \]
+    \fbox{Ответ: $\Gamma_2: 7x - 8y - 7z = 9$}
+
+    \subsection{b) Написать каноническое уравнение линии пересечения плоскостей $\Gamma_1$ и $\Gamma_2$.}
+    \[
+        \left\{\begin{array}{l}
+            4x + y - z = 12   \\
+            7x - 8 y - 7z = 9 \\
+        \end{array}\right.
+    \]
+    Пусть $\vec{n}$ - направляющий вектор линии пересечения. Тогда $\vec{n} = (4, 1, -1) \times (7, -8, -7)$.
+    \[
+        \vec{n} =
+        \begin{vmatrix}
+            \vec i & \vec j & \vec k \\
+            4      & 1      & -1     \\
+            7      & -8     & -7     \\
+        \end{vmatrix}
+        = -15 \vec i + 21 \vec j - 39 \vec k \sim (-5, 7, -13)
+    \]
+    Пусть $M$ - точка, лежащая на линии пересечения и её координата по оси аппликат равна 0, тогда:
+    \[
+        \left\{\begin{array}{l}
+            4x +  y = 12 \\
+            7x - 8y = 9  \\
+        \end{array}\right.
+        \Rightarrow
+        y = 12 - 4x
+        \Rightarrow
+        39x = 105
+        \Rightarrow
+        \left\{\begin{array}{l}
+            x = \dfrac{35}{13} \\
+            y = \dfrac{16}{13} \\
+            z = 0              \\
+        \end{array}\right.
+    \]
+    \[
+        \dfrac{x - \dfrac{35}{13}}{-5} = \dfrac{y - \dfrac{16}{13}}{7} = \dfrac{z}{-13}
+    \]
+    \fbox{Ответ: $\dfrac{x - \frac{35}{13}}{-5} = \dfrac{y - \frac{16}{13}}{7} = \dfrac{z}{-13}$}
+
+    \subsection{c) Найти угол между плоскостями $\Gamma_1$ и $\Gamma_2$.}
+    Пусть $\vec{n_1}$, $\Vec{n_2}$ - нормальные векторы плоскостей $\Gamma_1$ и $\Gamma_2$ соответственно. Тогда:
+    \[
+        \cos {\angle(\Vec{n_1}, \Vec{n_2}) = \dfrac{x_{\Vec{n_1}} x_{\Vec{n_2}} + y_{\Vec{n_1}} y_{\Vec{n_2}} + z_{\Vec{n_1}} z_{\Vec{n_2}}}{|\Vec{n_1}| |\Vec{n_2}|}}
+        = \dfrac{4 \cdot 7 + 1 \cdot (-8) + (-1) \cdot (-7)}{\sqrt{4^2 + 1^2 + (-1)^2} \cdot \sqrt{7^2 + (-8)^2 + (-7)^2}}
+        = \dfrac{27}{\sqrt{18 \cdot 162}} = \dfrac{1}{2}
+    \]
+    \[
+        \cos{\angle(\Vec{n_1}, \Vec{n_2})} = \dfrac{1}{2} \Rightarrow \angle(\Vec{n_1}, \Vec{n_2}) = \dfrac{\pi}{3}
+    \]
+    \fbox{Ответ: $\dfrac{\pi}{3}$}
+
+    \subsection{d) Выбрать нормальные вектора между плоскостями $\Gamma_1$ и $\Gamma_2$ так, чтобы они были равны по длине и между ними был острый угол.}
+    Между векторами уже острый угол, см. пункт c.
+    \[
+        \left\{\begin{array}{l}
+            |\Vec{n_1}| = \lambda |\Vec{n_2}| \\
+            |\Vec{n_1}| = 3\sqrt{2}           \\
+            |\Vec{n_2}| = 9\sqrt{2}           \\
+        \end{array}\right|
+        \Rightarrow
+        \lambda = \dfrac{1}{3}
+    \]
+
+    \fbox{Ответ: $\left|\begin{array}{l}
+                \Vec{n_1} = (4, 1, -1)                               \\
+                \Vec{n_2} = (\dfrac73, \dfrac{-8}{3}, \dfrac{-7}{3}) \\
+            \end{array}\right.$
+    }
+
+    \subsection{e) Написать уравнение биссектрисы острого двугранного угла между плоскостями $\Gamma_1$ и $\Gamma_2$}
+    Построим плоскость $\alpha$, перпендикулярную линии пересечения плоскостей $\Gamma_1$ и $\Gamma_2$ и проходящей через точку $M\left(\dfrac{35}{13}, \dfrac{16}{13}, 0\right)$.
+    \begin{align*}
+         & -5(x - \dfrac{35}{13}) + 7(y - \dfrac{16}{13}) - 13z = 0 \\
+         & 65x - 175 - 91y + 112 + 169z = 0                         \\
+         & 5x - 7y + 13z = \dfrac{63}{13}
+    \end{align*}
+    Найдём направляющие вектора линий пересечения плоскости $\alpha$ с плоскостями $\Gamma_1$ и $\Gamma_2$.
+    \begin{align*}
+         & \Vec{l_1}: \begin{vmatrix}
+                          \vec i & \vec j & \vec k \\
+                          5      & -7     & 13     \\
+                          4      & 1      & -1
+                      \end{vmatrix}
+        \sim
+        (-6, 57, 33)
+        \sim
+        (-2, 19, 11)                           \\
+         & \Vec{l_2}: \begin{vmatrix}
+                          \vec i & \vec j & \vec k \\
+                          5      & -7     & 13     \\
+                          7      & -8     & -7
+                      \end{vmatrix}
+        \sim
+        (153, 126, 9)
+        \sim
+        (17, 14, 1)                            \\
+    \end{align*}
+    Найдём косинус угла между ними.
+    \[
+        \cos{\angle(\Vec{l_1}, \Vec{l_2})} = \dfrac{-2 \cdot 17 + 19 \cdot 14 + 11 \cdot 1}{\sqrt{4 + 361 + 121} \cdot \sqrt{289 + 196 + 1}} = \dfrac{243}{\sqrt{486} \cdot \sqrt{486}} = \dfrac{1}{2}
+    \]
+    $\cos{\angle(\Vec{l_1}, \Vec{l_2})} = \dfrac{1}{2} \Rightarrow$ угол между ними острый. \\
+    $|\Vec{l_1}| = |\Vec{l_2}|$ - вектора равны по длине. \\
+    Направляющим вектором биссектрисы будет вектор, равный сумме векторов $\Vec{l_1}$ и $\Vec{l_2}$.
+    \[
+        \Vec{l} = \Vec{l_1} + \Vec{l_2} = (15, 33, 12) \sim (5, 11, 4)
+    \]
+    Построим уравнение прямой по точке и направляющему вектору.
+    \[
+        \dfrac{x - \dfrac{35}{13}}{5} = \dfrac{y - \dfrac{16}{13}}{11} = \dfrac{z}{4}
+    \]
+
+    \fbox{Ответ: $\dfrac{x - \dfrac{35}{13}}{5} = \dfrac{y - \dfrac{16}{13}}{11} = \dfrac{z}{4}$}
+\end{sloppypar}
+\end{document}

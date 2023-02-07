@@ -1,0 +1,127 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, right=1cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\graphicspath{./}
+\setmainfont[Ligatures=TeX]{Linux Libertine}
+
+\DeclareMathOperator{\arcctg}{arcctg}
+\DeclareMathOperator{\const}{\textit{const}}
+
+\title{МатАн. Подготовка к экзамену}
+\author{Студент группы 2305 Александр Макурин}
+\date{11 января 2022}
+
+\begin{document}
+\newcommand{\limx}{\displaystyle\lim_{x \rightarrow x_0}}
+\newcommand{\overo}{\overline{o}}
+
+\maketitle
+
+\begin{sloppypar}
+    \setstretch{1.8}
+
+    \setcounter{section}{10}
+    \section{Предел и непрерывность сложной функции.}
+    Функция $f(x)$ является непрерывной в точке $x_0$, если соблюдается любое из:
+    \begin{enumerate}
+        \item $\displaystyle \lim_{x \rightarrow x_0} f(x) = f(x_0)$
+        \item $\forall \varepsilon > 0 \Rightarrow \exists \delta > 0 : \forall x \in U_{\delta}(x_0), \  f(x) \in U_{\varepsilon}(f(x_0))$
+        \item $\{x_n\} : \displaystyle \lim_{n\rightarrow \infty} x_n = x_0 \ \Rightarrow \lim_{n \rightarrow \infty} \{f(x_n)\} = f(x_0)$
+    \end{enumerate}
+    Предел сложной функции $f(x)$ в точке $x_0$, при $x_0 = \varphi(t_0)$, если функция $f(x_0)$ непрерывна в точке $x_0$:
+    \[
+        \lim_{t \rightarrow t_0}f(\varphi(t)) = f(\lim_{t \rightarrow t_0} \varphi(t))
+    \]
+
+    \section{Односторонняя непрерывность и точки разрыва.}
+    Функция $f(x)$ является непрерывной в точке $x_0$ слева, если $\displaystyle \lim_{x \rightarrow x_0 - 0} f(x) = f(x_0)$. \\
+    Функция $f(x)$ является непрерывной в точке $x_0$ справа, если $\displaystyle \lim_{x \rightarrow x_0 + 0} f(x) = f(x_0)$. \\
+    Точка $x_0$ называется точкой разрыва первого рода, если соблюдается любое из:
+    \begin{enumerate}
+        \item $\nexists f(x),\ \displaystyle \lim_{x \rightarrow x_0 \pm 0}f(x) \neq \infty$
+        \item $\displaystyle \lim_{x \rightarrow x_0 - 0}f(x) = a \neq \infty$ \\
+              $\displaystyle \lim_{x \rightarrow x_0 + 0}f(x) = b \neq \infty$ \\
+              $a \neq b$
+    \end{enumerate}
+    Точка $x_0$ называется точкой разрыва второго рода, если любой из односторонних пределов функции равен $\infty$ или $\nexists$.
+
+    \section{Свойства функций непрерывных на отрезке. Теорема Вейерштрасса. Теорема Коши о промежуточном значении}
+    Функция $f(x)$ является непрерывной на $[a, b]$ если она непрерывна в $\forall x_0 \in [a, b]$. \\
+    Пусть $f(x)$ и $g(x)$ непрерывны на $[a, b]$. Тогда:
+    \begin{enumerate}
+        \item $f(x) \pm g(x)$ - непрерывна
+        \item $f(x) \cdot g(x)$ - непрерывна
+        \item $\dfrac{f(x)}{g(x)}$ - непрерывна, если $\forall x \in [a, b] \  g(x) \neq 0$
+    \end{enumerate}
+    Док-во (3):
+    \begin{align*}
+         & \text{Пусть } f(x) \text{ и } g(x) \text{ - непрерывны в} x_0, x_0 \in [a, b] \Rightarrow \lim_{x \rightarrow x_0} f(x) = f(x_0),
+        \lim_{x \rightarrow x_0} g(x) = g(x_0). \text{ Тогда:}                                                                               \\
+         & \lim_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \dfrac{\limx f(x)}{\limx g(x)} = \dfrac{f(x_0)}{g(x_0)} \Rightarrow
+        \dfrac{f(x)}{g(x)} \text{ непрерывна, ч.т.д.}
+    \end{align*}
+    Теорема Вейерштрасса. Если $f(x)$ непрерывна и ограничена на отрезке $[a, b]$, то она достигает на нём $\displaystyle \sup_{[a, b]}f(x)$ и $\displaystyle \inf_{[a, b]}f(x)$. \\
+    Теорема Коши. Если $f(x)$ непрерывна на отрезке $[a, b],\ f(a) = A,\ f(b) = B,\ C \in [A, B]$ или $C \in [B, A]$, то $f(\xi) = C,\ \xi \in [a, b]$.
+
+    \section{Обратные функции. Свойства непрерывности для обратных функций.}
+
+    \section{Элементарные функции и их основные свойства.}
+
+    \section{Замечательные пределы.}
+
+    \section{Производная функции и ее свойства.}
+
+    \section{Дифференциал функции и его свойства.}
+
+    \section{Производная сложной функции.}
+
+    \section{Производная обратной функции.}
+
+    \section{Производные и дифференциалы высших порядков.}
+
+    \section{Теоремы о среднем.}
+
+    \section{Формула Тейлора с остатком в форме Пеано.}
+    Пусть $\exists f$, $f$ определена на $U(x_0), \exists f^{(n)}(x_0)$. $f^{(0)}(x) = f(x)$.
+    \[
+        f(x) = \sum^n_{k = 0} \dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k + r_n(f, x)
+    \]
+    $\displaystyle P_n(x) = \sum^n_{k = 0} \dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k$ - многочлен Тейлора. \\
+    $r_n(f, x)$ - остаток. \\
+    $\overline{o}((x - x_0)^n)$ - остаток в форме Пеано.
+    $\overline{o}(f(x)), x \rightarrow x_0 \Longleftrightarrow \lim_{x \rightarrow x_0} \dfrac{\overline{o}(f(x))}{f(x)} = 0$ \\
+    Формула Тейлора с остатком в форме Пеано:
+    \[
+        f(x) = \sum^n_{k = 0} \dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k + \overline{o}((x - x_0)^n), x \rightarrow x_0
+    \]
+    Док-во:
+    \begin{align*}
+         & \overo((x - x_0)^n) =  f(x) - \sum^n_{k = 0} \dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k
+        \Rightarrow \limx \left(\dfrac{f(x) - \sum^n_{k = 0} \dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k}{(x - x_0)^n}\right)
+        = 0 - \text{док-ть}                                                                                                                           \\
+         & \text{По правилу Лопиталя:}                                                                                                                \\
+         & \limx \left(\dfrac{f^{(n - 1)}(x) - f^{(n - 1)}(x_0) - f^{(n)}(x_0)(x - x_0)}{n!(x - x_0)}\right) =                                        \\
+         & \text{Пусть $\Delta x = x - x_0$. Тогда:}                                                                                                  \\
+         & = \dfrac{1}{n!} \lim_{\Delta x \rightarrow 0} \left(\dfrac{f^{(n - 1)}(x_0 + \Delta x) - f^{(n - 1)}(x_0)}{\Delta x} - f^{(n)}(x_0)\right)
+        = \dfrac{1}{n!}\left(f^{(n)}(x_0) - f^{(n)}(x_0)\right) = 0 \text{, ч.т.д.}
+    \end{align*}
+
+    \section{Формула Тейлора с остатком в форме Лагранжа.}
+
+    \section{Правило Лопиталя.}
+
+    \section{Монотонность и экстремумы функции.}
+
+    \section{Выпуклость и точки перегиба.}
+
+    \section{Асимптоты.}
+
+    \section{Построение графиков функций с полным исследованием.}
+
+
+\end{sloppypar}
+\end{document}
