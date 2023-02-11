@@ -13,6 +13,7 @@
 \date{07 февраля 2023}
 
 \begin{document}
+
 \maketitle
 \begin{sloppypar}
     \setstretch{1.8}
@@ -44,6 +45,10 @@
     связи и хранению информации с мониторингом и/или управлением объектами
     физического мира и должна делать это надёжно, безопасно, эффективно и в
     реальном времени.
+
+    \includegraphics[width=0.5\textwidth]{graphics/Мехатроника.png}
+
+    Информационные технологии охватывают такие аспекты мехатроники, как управление, электроника и программное обеспечение.
 
     АСУ ТП становятся всё менее распространёнными по причинам плохой
     расширяемости (одна система управления на множество датчиков и механизмов) и
@@ -147,5 +152,86 @@
     \]
 
     Когда состояние системы близко к оптимальному, значения выходных параметров стремятся к нормальному распределению.
+
+    \includegraphics[width=0.5\textwidth]{graphics/Состояния системы и нормальное распределение.png}
+
+    \[
+        f: S_E^{\text{норм}} \rightarrow S_E^{\text{плохо}}
+    \]
+
+    \section{Виды архитектур интеллектуальных агентов:}
+    \subsection{Реактивные}
+    Пример - Johns Hopkins Beast.
+
+    \begin{picture}(200,200)
+        \thicklines
+        \put(100,10){\line(0,1){180}}
+        \put(10,100){\line(1,0){180}}
+        \put(100,190){\makebox(0,0)[b]{\textsc{Сенсоры}}}
+        \put(190,100){\makebox(0,0)[l]{\rotatebox{-90}{\textsc{Реакция}}}}
+        \put(100,10){\makebox(0,0)[t]{\textsc{Механика}}}
+        \put(10,100){\makebox(0,0)[r]{\rotatebox{90}{\textsc{Словарь действий}}}}
+    \end{picture}
+
+    \subsection{Делиберативные}
+    Пример - Яндекс Навигатор
+
+    \begin{picture}(200,200)
+        \thicklines
+        \put(100,10){\line(0,1){180}}
+        \put(10,100){\line(1,0){180}}
+        \put(100,190){\makebox(0,0)[b]{\textsc{Сенсоры}}}
+        \put(190,100){\makebox(0,0)[l]{\rotatebox{-90}{\textsc{Критерий}}}}
+        \put(100,10){\makebox(0,0)[t]{\textsc{Механика}}}
+        \put(10,100){\makebox(0,0)[r]{\rotatebox{90}{\textsc{Априорная информация}}}}
+    \end{picture}
+
+    \subsection{Гибридные}
+
+    Пример - автопилот Tesla (он знает, что нужно делать (априорная информация) (ехать) и реагирует на изменения)
+
+    \section{Сопутствующие задачи для беспилотника:}
+    \subsection{Стабилизация}
+    Система должна стремиться находится максимально близко к идеальному состоянию.
+
+    \includegraphics[width=0.5\textwidth]{graphics/Стабилизация.png}
+    \[
+        y(t) \rightarrow y^* \text{ или } \lim{|y^* - y(t)|} \leq \nu
+    \]
+    где $\nu$ - допустимое отклонение, а $y^*$ - идеальное состояние.
+    \[
+        \lim{M(y^* - y(t))} \leq \nu
+    \]
+    где $M$ - математическое ожидание.
+
+    \subsection{Слежение}
+    Система должна сохранять хоть какую-то работоспособность.
+    Например - при потере управляющего сигнала дроном.
+    \[
+        \lim |U_{in}^{{act}^*} - U_{in}^{act}| = 0
+    \]
+
+    \subsection{Возбуждение (разгон)}
+    \[
+        \lim |U^* - U^*(E)| = 0
+    \]
+
+    \subsection{Синхронизация}
+    Система должна быть наблюдаема и повторяема.
+    \[
+        e_i^1 - e_j^2 \rightarrow 0
+    \]
+
+    \section{Рекомендуемая литература}
+    \begin{itemize}
+        \item Martsenyuk V. P. et al. Software Complex in the Study of the Mathematical Model of Cyber-Physical Systems //ICTES. – 2020. – С. 87-97.
+        \item Legatiuk D. et al. A categorical approach towards metamodeling cyber-physical systems //The 11th International Workshop on Structural Health Monitoring (IWSHM). Stanford, CA, USA. – 2017. – Т. 12. – С. 2017.
+        \item Platzer A. Logic \& proofs for cyber-physical systems //Automated Reasoning: 8th International Joint Conference, IJCAR 2016, Coimbra, Portugal, June 27–July 2, 2016, Proceedings 8. – Springer International Publishing, 2016. – С. 15-21.
+        \item Letichevsky A. A. et al. Cyber-physical systems //Cybernetics and Systems Analysis. – 2017. – Т. 53. – С. 821-834.
+        \item Wan J. et al. From machine-to-machine communications towards cyber-physical systems //Computer Science and Information Systems. – 2013. – Т. 10. – №. 3. – С. 1105-1128.
+        \item Фрадков А. Л. Кибернетическая физика: принципы и примеры. – 2003.
+    \end{itemize}
+
+
 \end{sloppypar}
 \end{document}
