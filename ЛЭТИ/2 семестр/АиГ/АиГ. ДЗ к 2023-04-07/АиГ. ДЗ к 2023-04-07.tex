@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, right=1cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{setspace}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine}
+
+\title{АиГ. ДЗ к 2023-04-07. Вариант №14}
+\author{Студент группы 2305 Александр Макурин}
+\date{06 апреля 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{sloppypar}
+    \section{Запишите матрицу линейного оператора $L$ в базисе $u$, если известно: $L(u_1) = 2u_1 + u_2 + u_3$; $L(u_2) = u_2$;
+      $L(u_3) = u_2 + u_3$.}
+
+    \fbox{Ответ: $L_u = \begin{pmatrix}
+                2 & 0 & 0 \\
+                1 & 1 & 1 \\
+                1 & 0 & 1
+            \end{pmatrix}$}
+
+    \section{В стандартном базисе пространства $\mathbf{R}^3$ найдите матрицу оператора $L$, если $L(v) = v - 2\dfrac{(a,v)}{(a,a)}a$, где $a = (-3, 2, 5)^T$, а $(\ ,\ )$ обозначает скалярное произведение}
+    Пусть $V_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}$;
+    $V_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}$;
+    $V_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$.
+
+    \[
+        L(V_1) = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} - 2\dfrac{-3}{38}\begin{pmatrix} -3 \\ 2 \\ 5 \end{pmatrix}
+        = \dfrac{1}{38}\begin{pmatrix} 20 \\ 12 \\ 30 \end{pmatrix}
+        = \dfrac{1}{38}(20V_1 + 12V_2 + 30V_3)
+    \]
+    \[
+        L(V_2) = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} - 2\dfrac{2}{38}\begin{pmatrix} -3 \\ 2 \\ 5 \end{pmatrix}
+        = \dfrac{1}{38}\begin{pmatrix} 12 \\ 30 \\ -20 \end{pmatrix}
+        = \dfrac{1}{38}(12V_1 + 30V_2 - 20V_3)
+    \]
+    \[
+        L(V_3) = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} - 2\dfrac{5}{38}\begin{pmatrix} -3 \\ 2 \\ 5 \end{pmatrix}
+        = \dfrac{1}{38}\begin{pmatrix} 30 \\ -20 \\ -12 \end{pmatrix}
+        = \dfrac{1}{38}(30V_1 - 20V_2 - 12V_3)
+    \]
+
+    \fbox{Ответ: $L_V = \dfrac{1}{38}\begin{pmatrix}
+                20 & 12  & 30  \\
+                12 & 30  & -20 \\
+                30 & -20 & -12
+            \end{pmatrix}$}
+
+    \section{Пусть $V$ — линейное пространство всех вещественных матриц $2 \times 2$. Выберите базис в пространстве $V$ и найдите матрицу оператора $L$ в этом базисе, если $L(A) = \begin{pmatrix}0 & -1 \\ -1 & 2\end{pmatrix} \cdot A$.}
+
+    Пусть $V_1 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$;
+    $V_2 = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$;
+    $V_3 = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$;
+    $V_4 = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$.
+
+    \[
+        L(V_1) = \begin{pmatrix} 0 & -1 \\ -1 & 2 \end{pmatrix} \cdot \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}
+        = \begin{pmatrix}
+            0  & 0 \\
+            -1 & 0
+        \end{pmatrix}
+        = -V_3
+    \]
+
+    \[
+        L(V_2) = \begin{pmatrix} 0 & -1 \\ -1 & 2 \end{pmatrix} \cdot \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}
+        = \begin{pmatrix}
+            0 & 0  \\
+            0 & -1
+        \end{pmatrix}
+        = -V_4
+    \]
+
+    \[
+        L(V_3) = \begin{pmatrix} 0 & -1 \\ -1 & 2 \end{pmatrix} \cdot \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}
+        = \begin{pmatrix}
+            -1 & 0 \\
+            2  & 0
+        \end{pmatrix}
+        = -V_1 + 2V_3
+    \]
+
+    \[
+        L(V_4) = \begin{pmatrix} 0 & -1 \\ -1 & 2 \end{pmatrix} \cdot \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}
+        = \begin{pmatrix}
+            0 & -1 \\
+            0 & 2
+        \end{pmatrix}
+        = -V_2 + 2V_4
+    \]
+
+    \fbox{Ответ: $L_V = \begin{pmatrix}
+                0  & 0  & -1 & 0  \\
+                0  & 0  & 0  & -1 \\
+                -1 & 0  & 2  & 0  \\
+                0  & -1 & 0  & 2
+            \end{pmatrix}$}
+
+\end{sloppypar}
+\end{document}
