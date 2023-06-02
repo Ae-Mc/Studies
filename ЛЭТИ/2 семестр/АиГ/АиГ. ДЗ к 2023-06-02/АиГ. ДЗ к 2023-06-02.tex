@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{enumitem}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine}
+\graphicspath{./graphics/}
+
+\title{АиГ. ДЗ к 2023-06-02. Группы 0. Вариант №14}
+\author{Студент группы 2305 Александр Макурин}
+\date{29 мая 2023}
+
+\begin{document}
+\maketitle
+\section{}
+\begin{enumerate}[label=\alph*)]
+    \item Является ли группой $(\mathbb{N} \backslash \{0\}, +)$?
+
+          Нет, т. к. нет нейтрального и обратных элементов.
+    \item Является ли группой множество невырожденных нижнетреугольных матриц размера $n \times n$ над $\mathbb{R}$ с операцией сложения?
+
+          Нет. Контрпример на матрицах:
+          \[
+              E_n + (-E_n) = 0 \text{ — вырожденная}
+          \]
+    \item Является ли группой множество биективных функций из $\mathbb{R}$ в $\mathbb{R}$ с операцией умножения?
+
+          Нет. Контрпример — произведение двух одинаковых функций $f(x) = x$. Они дадут $x^2$, который не является биективной функцией.
+\end{enumerate}
+\end{document}

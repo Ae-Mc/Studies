@@ -1,0 +1,198 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{framed}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine}
+\graphicspath{./graphics/}
+
+\title{АиГ. ДЗ к 2023-06-01. Дифференциальные уравнения. Вариант №14}
+\author{Студент группы 2305 Александр Макурин}
+\date{29 мая 2023}
+
+\begin{document}
+\maketitle
+\section{$y'' - 6y' + 13y = e^{2x}(15x - 21), \ y(0) = -6, \ y'(0) = -10$}
+\[
+    \lambda^2 - 6\lambda + 13 = 0
+    \lambda_{1,2} = \dfrac{6 \pm \sqrt{36 - 52}}{2} = 3 \pm 2i
+\]
+\[
+    y_\text{о} = e^{3x}(C_1\cos{2x} + C_2\sin{2x})
+\]
+\[
+    y_\text{ч} = (D_1x + D_0)e^{2x} \\ y_\text{ч}' = (2D_1x + 2D_0 + D_1)e^{2x} \\ y_\text{ч}'' = (4D_1x + 4D_0 + 4D_1)
+\]
+\[
+    4D_1x + 4D_1 + 4D_0 - 12D_1x - 12D_0 - 6D_1 + 13D_1x + 13D_0 = 15x - 21
+\]
+\[
+    5D_1x - 2D_1 + 5D_0 = 15x - 21
+\]
+\[
+    \begin{cases}
+        5D_1 = 15 \\
+        5D_0 - 2D_1 = -21
+    \end{cases}
+    \Rightarrow
+    \begin{array}{l}
+        D_1 = 3 \\
+        D_0 = -3
+    \end{array}
+\]
+\[
+    y_\text{ч} = (3x - 3)e^{2x}
+\]
+\[
+    y = (C_1\cos{2x}+C_2\sin{2x})e^{3x} + 3(x - 1)e^{2x}
+\]
+\[
+    y' = (3C_1\cos{2x} + 3C_2\sin{2x} - 2C_1\sin{2x} + 2C_2\cos{2x})e^{3x} + 3(2x - 1)e^{2x}
+\]
+\[
+    \begin{cases}
+        C_1 - 3 = -6 \\
+        3C_1 + 2C_2 - 3 = -10
+    \end{cases}
+    \Rightarrow
+    \begin{array}{l}
+        C_1 = -3 \\
+        C_2 = 1
+    \end{array}
+\]
+\fbox{Ответ: $y = (-3\cos{2x} + \sin{2x})e^{3x} + 3(x - 1)e^{2x}$}
+\section{$y'' - 5y' + 4y = e^{x}(2\cos{2x} - 16\sin{2x}), \ y(0) = -6, \ y'(0) = -13$}
+\[
+    \lambda^2 - 5\lambda + 4 = 0
+\]
+\[
+    \lambda_{1,2} = 1, 4
+\]
+\[
+    y_\text{о} = C_1e^x + C_2e^{4x}
+\]
+\[
+    y_\text{ч} = (A\cos{2x} + B\sin{2x})e^x
+\]
+\[
+    y_\text{ч}' = (A\cos{2x} + B\sin{2x} - 2A\sin{2x} + 2B\cos{2x})e^x
+\]
+\[
+    y_\text{ч}'' = (-3A\cos{2x} - 3B\sin{2x} - 4A\sin{2x} + 4B\cos{2x})e^x
+\]
+\[
+    \cos{2x}(-3A + 4B - 5A - 10B + 4A) + \sin{2x}(-4A - 3B - 5B + 10A + 4B) = 2\cos{2x} - 16\sin{2x}
+\]
+\[
+    \begin{cases}
+        -4A - 6B = 2 \\
+        6A - 4B = -16
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        A = -\dfrac{3}{2}B - \dfrac{1}{2} \\
+        -9B - 3 - 4B = -16
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        A = -2 \\
+        B = 1
+    \end{cases}
+\]
+\[
+    y_\text{ч} = (-2\cos{2x} + \sin{2x})e^x
+\]
+\[
+    y = C_1e^x + C_2e^{4x} + e^x\sin{2x} - 2e^x\cos{2x}
+\]
+\[
+    y' = C_1e^x + 4C_2e^{4x} + e^x\sin{2x} - 2e^x\cos{2x} + 2e^x\cos{2x} + 4e^x\sin{2x}
+\]
+\[
+    \begin{cases}
+        C_1 + C_2 - 2 = -6 \\
+        C_1 + 4C_2 = -13
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        C_1 = -4 - C_2
+        3C_2 - 4 = -13
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        C_1 = -1 \\
+        C_2 = -3
+    \end{cases}
+\]
+\fbox{Ответ: $y = -e^x -3e^{4x} + e^x\sin{2x} - 2e^x\cos{2x}$}
+\section{\[
+      \left\{\begin{array}{rrrr}
+          x' & = & 14x & -15y \\
+          y' & = & 6x  & - 5y
+      \end{array}\right.
+      \\
+      \begin{array}{l}
+          x(0) = 8 \\
+          y(0) = 5
+      \end{array}
+  \]}
+\[
+    \begin{vmatrix}
+        14 - \lambda & -15          \\
+        6            & -5 - \lambda
+    \end{vmatrix}
+    = -70 - 14\lambda + 5\lambda + \lambda^2 + 90
+    = \lambda^2 - 9\lambda + 20 = 0
+    \Rightarrow
+    \lambda_{1,2} = 4, 5
+\]
+\[
+    \begin{pmatrix}
+        10 & -15 \\
+        6  & -9
+    \end{pmatrix}
+    \sim
+    \begin{pmatrix}
+        2 & -3 \\
+        0 & 0
+    \end{pmatrix}
+    \Rightarrow
+    e_1 = \begin{pmatrix}3 \\ 2\end{pmatrix}e^{4t}
+\]
+\[
+    \begin{pmatrix}
+        9 & -15 \\
+        6 & -10
+    \end{pmatrix}
+    \sim
+    \begin{pmatrix}
+        3 & -5 \\
+        0 & 0
+    \end{pmatrix}
+    \Rightarrow
+    e_2 = \begin{pmatrix}5 \\ 3\end{pmatrix}e^{5t}
+\]
+\[
+    \begin{cases}
+        x(t) = 3C_1e^{4t} + 5C_2e^{5t} \\
+        y(t) = 2C_1e^{4t} + 3C_2e^{5t}
+    \end{cases}
+\]
+\[
+    \begin{pmatrix}8 \\ 5 \end{pmatrix}
+    =
+    C_1\begin{pmatrix}3 \\ 2\end{pmatrix}
+    +
+    C_2\begin{pmatrix}5 \\ 3\end{pmatrix}
+    \Rightarrow
+    C_1 = C_2 = 1
+\]
+\[
+    X = \begin{pmatrix} x\\y \end{pmatrix}
+\]
+\fbox{Ответ: $X(t) = \begin{pmatrix}3\\2\end{pmatrix}e^{4t} + \begin{pmatrix}5\\3\end{pmatrix}e^{5t}$}
+\end{document}
