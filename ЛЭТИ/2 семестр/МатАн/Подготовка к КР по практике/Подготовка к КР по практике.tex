@@ -1,0 +1,527 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{fontspec}
+\usepackage[a4paper,margin=1cm,bottom=2cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{polyglossia}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+
+\title{Подготовка к контрольной работе на получение 4-5 по МатАнализу}
+\author{Студент группы 2305 Макурин Александр}
+\date{3 июня 2023}
+
+\begin{document}
+\maketitle
+
+\section{Определение неопределённого интеграла}
+Неопределённым интегралом от функции $f(x)$ называется семейство первообразных $\{F(x) + C\}$. Первообразной функции $f(x)$ называется такая функция $F(x)$, что $F'(x) = f(x)$.
+
+\section{Свойства неопределённого интеграла}
+\begin{enumerate}
+    \item $(\int{f(x)dx})' = f(x)$
+    \item $\int{f'(x)dx} = f(x) + C$
+    \item $\int Af(x)dx = A\int f(x)dx$, $A$ — const.
+    \item $\int (f(x) \pm g(x))dx = \int f(x)dx \pm \int g(x)dx$
+\end{enumerate}
+
+\section{Формулы для основных неопределённых интегралов}
+\setlength{\columnsep}{1cm}
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle \int x^ndx = \dfrac{x^{n + 1}}{n + 1} + C$, $n \neq -1$
+        \item $\displaystyle \int \dfrac{dx}{x} = \ln{|x|} + C$
+        \item $\displaystyle \int \ln{x}dx = x\ln{x} - x + C$
+        \item $\displaystyle \int e^xdx = e^x + C$
+        \item $\displaystyle \int a^xdx = \dfrac{a^x}{\ln{a}} + C$
+        \item $\displaystyle \int \cos{x}dx = \sin{x} + C$
+        \item $\displaystyle \int \sin{x}dx = - \cos{x} + C$
+        \item $\displaystyle \int \dfrac{dx}{\cos^2{x}} = \tan{x} + C$
+        \item $\displaystyle \int \dfrac{dx}{\sin^2{x}} = -\cot{x} + C$
+        \item $\displaystyle \int \dfrac{dx}{x^2 + a^2} = \dfrac{1}{a}\arctan{\dfrac{x}{a}} + C$
+        \item $\displaystyle \int \dfrac{dx}{\sqrt{a^2 - x^2}} = \arcsin{\dfrac{x}{a}} + C$
+        \item $\displaystyle \int \cosh{x}dx = \sinh{x} + C$
+        \item $\displaystyle \int \sinh{x}dx = \cosh{x} + C$
+        \item $\displaystyle \int \dfrac{dx}{\cosh^2{x}} = \tanh{x} + C$
+        \item $\displaystyle \int \dfrac{dx}{\sinh^2{x}} = -\coth{x} + C$
+        \item $\displaystyle \int \dfrac{dx}{\sqrt{x^2 \pm a^2}} = \ln{|x + \sqrt{x^2 \pm a^2}|} + C$
+        \item $\displaystyle \int \dfrac{dx}{x^2 - a^2} = \dfrac{1}{2a}\ln{\left|\dfrac{x - a}{x + a}\right|} + C$
+    \end{enumerate}
+\end{multicols}
+
+\section{Достаточные условия интегрируемости}
+Функция $f(x)$ интегрируема на отрезке $[a,b]$, если она непрерывна на этом отрезке.
+
+\section{Формула замены переменной в неопределённом интеграле (строгая формулировка)}
+Пусть $g(t)$ непрерывна и дифференцируема, $g(t) = x$. Тогда:
+\[
+    \int f(x) dx = \left[\begin{array}{c}
+            g(t) = x \\
+            d(g(t)) = dx
+        \end{array}\right] = \int f(g(t)) d(g(t)) = \int f(g(t))g'(t)dt
+\]
+
+\section{Формула интегрирования по частям в неопределённом интеграле (строгая
+  формулировка). Примеры}
+Обозначим:
+\[
+    u = U(x); \ v = V(x)
+\]
+\[
+    (uv)' = u'v + uv'
+\]
+\[
+    \int (uv)'dx = \int u'vdx + \int uv'dx \xRightarrow[u'dx = du]{v'dx = dv} uv + C = \int v du + \int u dv
+\]
+
+Так как константы будут и в результатах двух оставшихся интегралов, $C$ можно сократить. В результате получим:
+
+\[
+    \int udv = uv - \int vdu
+\]
+
+Примеры:
+\begin{itemize}
+    \item $\displaystyle \int xe^{x}dx = \left[\begin{array}{ll}
+                      u = x        & du = dx              \\
+                      dv = e^{x}dx & v = \int e^xdx = e^x
+                  \end{array}\right] = xe^x - \int e^xdx = e^x(x - 1) + C$
+\end{itemize}
+
+\section{Вывод рекурсивной формулы для интеграла $\int \dfrac{dx}{(x^2 + a^2)^n}$  с помощью метода интегрирования по частям}
+\[
+    I_n = \int \dfrac{dx}{(x^2 + a^2)^n}
+\]
+\[
+    \int \dfrac{dx}{(x^2 + a^2)^n} = \dfrac{1}{a^2} \int \dfrac{x^2 + a^2 - x^2}{(x^2 + a^2)^n}dx
+    = \dfrac{1}{a^2}\left(\int \dfrac{dx}{(x^2 + a^2)^{n-1}} - \int \dfrac{x^2dx}{(x^2 + a^2)^n}\right)
+    = \dfrac{1}{a^2}\left(I_{n-1} - \int \dfrac{x^2dx}{(x^2 + a^2)^n}\right)
+\]
+\[
+    \begin{aligned}
+         & \dfrac{1}{2}\int \dfrac{xd(x^2 + a^2)}{(x^2 + a^2)^n} =
+        \left[\begin{array}{ll}
+                      u = x                                    & du = dx                                   \\
+                      dv = \dfrac{d(x^2 + a^2)}{(x^2 + a^2)^n} & v = \dfrac{1}{(x^2 + a^2)^{n - 1}(1 - n)} \\
+                  \end{array}\right] =                                        \\
+         & = \dfrac{x}{2(x^2 + a^2)^{n-1}(1-n)} - \dfrac{1}{2(1 - n)}\int \dfrac{dx}{(x^2 + a^2)^{n - 1}} = \dfrac{x}{2(x^2 + a^2)^{n-1}(1-n)} - \dfrac{I_{n-1}}{2 - 2n}
+    \end{aligned}
+\]
+\[
+    \begin{aligned}
+        \int \dfrac{dx}{(x^2 + a^2)^n} & = \dfrac{1}{a^2}\left(I_{n-1} - \dfrac{I_{n-1}}{2n-2} + \dfrac{x}{(x^2 + a^2)^{n-1}(2n-2)}\right) = \\
+                                       & = \dfrac{1}{a^2}\left(I_{n-1}\dfrac{2n - 3}{2n - 2} + \dfrac{x}{(x^2 + a^2)^{n-1}(2n-2)}\right)
+    \end{aligned}
+\]
+\[
+    I_n = \dfrac{1}{a^2(2n - 2)}\left(I_{n-1}(2n - 3) + \dfrac{x}{(x^2 + a^2)^{n-1}}\right)
+\]
+
+\section{Зацикливающиеся интегралы типа $\int e^{ax}\sin{bx}dx$, $\int e^{ax}\cos{bx}dx$ (формулы и вывод)}
+\[
+    \begin{aligned}
+        \int e^{ax}\sin{bx}dx & =
+        \left[\begin{array}{ll}
+                      u = \sin{bx}  & du = b\cos{bx}dx       \\
+                      dv = e^{ax}dx & v = \dfrac{1}{a}e^{ax}
+                  \end{array}\right]
+        = \dfrac{1}{a}e^{ax}\sin{bx} - \dfrac{b}{a}\int e^{ax}\cos{bx}dx =                                                           \\
+                              & =
+        \left[\begin{array}{ll}
+                      u = \cos{bx}  & du = -b\sin{bx}dx      \\
+                      dv = e^{ax}dx & v = \dfrac{1}{a}e^{ax}
+                  \end{array}\right]                                                                                 \\
+                              & = \dfrac{1}{a}e^{ax}\sin{bx} - \dfrac{b}{a^2}e^{ax}\cos{bx} - \dfrac{b^2}{a^2} \int e^{ax}\sin{bx}dx
+    \end{aligned}
+\]
+\[
+    \int{e^{ax}\sin{bx}dx} = \dfrac{e^{ax}}{a^2 + b^2}\left(a\sin{bx} - b\cos{bx}\right)
+\]
+
+\[
+    \begin{aligned}
+        \int e^{ax}\cos{bx}dx & =
+        \left[\begin{array}{ll}
+                      u = \cos{bx}  & du = -b\sin{bx}dx      \\
+                      dv = e^{ax}dx & v = \dfrac{1}{a}e^{ax}
+                  \end{array}\right]
+        = \dfrac{1}{a}e^{ax}\cos{bx} + \dfrac{b}{a}\int e^{ax}\sin{bx}dx =                                                           \\
+                              & =
+        \left[\begin{array}{ll}
+                      u = \sin{bx}  & du = b\cos{bx}dx       \\
+                      dv = e^{ax}dx & v = \dfrac{1}{a}e^{ax}
+                  \end{array}\right] =                                                                                 \\
+                              & = \dfrac{1}{a}e^{ax}\cos{bx} + \dfrac{b}{a^2}e^{ax}\sin{bx} - \dfrac{b^2}{a^2} \int e^{ax}\cos{bx}dx
+    \end{aligned}
+\]
+\[
+    \int{e^{ax}\cos{bx}dx} = \dfrac{e^{ax}}{a^2 + b^2}\left(a\cos{bx} + b\sin{bx}\right)
+\]
+
+\section{Интегрирование рациональных функций. Типы элементарных интегралов. Сведение общего случая к элементарным (в общем виде)}
+Все интегралы рациональных функций посредством разложения на простейшие сводятся к 4 типам элементарных интегралов:
+\begin{enumerate}[label=\Roman*]
+    \item $\displaystyle \int \dfrac{A}{x - a}$
+    \item $\displaystyle \int \dfrac{A}{(x - a)^n}$
+    \item $\displaystyle \int \dfrac{Bx + C}{x^2 + bx + c}$
+    \item $\displaystyle \int \dfrac{Bx + C}{(x^2 + bx + c)^n}$
+\end{enumerate}
+
+Разложение на простейшие — рациональная дробь $\dfrac{P(x)}{Q(x)}$ представляется в виде $\displaystyle G(x) + \sum^n_{i=1}\dfrac{P_i(x)}{Q_i(x)}$, где $G(x)$ — многочлен, выделенный из $\dfrac{P(x)}{Q(x)}$, а $\dfrac{P_i(x)}{Q_i(x)}$ — простейшие дроби.
+
+Дробь называется простейшей, если её знаменатель представляет собой степень некоторого неприводимого многочлена, а числителем является многочлен степени меньше, чем степень неприводимого многочлена.
+
+Простейшие дроби находятся по методу неопределённых коэффициентов.
+
+Любой многочлен можно свести к виду:
+\[
+    Q(x) = (Q_1(x))^{m_1}(Q_2(x))^{m_2}...(Q_n(x))^{m_n}
+\]
+где $Q_i(x)$ — неприводимые многочлены.
+
+Тогда \textit{правильная} рациональная дробь $\dfrac{F(x)}{Z(x)}$, где $Z(x)$ раскладывается в $\displaystyle \prod_{i=1}^n(Z_i(x))^{m_i}$ и может быть представлена как:
+\begin{equation}
+    \dfrac{F(x)}{Z(x)} = \sum^n_{i=1} \sum^{m_i}_{j=1} \dfrac{H_{ij}(x)}{(Z_i(x))^{j}} \label{eq:1}
+\end{equation}
+где
+\[
+    H_{ij}(x) = \begin{cases}
+        A \text{, если $Z_i = ax - b$} \\
+        Ax + B \text{, если $Z_i = ax^2 + bx + c$}
+    \end{cases}
+\]
+
+Соответственно, разложение на простейшие сводится к поиску всех коэффициентов $a_{ik}$. Так как для равенства двух многочленов необходимо, чтобы коэффициенты при соответствующих степенях совпадали, можно домножить обе стороны уравнения \eqref{eq:1} на $Z(x)$ и получить:
+
+\begin{equation}
+    F(x) = \sum^n_{i=1} \sum^{m_i}_{j = 1} H_{ij}(x)\prod_{k \neq i}^{n}(Z_k(x))^{m_k}
+\end{equation}
+
+\section{Метод интегрирования иррациональных функций (общая идея). Конкретные подстановки (с доказательством рационализации исходного интеграла после выполненной замены)}
+Основные виды иррациональных выражений и соответствующие подстановки (замены):
+\begin{enumerate}
+    \item $R\left(x, \sqrt[n]{\dfrac{ax + b}{cx + d}}\right)$ \\
+          Замена $t = \sqrt[n]{\dfrac{ax + b}{cx + d}}$
+    \item $R\left(x, \left(\dfrac{ax + b}{cx + d}\right)^\dfrac{1}{S_1}, \left(\dfrac{ax + b}{cx + d}\right)^\dfrac{1}{S_2}, ..., \left(\dfrac{ax + b}{cx + d}\right)^\dfrac{1}{S_n}\right)$ \\
+          Замена $t = \sqrt[\lambda]{\dfrac{ax + b}{cx + d}}$, где $\lambda$ — общее кратное $S_1, S_2, ..., S_n$.
+    \item $x^m(a + bx^n)^p$, где $m, n, p \in \mathbb{Q}$.
+          Тогда возможны варианты:
+          \begin{enumerate}[label*=\arabic*]
+              \item $p \in \mathbb{Z} \Rightarrow t = \sqrt[\lambda]{x}$, где $\lambda$ — общее кратное знаменателей $m, n$.
+              \item $p \notin \mathbb{Z}, \dfrac{m + 1}{n} \in \mathbb{Z} \Rightarrow t = \sqrt[\lambda]{a + bx^n}$, где $\lambda$ — знаменатель $p$.
+              \item $p \notin \mathbb{Z}, \dfrac{m + 1}{n} \notin \mathbb{Z}, p + \dfrac{m + 1}{n} \in \mathbb{Z} \Rightarrow t = \sqrt[\lambda]{ax^{-n} + b}$, где $\lambda$ — знаменатель $p$.
+              \item Иначе, интеграл не берущийся.
+          \end{enumerate}
+\end{enumerate}
+
+\section{Тригонометрические подстановки в иррациональных интегралах (интегралы типа $\int \sqrt{x^2 - a^2}dx$)}
+\[
+    \begin{aligned}
+         & x = \dfrac{a}{\sin t}                                                                   \\
+         & dx = -\dfrac{\cos t}{\sin^2t}dt                                                         \\
+         & \sqrt{x^2 - a^2} = \sqrt{\dfrac{a^2 - a^2\sin^2 t}{\sin^2 t}} = \dfrac{a\cos t}{\sin t}
+    \end{aligned}
+\]
+
+\section{Интегрирование тригонометрических функций (общая идея). Возможные подстановки с обоснованием их применения}
+Общая идея состоит в применении тригонометрических преобразований. Либо, использование тригонометрических замен:
+\begin{enumerate}
+    \item В самом общем виде ($\int R(\sin x, \cos x)dx$) используется универсальная тригонометрическая подстановка
+          \begin{align*}
+              t      & = \tan \dfrac{x}{2}        \\
+              \sin x & = \dfrac{2t}{1 + t^2}      \\
+              \cos x & = \dfrac{1 - t^2}{1 + t^2} \\
+              dx     & = \dfrac{2}{1 + t^2}dt
+          \end{align*}
+    \item Если $R(-\sin x, \cos x) = -R(\sin x, \cos x)$, тогда можно взять более удобную подстановку
+          \begin{align*}
+              \cos x & = t                           \\
+              \sin x & = \sqrt{1 - t^2}              \\
+              dx     & = -\dfrac{dt}{\sqrt{1 - t^2}}
+          \end{align*}
+    \item Если $R(\sin x, -\cos x) = -R(\sin x, \cos x)$, тогда можно взять более удобную подстановку
+          \begin{align*}
+              \sin x & = t                          \\
+              \cos x & = \sqrt{1 - t^2}             \\
+              dx     & = \dfrac{dt}{\sqrt{1 - t^2}}
+          \end{align*}
+    \item Если $R(-\sin x, -\cos x) = R(\sin x, \cos x)$, тогда можно взять более удобную подстановку
+          \begin{align*}
+              t      & = \tan x                    \\
+              \cos x & = \dfrac{1}{\sqrt{t^2 + 1}} \\
+              \sin x & = \dfrac{t}{\sqrt{t^2 + 1}} \\
+              dt     & =  (1 - \tan^2 x)dx         \\
+              dx     & = \dfrac{dt}{1 - t^2}
+          \end{align*}
+\end{enumerate}
+
+\section{Неберущиеся интегралы}
+Неберущийся интеграл — интеграл, который не выражается через элементарные функции.
+
+Интеграл $\int f(x)dx = F(x) + C$ — неберущийся, если $F(x)$ не относится к элементарным функциям.
+
+\section{Определение определённого интеграла}
+
+$f(x)$ — непрерывна на $[a, b]$, $f(x) \geq 0$. Разобъём $[a, b]$ на $n$ частей. $a = x_0 < x_1 < x_2 < ... < x_{n - 1} < x_n = b$. $[x_{i - 1}, x_i], i = 1, ..., n$. Зафиксируем точку $\xi_i \in (x_{i - 1}, x_i)$. $\displaystyle S_n = \sum^n_{i = 1} f(\xi_i)(x_i - x_{i - 1})$ — сумма Римана. $\displaystyle \tau = \max_{1 \leq i \leq n} (x_i - x_{i-1})$ — меткость разбиения. Тогда:
+\[
+    \int_a^b f(x)dx = \lim_{
+        \substack{
+            n \rightarrow \infty \\
+            \tau \rightarrow 0
+        }} S_n
+\]
+
+\[
+    \int_a^b f(x)dx = - \int_b^a f(x)dx
+\]
+
+\section{Свойства определённого интеграла}
+\begin{enumerate}
+    \item Если функция терпит конечное количество разрывов первого рода в точках $x_1 < x_2 < x_3 < ... < x_{n - 1} < x_n$, лежащих на отрезке $[a, b]$ то:
+          \[
+              \int_a^b f(x)dx = \int_a^{x_1} f(x)dx + \sum^{n}_{i = 2} \int_{x_{i - 1}}^{x_i}f(x)dx
+          \]
+    \item $\forall c \in [a, b]$
+          \[
+              \int_{a}^{b}f(x)dx = \int_a^cf(x)dx + \int_c^bf(x)dx
+          \]
+    \item $\forall c \in D(f)$
+          \[
+              \int_{a}^{b}f(x)dx = \int_a^cf(x)dx + \int_c^bf(x)dx
+          \]
+    \item $f(x), g(x)$ — непрерывны на $[a, b]$. Тогда:
+          \[
+              \int_a^b (f(x) \pm g(x))dx = \int_a^b f(x)dx \pm \int_a^b g(x)dx
+          \]
+    \item $A$ — const
+          \[
+              \int_a^b Af(x)dx = A\int_a^b f(x)dx
+          \]
+    \item Пусть $f(x) \geq 0$, $x \in [a, b]$. Тогда:
+          \[
+              \int_a^b f(x)dx \geq 0
+          \]
+    \item Теорема о среднем:
+          \[
+              \left\{\begin{array}{l}
+                  \displaystyle f(x) \text{ непрерывна на } [a, b] \\
+                  \displaystyle m = \min_{a \leq x \leq b} f(x)    \\
+                  \displaystyle M = \max_{a \leq x \leq b} f(x)    \\
+              \end{array}\right|
+              \Rightarrow
+              \begin{array}{l}
+                  \displaystyle m(b - a) \leq \int_a^b f(x)dx \leq M(b - a) \\
+                  \displaystyle \exists \xi \in [a, b] : f(\xi)(b - a) = \int_a^b f(x)dx
+              \end{array}
+          \]
+    \item $f(x)$ — непрерывна на $[a, b]$
+          \[
+              \left|\int_a^b f(x)dx \right| \leq \int_a^b f(x)dx
+          \]
+\end{enumerate}
+
+\section{Формула Ньютона-Лейбница (строгая формулировка)}
+\[
+    \Phi(x) = \int_a^x f(t)dt
+\]
+\[
+    \begin{array}{ll}
+        \Phi'(x) & = \lim_{\Delta x \rightarrow 0} \dfrac{\Phi(x + \Delta x) - \Phi(x)}{\Delta x}
+        = \lim_{\Delta x \rightarrow 0} \dfrac{\int_a^{x + \Delta x} f(t)dt - \int_a^x f(t)dt}{\Delta x} = \\
+                 & = \lim_{\Delta x \rightarrow 0} \dfrac{\int_x^{x + \Delta x}f(t) dt}{\Delta x} = f(x)
+    \end{array}
+\]
+Следовательно, $\Phi(x)$ — первообразная $f(x)$.
+\[
+    \Phi(x) + C = \int f(x)dx
+\]
+\[
+    \int_a^xf(t)dt + C = \int f(x)dx
+\]
+\[
+    \Phi(a) = \int_a^a f(t)dt = 0
+\]
+\[
+    \Phi(b) = \int_a^b f(t)dt
+\]
+Отсюда:
+\[
+    \int_a^b f(x)dx = \Phi(b) - \Phi(a)
+\]
+
+\section{Обоснование существования первообразной у некоторого класса функций}
+Все непрерывные функции имеют первообразные.
+
+Определенный интеграл с переменным верхним пределом является одной из первообразных для непрерывной подынтегральной функции.
+\[
+    \Phi(x) = \int_a^x f(t)dt
+\]
+\[
+    \begin{array}{ll}
+        \Phi'(x) & = \lim_{\Delta x \rightarrow 0} \dfrac{\Phi(x + \Delta x) - \Phi(x)}{\Delta x}
+        = \lim_{\Delta x \rightarrow 0} \dfrac{\int_a^{x + \Delta x} f(t)dt - \int_a^x f(t)dt}{\Delta x} = \\
+                 & = \lim_{\Delta x \rightarrow 0} \dfrac{\int_x^{x + \Delta x}f(t) dt}{\Delta x} = f(x)
+    \end{array}
+\]
+Что и требовалось доказать.
+
+\section{Формула замены переменной в определённом интеграле (строгая формулировка)}
+Пусть $\phi(t)$ — непрерывна и дифференцируема на $[a,b]$. $\phi([\alpha, \beta]) = [a, b]$. $F(x)$ — первообразная $f(x)$. Очевидно, что $F(\phi(t))$ является первообразной для выражения $f(\phi(t))\phi'(t)$.
+
+\[
+    \int_\alpha^\beta f(\phi(t))d(\phi(t)) = \int_\alpha^\beta f(\phi(t))\phi'(t)dt = F(\phi(\beta)) - F(\phi(\alpha)) = F(b) - F(a) = \int_a^b f(x)dx
+\]
+
+Отсюда:
+\[
+    \int_a^b f(x)dx = \int_{\alpha}^{\beta} f(\phi(t))\phi'(t)dt, \text{ где } \alpha
+    = \phi^{-1}(a), \beta = \phi^{-1}(b)
+\]
+
+\section{Формула интегрирования по частям в определенном интеграле (строгая формулировка)}
+Пусть функции $U(x), V(x)$ непрерывны и дифференцируемы на $[a, b], u = U(x), v = V(x)$. Тогда:
+\[
+    \int_a^b udv = uv\bigg|_a^b - \int_a^b vdu, \text{ где } uv|_a^b
+    = U(b)V(b) - U(a)V(a)
+\]
+
+Доказательство:
+\[
+    d(U(x)V(x)) = U(x)d(V(x)) + V(x)d(U(x)) = U(x)V'(x)dx + V(x)U'(x)dx
+\]
+\[
+    \int_a^b d(U(x)V(x)) = \int_a^b (U(x)V'(x) + V(x)U'(x))dx
+\]
+\[
+    \int_a^b d(U(x)V(x)) = U(x)V(x)\bigg\rvert_a^b = uv\bigg\rvert_a^b
+\]
+\[
+    \int_a^b udv = uv\bigg\rvert_a^b - \int_a^b vdu
+\]
+Что и требовалось доказать.
+
+\section{Геометрические приложения определённого интеграла (вычисление площадей в декартовых и полярных координатах)}
+В декартовых координатах ($S$ — площадь между графиком функции $f(x)$ и осью $O_x$ на промежутке $[a, b]$):
+\[
+    S = \int_a^b |f(x)|dx
+\]
+
+Вычисление площади в декартовых координатах, заданных параметрически:
+\[
+    S = \int_{t_1}^{t_2}y(t)x'(t)dt
+\]
+
+В полярных координатах ($S$ — площадь криволинейного сектора между лучами $\alpha$ и $\beta$, точкой $(0, 0)$ и графиком $r(\phi)$):
+\[
+    S = \dfrac{1}{2}\int_\alpha^\beta r^2(\phi)d\phi
+\]
+
+\section{Геометрические приложения определённого интеграла (вычисление длин дуг кривых в декартовых и полярных координатах)}
+Длина кривой в декартовых координатах, заданных параметрически. Пусть задано $n$-мерное декартово пространство, в которой задана кривая:
+\[
+    \left\{\begin{array}{rcl}
+        x_1 & =      & x_1(t) \\
+        x_2 & =      & x_2(t) \\
+            & \vdots &        \\
+        x_n & =      & x_n(t)
+    \end{array}\right.
+\]
+
+Тогда длина кривой:
+\[
+    l = \int_{t_1}^{t_2}\sqrt{\sum_{i=1}^n \left(\left(x_i\right)'_t\right)^2}dt
+\]
+
+В полярных координатах (легко выводится через составление уравнений, выражающих полярные в декартовых):
+\[
+    l = \int_{\phi_1}^{\phi_2} \sqrt{(r'(\phi))^2 + r^2(\phi)}d\phi
+\]
+
+На плоскости при $y = f(x)$:
+\[
+    l = \int_a^b \sqrt{1 + (f'(x))^2}dx
+\]
+
+\section{Геометрические приложения определённого интеграла (вычисление объемов тел вращения)}
+Вращение вокруг оси $O_x$ при $y = f(x)$:
+\[
+    V_x = \pi\int_a^bf^2(x)dx
+\]
+
+\section{Несобственные интегралы от неограниченных функций. Определение, способы вычисления}
+Пусть функция $f(x)$ определена на $(a, b]$ и терпит бесконечный разрыв в точке $x = a$. Тогда $\int_a^b f(x)dx$ называется несобственным интегралом и вычисляется как:
+\[
+    \int_a^b f(x)dx = \lim_{c \rightarrow a + 0} \int_c^b f(x)dx
+\]
+
+Пусть функция $f(x)$ определена на $[a, b)$ и терпит бесконечный разрыв в точке $x = b$. Тогда $\int_a^b f(x)dx$ называется несобственным интегралом и вычисляется как:
+
+                \[
+                    \int_a^b f(x)dx = \lim_{c \rightarrow b - 0} \int_a^c f(x)dx
+                \]
+
+                Пусть функция $f(x)$ терпит бесконечный разрыв в точке $x = c$, $c \in (a, b)$ тогда $\int_a^b f(x)dx$ называется несобственным интегралом и вычисляется как:
+                \[
+                    \int_a^b f(x)dx = \int_a^c f(x)dx + \int_c^b f(x)dx
+                \]
+
+                \section{Несобственные интегралы от неограниченных функций. Признаки сходимости}
+                Если результат вычисления несобственного интеграла является конечным, то про такой несобственный интеграл говорят, что он сходится. Иначе говорят, что он расходится.
+
+                Пусть $f(x)$ определена на $(a, b]$ и терпит бесконечный разрыв в точке $x = a$. Тогда $\displaystyle \int_a^b f(x)dx$ сходится, если $\displaystyle \lim_{c \rightarrow a + 0} \int_c^b f(x)dx$ существует и конечен.
+
+Пусть $f(x)$ определена на $[a, b)$ и терпит бесконечный разрыв в точке $x = b$. Тогда $\displaystyle \int_{a}^{b} f(x)dx$ сходится, если $\displaystyle \lim_{c \rightarrow b - 0} \int_{a}^{c} f(x)dx$ существует и конечен.
+
+                Пусть $f(x)$ терпит бесконечный разрыв в точке $c \in [a, b]$ и определена в остальных точках $[a, b]$. Тогда $\displaystyle \int_{a}^{b} f(x)dx$ сходится, если $\displaystyle \int_{a}^{c} f(x)dx$ и $\displaystyle \int_c^b f(x)dx$ сходятся.
+
+                \subsection{Критерий Коши}
+                Пусть $f(x)$ определена на $(a, b]$ и терпит бесконечный разрыв в точке $x = a$. Тогда $\int_a^b f(x)dx$ сходится, если:
+\[
+    \forall \varepsilon > 0 \Rightarrow \exists \delta(\varepsilon) \Rightarrow \forall(0 < \delta_1 < \delta_2 < \delta) \Rightarrow \left|\int_{a + \delta_1}^{a + \delta_2}f(x)dx\right| < \varepsilon
+\]
+
+\section{Интегралы с бесконечными пределами интегрирования. Определение, способы вычисления}
+Интегралы вида $\displaystyle \int_a^{\infty}f(x)dx, \int_{-\infty}^bf(x)dx, \int_{-\infty}^\infty f(x)dx$ называются интегралами с бесконечными пределами интегрирования. Вычисление таких интегралов сводится к вычислению пределов:
+\begin{align*}
+     & \int_a^{\infty}f(x)dx = \lim_{b \rightarrow \infty} \int_a^bf(x)dx   \\
+     & \int_{-\infty}^bf(x)dx = \lim_{a \rightarrow \infty} \int_a^bf(x)dx  \\
+     & \int_{-\infty}^{\infty}f(x)dx = \lim_{\substack{a\rightarrow -\infty \\ b \rightarrow \infty}} \int_a^bf(x)dx  \\
+\end{align*}
+
+\section{Интегралы с бесконечными пределами интегрирования. Признаки сходимости}
+
+\section{Абсолютная сходимость несобственных интегралов. Условная сходимость несобственных интегралов}
+
+\section{Дифференциальные уравнения. Определение. Основные типы ДУ}
+
+\section{Решение ДУ. Общее решение, частное решение}
+
+\section{Задача Коши}
+
+\section{ДУ с разделяющимися переменными. Общий вид, метод решения}
+
+\section{Однородные ДУ. Общий вид, метод решения}
+
+\section{Линейные ДУ первого порядка. Общий вид. Метод решения}
+
+\section{Уравнение Бернулли. Общий вид, метод решения}
+
+\section{Линейные дифференциальные уравнения с постоянными коэффициентами (ЛДУ).  Общий вид}
+
+\section{Решение ЛДУ с постоянными коэффициентами и специальной правой частью}
+
+\section{Числовые ряды. Вычисление суммы. Необходимое условие сходимости}
+
+\section{Признаки сходимости положительных числовых рядов}
+
+\section{Знакочередующиеся ряды. Признак Лейбница}
+
+\section{Абсолютная и условная сходимость числовых рядов}
+\end{document}
