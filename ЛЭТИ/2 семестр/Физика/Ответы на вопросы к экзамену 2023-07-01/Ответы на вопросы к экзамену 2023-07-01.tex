@@ -258,7 +258,6 @@
     d = \dfrac{L}{N}
 \]
 
-
 \section{Расчет интерференционной картины в опыте Юнга на основе волновой теории.}
 В опыте Юнга свет от источника, в качестве которого служила узкая щель $S$, падал на экран с двумя близко расположенными щелями $S_1$ и $S_2$. На экране Э световые пучки, прошедшие через щели $S_1$ и $S_2$, перекрывались.  В области перекрытия световых пучков наблюдалась интерференционная картина в виде чередующихся светлых и темных полос.
 
@@ -979,5 +978,191 @@ $R$ - коэффициент отражения света от поверхно
     \phi = \dfrac{l \tau}{4\pi \varepsilon\varepsilon_0 R}
     = \dfrac{(\alpha_2 - \alpha_1)\tau}{4\pi \varepsilon\varepsilon_0}
 \]
+
+\setcounter{section}{6}
+\section{Напряженность электрического поля и потенциал шара, однородно заряженного о объему. Расчет разности потенциалов между центром и поверхностью равномерно заряженного однородного шара.}
+
+Однородно заряженный шар. Пусть радиус шара R, полный заряд Q. Вне шара напряженность и потенциал поля совпадают с полем заряда Q, помещенного в центр шара:
+\begin{center}
+    $ E = k \frac{Q}{r^2} $, $ \varphi = k \frac{Q}{r} $
+\end{center}
+Чтобы найти напряженность электрического поля внутри шара, выберем в качестве замкнутой поверхности сферу радиуса r < R с центром в центре шара. Из симметрии ясно, что напряженность поля направлена по радиусу и одинакова по величине на всей поверхности сферы. Из теоремы Гаусса следует
+\begin{center}
+    $E(r) \cdot 4 \pi r^2 = 4 \pi kq(r)$
+\end{center}
+где q(r) – заряд внутри выбранной поверхности. Введем плотность заряда шара ρ. Тогда
+\begin{center}
+    $q(r) = \rho \frac{4}{3} \pi r^3$ и $E(r) = k \frac{q(r)}{r^2} = \frac{4}{3} \rho k r$
+\end{center}
+Плотность заряда равна полному заряду, деленному на объем шара:
+\begin{center}
+    $\rho = \frac{Q}{4 \pi R^3/3}$
+\end{center}
+Для напряженности поля внутри шара получим
+\begin{center}
+    $E = k\frac{Q}{R^3}r$
+\end{center}
+Найдем потенциал внутри шара.
+\begin{center}
+    $\varphi(r) = -\int_{\infty}^{r}  E\,dr = -\int_{\infty}^{R} k \frac{Q}{r^2}\,dr - \int_{R}^{r} k \frac{Q}{R^3}r \,dr $
+\end{center}
+Первый интеграл имеет смысл работы по переносу единичного положительного заряда из бесконечности до поверхности шара и равен kQ/R. Второй член
+\begin{center}
+    $-\int_{R}^{r} k \frac{Q}{R^3}r \,dr = -k \frac{Q}{R^3} \frac{r^2}{2} + k \frac{Q}{R^3} \frac{R^2}{2} $
+\end{center}
+Значение потенциала внутри шара определится выражением
+\begin{center}
+    $\varphi(r) = \frac{3}{2} k \frac{Q}{R} - k \frac{Qr^2}{2R^3}$
+\end{center}
+Окончательно имеем
+\begin{center}
+    $E = k \frac{q}{r^2}$, при r > R, $E = k \frac{Q}{R^3}r$, при r < R
+\end{center}
+\begin{center}
+    $\varphi = k \frac{q}{r}$, при r > R, $\varphi = \frac{3}{2} k \frac{q}{R} - k \frac{Q}{2r^3}r^2$, при r < R
+\end{center}
+\newpage
+\section{Напряженность и потенциал электрического поля\\ однородно заряженной сферы.}
+Применим теорему Гаусса. Выберем в качестве замкнутой поверхности концентрическую сферу радиуса r > R (рис.). Очевидно, что напряженность на поверхности этой сферы будет одинакова по величине и направлена по радиусу. Тогда поток напряженности через нее будет $E \cdot 4\pi r^2$. Согласно теореме Гаусса
+\begin{center}
+    $E \cdot 4 \pi r^2 = 4 \pi k q$, откуда
+\end{center}
+\begin{center}
+    $E = k \frac{q}{r^2}$
+\end{center}
+\par Выбрав в качестве поверхности сферу радиуса r < R, получим E = 0.
+Таким образом, однородно заряженная сфера во внешней области пространства
+создает такое же поле, как и заряд, помещенный в ее центре.
+Внутри сферы поля нет.
+
+Найдем потенциал сферы во всем пространстве.
+Так как вне сферы напряженность поля совпадает с напряженностью заряда,
+находящегося в центре, то и потенциал при r > R выразится в виде
+\begin{center}
+    $\varphi(r) = k \frac{q}{r}$
+\end{center}
+Пронесем единичный положительный заряд из бесконечности до расстояния r от центра,
+меньшего радиуса сферы.
+Тогда работа, которую необходимо совершить по переносу
+до поверхности сферы будет равна kq/R.
+Внутри сферы поле равно нулю и работа не совершается. Таким образом
+\begin{center}
+    $E = k \frac{q}{r^2}$ при r > R, E = 0 при r < R,
+\end{center}
+\begin{center}
+    $\varphi = k \frac{q}{r}$, r > R, $\varphi = k \frac{q}{R}$ при r < R.
+\end{center}
+\section{Напряженность и потенциал электрического поля бесконечного цилиндра, однородно заряженного по объему.}
+Чтобы найти поле E внутри заряженного цилиндра рассмотрим применение теоремы Гаусса к соосному цилиндру с радиусом $r \leq R$ и длиной $l$. $\rho$ --- объемная плотность заряда.
+\begin{center}
+    $\Phi_E = 4 \pi Q$
+\end{center}
+\begin{center}
+    $ES = 4 \pi \rho V$
+\end{center}
+\begin{center}
+    $E 2\pi r l = 4 \pi \rho \pi r^2 l$
+\end{center}
+\begin{center}
+    $E = 2 \pi \rho r$, при $r \leq R$
+\end{center}
+\par Потенциал:
+\begin{center}
+    $W_p = \frac{q_0 Q}{4 \pi \varE_0 r}$
+\end{center}
+\begin{center}
+    $\varphi = \frac{W_p}{q_0} = \frac{Q}{4 \pi \varE_0 r}$
+\end{center}
+\begin{center}
+    $\varphi = \frac{\rho \pi r^2 l}{4 \pi \varE_0 r} $
+\end{center}
+\begin{center}
+    $\varphi = \frac{\rho r l}{4 \varE_0}$
+\end{center}
+Найдем теперь поле $\vec{E}$ снаружи заряженного цилиндра при $r \geq R$.
+Рассмотрим цилиндр с радиусом $r \geq R$ и высотой $l$.
+\begin{center}
+    $ES = 4 \pi \rho V$
+\end{center}
+\begin{center}
+    $E 2 \pi r l = 4 \pi \rho \pi R^2 l$
+\end{center}
+\begin{center}
+    $E = \frac{2 \rho \pi R^2}{r}$, при $r \geq R$.
+\end{center}
+Здесь объем $V = \pi R^2 l$, так как только в этой части объема $\pi r^2 l$ есть
+заряды.
+\begin{center}
+    $\varphi = \frac{\rho \pi R^2 l}{4 \pi \varE_0 r} $
+\end{center}
+\begin{center}
+    $\varphi = \frac{\rho R^2 l}{4 \varE_0 r} $
+\end{center}
+
+
+\section{Напряженность и потенциал электрического поля бесконечного цилиндра, однородно заряженного по поверхности.}
+\begin{center}
+    $ \Phi_E = 4\pi Q $
+\end{center}
+\begin{center}
+    $ ES = 4 \pi \sigma S $
+\end{center}
+\begin{center}
+    $E = 4 \pi \sigma $
+\end{center}
+\begin{center}
+    $\varphi = \frac{\sigma}{4 \pi \varE_0 r}$, при r >= R
+\end{center}
+\begin{center}
+    При r <= R:
+\end{center}
+\begin{center}
+    $\Phi_E = 4 \pi Q$
+\end{center}
+\begin{center}
+    $ES = 4 \pi \sigma S$
+\end{center}
+\begin{center}
+    $E 2 \pi r(r + l) = 4 \pi \sigma 2 \pi R(R + l)$
+\end{center}
+\begin{center}
+    $E  r(r + l) = 4 \pi \sigma  R(R + l)$
+\end{center}
+\begin{center}
+    $E   = \frac{4 \pi \sigma  R(R + l)}{r(r + l)}$
+\end{center}
+\begin{center}
+    $\varphi = \frac{\sigma 2 \pi R(R + l)}{4 \pi \varE_0 r} $
+\end{center}
+\begin{center}
+    $\varphi = \frac{\sigma R(R + l)}{2 \varE_0 r} $
+\end{center}
+\section{Напряженность и потенциал электрического поля равномерно заряженной тонкой плоскости.}
+Бесконечная плоскость заряжена с поверхностной плотностью зарядов $s=dq/dS$. Линии напряженности перпендикулярны плоскости и направлены в обе стороны от плоскости. В качестве замкнутой поверхности выберем поверхность цилиндра, основания которого параллельны бесконечной плоскости, а ось цилиндра степени плоскости.
+Т.к. образующие цилиндра параллельны линиям напряженности( $a=0,\cos a=1$), то поток вектора напряженности сквозь боковую поверхность равен 0, а полный поток сквозь цилиндрическую поверхность равен сумме потоков сквозь его основания. Для основания: $Е_n = E$. Заряд, заключенный внутри построенной замкнутой поверхности, равен: $sS_\text{осн}$.
+По теореме Гаусса: $Ф_Е =q/e_0 = sS_\text{осн}/e_0$, тогда:
+
+\begin{center}
+    $\Phi_E = 2 E \Delta S$
+\end{center}
+\begin{center}
+    $q = \sigma \Delta S$
+\end{center}
+\begin{center}
+    $2 E \Delta S = \frac{\sigma \Delta S}{\varE_0} $
+\end{center}
+\begin{center}
+    $E = \frac{\sigma}{2 \varE_0} $
+\end{center}
+\begin{center}
+    $\varphi = \frac{W_p}{q_0} = \frac{\sigma S}{4 \pi \varE_0 r}$
+\end{center}
+\begin{center}
+    $\varphi = \frac{W_p}{q_0} = \frac{\sigma 2 \pi r l}{4 \pi \varE_0 r}$
+\end{center}
+\begin{center}
+    $\varphi = \frac{\sigma l}{2 \varE_0}$
+\end{center}
+\par С каждой стороны от плоскости создаваемое ею электрическое поле однородно.
 
 \end{document}
