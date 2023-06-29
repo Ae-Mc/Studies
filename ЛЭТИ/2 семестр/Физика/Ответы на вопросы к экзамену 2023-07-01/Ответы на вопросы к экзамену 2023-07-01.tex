@@ -1330,4 +1330,61 @@ $R$ - коэффициент отражения света от поверхно
 А электроёмкость считается по формуле: $C = \frac{4 \pi \epsilon \epsilon_0 R_1 R_2}{R_2 - R_1}$
 
 Тогда формулы выходят следующие: $W = \frac{(R_2 - R_1) q^2}{8 \pi \epsilon \epsilon_0 R_1 R_2} = \frac{2 \pi \epsilon \epsilon_0 R_1 R_2 U^2}{R_2 - R_1}$
+
+\setcounter{section}{20}
+\section{Расчет индукции магнитного поля прямолинейного отрезка проводника с током на перпендикуляре, восстановленном к середине отрезка.}
+\begin{center}
+    \includegraphics[scale=0.7]{graphics/t21.png}
+\end{center}
+По закону Био-Савара-Лапласа \[dB=\frac{\mu_0Idlsin(\alpha)}{4{\pi}r^2}\]
+\[r=\frac{b}{sin(\alpha)}; dl=\frac{rd\alpha}{sin(\alpha)}==\frac{bd\alpha}{sin^2(\alpha)}\]
+\[dB=\frac{\mu_0Ibd\alpha}{4{\pi}sin^2(\alpha)} sin(\alpha)\frac{sin^2(\alpha)}{b^2}=\frac{\mu_0Isin(\alpha)d\alpha}{4{\pi}b}\]
+\[\int_{a_1}^{a_2} \,dB = \frac{\mu_0I}{4{\pi}b} (cos(a_1)-cos(a_2)) \] \\
+
+$\frac{\mu_0I}{4{\pi}b} (cos(a_1)-cos(a_2))$ --- индукция полу созданного отрезком прямолинейного проводника с постоянным током
+\section{Магнитное поле бесконечного прямого провода с током.}
+\[\int_{0}^{\pi} \,dB = \frac{\mu_0I}{4{\pi}b} (cos(0)-cos(\pi)) = \frac{\mu_0I}{2{\pi}b} \]
+\section{Магнитное поле на оси витка с током.}
+\begin{center}
+    \includegraphics[scale=0.5]{graphics/t23.png}
+\end{center}
+\[B=\frac{\mu_0IR^2}{2(R^2+a^2)^{3/2}}\]
+\section{Расчет индукции магнитного поля на оси длинного соленоида.}
+\begin{center}
+    \includegraphics[scale=0.7]{graphics/t24.png}
+\end{center}
+Из теоремы о циркуляции магнитного поля:
+\[\oint_{L} \overrightarrow{B}\,d\overrightarrow{l} = \mu_0 \sum_{1}^{n} I\]
+Получим формулу для вычисления магнитной индукции:
+\[B=\mu_0nI, n=\frac{N}{l}-\text{плотность намотки}\]
+\section{Магнитное поле тороидальной катушки.}
+\begin{center}
+    \includegraphics[scale=0.7]{graphics/t25.png}
+\end{center}
+\[B=\frac{\mu_0 N I}{2\pi r}, N-\text{Число витков в тороидальной катушке}\]
+\section{Расчет индукции магнитного поля длинного цилиндрического проводника с током.}
+\begin{center}
+    \includegraphics[scale=0.9]{graphics/t26.png}
+\end{center}
+При r<R:
+\[B=\frac{\mu_0 I r}{2\pi R^2}\]
+
+При r>R:
+\[B=\frac{\mu_0 I }{2\pi r}\]
+\section{Расчет индуктивности двухпроводной линии.}
+\begin{center}
+    \includegraphics[scale=0.9]{graphics/t27.png}
+\end{center}
+\[\text{Ф}=\frac{\mu_0 I l}{2\pi}+\frac{\mu_0 I l}{\pi} ln(\frac{d}{a}) - \text{Поток}\]
+\[L=\frac{\text{Ф}}{I}=\frac{\mu_0}{\pi}(\frac{1}{2} + ln(\frac{d}{a}))l\]
+\section{Движение заряда в однородном магнитном поле.}
+\[F_л=ma=Bvq \overrightarrow{} a=\frac{Bvq}{m} \overrightarrow{} r=\frac{mv}{Bq}  - \text{Радиус выраженный через силу Лоренса}\]
+\[T=\frac{2{\pi}R}{v}=\frac{2{\pi}m}{Bq} - \text{Период}\]
+\section{Расчет ЭДС индукции в равномерно вращающейся рамке.}
+\[\epsilon=BS\gamma sin(\gamma t)\ - \text{ЭДС, ЭДС максимальна при sin = 1},\epsilon_{max}=BS\gamma\]
+\[\text{Если же вращается N витков последовательно то }\ \epsilon_{max}=NBS2\pi \nu\]
+\section{Расчет энергии магнитного поля в длинном соленоиде.}
+\[W_\text{сол}=\frac{L I^2}{2}=\frac{I^2 \mu \mu_0 N^2 S}{2l}  \overrightarrow{} B=\frac{\mu \mu_0 N I}{l} \overrightarrow{} I=\frac{B l}{\mu \mu_0 N I}\]
+\[W_\text{сол}=\frac{B^2 V}{2\mu \mu_0}, V=Sl - \text{Объем соленоида}\]
+\[w=\frac{W}{V}=\frac{B^2}{2 \mu \mu_0} - \text{Объемная плотность энергии магнитного поля}\]
 \end{document}
