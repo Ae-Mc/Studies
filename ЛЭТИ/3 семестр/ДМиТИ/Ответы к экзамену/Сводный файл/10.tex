@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+
+\begin{document}
+\section{Определение деления многочленов с остатком:}
+\subsection{Определение:}
+Для любых двух многочленов $f(x)$ и $g(x)$, $g(x)\neq {0}$ существуют $q(x)$ и $r(x)$, такие что: $f(x) = g(x)q(x) + r(x)$, при этом степень $r(x)$ строго меньше степени $g(x)$\par
+\subsection{Свойства:}
+\begin{itemize}
+    \item $f(x) \div g(x)$, $g(x) \div h(x)$ $\Rightarrow$ $f(x) \div h(x)$
+    \item $f(x) \div g(x)$, $g(x) \div h(x)$ $\Rightarrow$ $f(x){\pm}g(x) \div h(x)$
+    \item $f(x) \div h(x)$ $\Rightarrow$ $f(x)g(x) \div h(x)$
+    \item $f(x) \div c, c\neq{0}$ 
+    \item $f(x) \div g(x)$ $\Rightarrow$ $f(x) \div cg(x), c\neq{0}$
+\end{itemize}
+\section{Теорема Безу:}
+\subsection{Теорема:}
+Остаток от деления многочлена $P(x)$ на $x-a$ равен значению многочлена $P(a)$
+\subsection{Доказательство:}
+$P(x) = (x − a)Q(x) + r$, следовательно, $P(a) = r$
+\subsection{Следствие:}
+$P(x) \vdots (x − a)$ $\Rightarrow$ $P(a) = 0$
+\section{Схема Горнера:}     
+\subsection{Определение:}
+$P(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + ... + a_{1}x + a_{0}$\par
+$P(x)=(x-b)Q(x) + r$\par
+$Q(x) = C_{n-1}x^{n-1} + C_{n-2}x^{n-2} + ... + C_{1}x + C_{0}$\par
+$a_{n}x^{n} + a_{n-1}x^{n-1} + ... + a_{1}x + a_{0} = (x-b)(C_{n-1}x^{n-1} + ... + C_{0}) + r$\par
+$x^{n}: a_{n} = C_{n-1}$\par
+$x^{n-1}: a_{n-1} = C_{n-2} - bC_{n-1}$\par
+$x^{n-2}: a_{n-2} = C_{n-3} - bC_{n-2}$\par
+$.$\par
+$.$\par
+$.$\par
+$x: a_{1} = C_{0} - bC_{1}$\par
+$x^{0}: a_{0} = r - bC_{0}$\par
+$C_{n-1} = a_{n-1}$\par
+$C_{i} = bC_{i+1} + a_{i+1}$\par
+$.$\par
+$.$\par
+$.$\par
+$r = bC_{0} + a_{0}$\par
+\subsection{Пример:}
+Найти остаток от деления $p(x) = x^{4} - 3x^{2} + x -5$ на $x-2$\par
+$b=2$\par
+$ $\par
+\begin{tabular}{ |c|c|c|c|c|c| } 
+ \hline
+ $a_{n}$ & $a_{4}$ & $a_{3}$ & $a_{2}$ & $a_{1}$ & $a_{0}$\\
+ \hline
+ \hline
+  $b$ & $C_{3}$ & $C_{2}$ & $C_{1}$ & $C_{0}$ & $r$\\
+ \hline
+\end{tabular}\par
+$ $\par
+Далее подставив значения мы можем найти $C_{n-1} ... C{0} и r$\par
+$ $\par
+\begin{tabular}{ |c|c|c|c|c|c| } 
+ \hline
+    $a_{n}$ & $1$ & $0$ & $-3$ & $1$ & $-5$\\
+ \hline
+  \hline
+     $2$ & $C_{3}$ & $C_{2}$ & $C_{1}$ & $C_{0}$ & $r$\\
+ \hline
+\end{tabular}\par
+$ $\par
+Используя формулу $C_{n-1} = b*C_{n-1}+a_{n-1},C_{n-1}=a_{n}$ получим\par
+$ $\par
+\begin{tabular}{ |c|c|c|c|c|c| } 
+ \hline
+    $a_{n}$ & $1$ & $0$ & $-3$ & $1$ & $-5$\\
+ \hline
+  \hline
+     $2$ & $1$ & $2$ & $1$ & $3$ & $1$\\
+ \hline
+\end{tabular}\par
+Ответ $p(x) =(x_{3} + 2x_{2} + x +3)(x-2) + 1$
+\end{document}

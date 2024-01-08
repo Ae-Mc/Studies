@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage{blkarray}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\setmainfont[Ligatures=TeX]{Times New Roman}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+\section{Коды Рида-Соломона:}
+Рассмотрим алгоритм на примере:\par
+Поле $GF(16)$ порождается присоединением к $GF(2)$ корня $a$ многочлена $P(x)$, $P(x) = x^{4}+x^{3}+1$\par
+Пусть порождающий много член имеет вид $G(x) = (x-a)(x-a^2)(x-a^3)(x-a^4)$, тогда количество\par
+ошибок многочлена которое исправит код Рида-Соломона $2t = deg(G(x)) \Rightarrow t = 4/2 = 2.$\par
+Принятое сообщение $S(x) = a^{9}x^14 + a^5x^{13} + a^{12}x^{12} + a^{10}x^{11} + a^7x^9 + a^5x^8 + a^7x^7 + a^{13}x^6 + a^3x^5 +$\par $+ a^{11}x^4 + a^3x^3 + a^{10}x^2 + a^8x + a$\par
+Вырази все $a$ пока они не зациклятся, т.е. $a_{n} = a_{0}$\par
+$a^{0} = a^{0} = 1$\par
+$a^{1} = a$\par
+$a^{2} = a^2$\par
+$a^{3} = a^3$\par
+$a^{4} = a^3+1$\par
+$a^{5} = a*a^{4} = a^{4}+a = a^3 + a +1$\par
+$a^{6} = a^{3} + a^{2} + a + 1$\par
+$a^{7} = a^2 + a + 1$\par
+$a^{8} = a^3 + a^2 + a$\par
+$a^{9} = a^2 + 1$\par
+$a^{10} = a^3 + a$\par
+$a^{11} = a^3 + a^2 +1$\par
+$a^{12} = a + 1$\par
+$a^{13} = a^2 + a$\par
+$a^{14} = a^3 + a^2$\par
+$a^{15} = a^4 + a^3 = 1$\par
+И так как у нас поле $GF(16)$ то $a^{15} = a^{0} = 1$\par
+Из порождающего многочлена выразим корни уравнения и подставим их в принятое сообщение\par S(x).\par
+$S_1(a) = a^4$\par
+$S_2(a^2) = 0$\par
+$S_3(a^3) = a^2$\par
+$S_4(a^4) = a^2$\par
+Теперь строим систему уравнений вида
+\begin{gather}
+    \begin{pmatrix}
+        S_{n}     & S_{n+1} & {...} & S_{n+t-1}  \\
+        S_{n+1}   & S_{n+2} & {...} & S_{n+t}    \\
+        {.}       & {.}     & {.}   & {.}        \\
+        S_{n+t-1} & S_{n+t} & {...} & S_{n+2t-2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \lambda_{t}   \\
+        \lambda_{t-1} \\
+        {.}           \\
+        \lambda_{1}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        S_{n+t}   \\
+        S_{n+t+1} \\
+        {.}       \\
+        S_{n+2t-2}
+    \end{pmatrix}
+\end{gather}
+Где $n=1, t=2$, подставим значения в матрицу и получим:
+\begin{gather}
+    \begin{pmatrix}
+        S_{1} & S_{2} \\
+        S_{2} & S_{3}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \lambda_{2} \\
+        \lambda_{1}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        S_{3} \\
+        S_{4}
+    \end{pmatrix}
+\end{gather}
+
+\begin{gather}
+    \begin{pmatrix}
+        a^{4} & 0     \\
+        0     & a^{2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \lambda_{2} \\
+        \lambda_{1}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a^2 \\
+        a^2
+    \end{pmatrix}
+\end{gather}
+Решив систему мы получим что $\lambda_{2} = a^{13}, \lambda_{1} = 1$.\par
+$L(x) = 1 + \lambda_{1}x + \lambda_{2}x^2 + ... + \lambda_{t}x^{t}$.
+Подставим значения от $1$ до $a^{15}$ и найдем такие значения $a$ что $L(a^{n}) = 0$.
+В нашем случае такими значениями являются $a^3$ и $a^{14}$.
+Найдем обратные к этим значениям $\gamma_{1} = \frac{a^{15}}{a^{3}} = a^{12}, \gamma_{2} = a$.
+\begin{gather}
+    \begin{pmatrix}
+        {\gamma_{1}}^{s}     & {\gamma_{2}}^{s}     & {...} & {\gamma_{t}}^{s}     \\
+        {\gamma_{1}}^{s+1}   & {\gamma_{2}}^{s+1}   & {...} & {\gamma_{t}}^{s+1}   \\
+        {.}                  & {.}                  & {.}   & {.}                  \\
+        {\gamma_{1}}^{s+t-1} & {\gamma_{2}}^{s+t-1} & {...} & {\gamma_{t}}^{s+t-1}
+    \end{pmatrix}
+    \begin{pmatrix}
+        e_{1} \\
+        e_{2} \\
+        {.}   \\
+        e_{t}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        S_{n}   \\
+        S_{n+1} \\
+        {.}     \\
+        S_{n+t-1}
+    \end{pmatrix}
+\end{gather}
+Подставим значения и получим:
+\begin{gather}
+    \begin{pmatrix}
+        a^{12} & a     \\
+        a^{24} & a^{2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        e_{1} \\
+        e_{2}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a^{4} \\
+        0
+    \end{pmatrix}
+\end{gather}
+Используя метод Крамера найдем $e_{1}$ и $e_{2}$:
+\begin{gather}
+    e_{1}
+    =
+    \frac{
+        \begin{vmatrix}
+            a^{4} & a     \\
+            0     & a^{2}
+        \end{vmatrix}
+    }
+    {
+        \begin{vmatrix}
+            a^{12} & a     \\
+            a^{24} & a^{2}
+        \end{vmatrix}
+    }
+    =
+    \frac{a^{6}}{a^{13}}
+    =
+    a^{8}
+\end{gather}
+
+\begin{gather}
+    e_{2}
+    =
+    \frac{
+        \begin{vmatrix}
+            a^{12} & a^4 \\
+            a^{24} & 0
+        \end{vmatrix}
+    }
+    {
+        \begin{vmatrix}
+            a^{12} & a     \\
+            a^{24} & a^{2}
+        \end{vmatrix}
+    }
+    =
+    \frac{-a^{28}}{a^{13}}
+    =
+    a^{15}
+    =
+    1
+\end{gather}
+Найдем многочлен ошибок $E(x) = e_{1}x^{i_{1}} + e_{2}x^{i_{2}} + e_{3}x^{i_{3}} + ... + e_{t}x^{i_{t}}$, $\gamma_{1} = a^{i_{1}}, ... \gamma_{t} = a^{i_{t}} $, $E(x) = a^{8}x^{12} + x$.
+Теперь найдем правильный код $V(x) + E(x)$, в нашем случае правильный код $V(x) + E(x) = a^{9}x^{14} + a^{5}x^{13} + a^{11}x^{12} + a^{10}x^{11} + a^{7}x^{9} + a^{5}x^{8} + a^{7}x^{7} + a^{13}x^{6} + a^{3}x^{5} + a^{11}x^{4} + a^{3}x^{3} + a^{10}x^{2} + a^{6}x^{1} + a$ далее используя схему Горнера находим исходное сообщение $A(x)$.
+\end{document}

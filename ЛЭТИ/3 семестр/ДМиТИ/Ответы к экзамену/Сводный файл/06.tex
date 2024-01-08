@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+
+\setcounter{section}{5}
+\section{Кольца вычетов. Полная система вычетов. Теорема о кольцах вычетов по простому модулю}
+\subsection{Кольца вычетов}
+$<x,+,*>$
+\begin{equation*}
+    \text{Кольцо}
+    \begin{cases}
+        \text{Абелева группа}
+        \begin{cases}
+            \text{Группа}
+            \begin{cases}
+                \text{Полугруппа}
+                \begin{cases}
+                    1^{\circ} \quad (a+b)+c = a+(b+c)
+                \end{cases}
+                \\
+                2^{\circ} \quad \exists 0: a+0 = a
+                \\
+                3^{\circ} \quad \forall a \quad\exists (-a): a + (-a) = 0
+            \end{cases}
+            \\
+            4^{\circ} \quad a + b = b + a
+        \end{cases}
+        \\
+        5^{\circ} \quad \begin{cases}
+                            (a+b)*c = (a*c) + (b*c)
+                            \\
+                            c*(a+b) = (c*a) + (c*b)
+                        \end{cases}
+    \end{cases}
+\end{equation*}
+
+\subsubsection{Свойства колец}
+\begin{itemize}
+    \item Кольцо ассоциативно: $(a*b)*c = a*(b*c)$
+    \item Кольцо коммутативно: $a*b = b*a$
+    \item Кольцо с единицей: $\exists 1: 1*a = a$
+    \item Область целостности: $\exists a\ne 0, b \ne 0 \Rightarrow a*b \ne 0$
+\end{itemize}
+
+\subsubsection{Примеры колец}
+\begin{itemize}
+    \item Кольцо целых чисел $\mathbb{Z}$, кольцо рациональных чисел $\mathbb{Q}$, кольцо вещественных чисел $\mathbb{R}$
+    \item Кольцо $\mathbb{Z}[i]$ целых гауссовых чисел вида $a + bi$, где $a,b \in \mathbb{Z}$
+    \item Кольцо $\mathbb{Z}[\sqrt{2}]$ вещественных чисел вида $a + b\sqrt{2}$ c целыми $a,b$
+\end{itemize}
+
+\subsubsection{Поле}
+Поле - коммутативное ассоциативное кольцо с единицей в котором $\forall a \ne 0 \quad \exists a^{-1}: a * (a^{-1}) = 1$
+
+\subsubsection{Множество классов вычетов}
+Множество классов вычетов (обозначают $\mathbb{Z}_m$) является ассоциативным коммутативным кольцом с единицей
+\subsubsection{Примеры полей}
+\begin{itemize}
+    \item Числовые поля $\mathbb{Q}$, $\mathbb{R}$
+    \item Поле $\mathbb{Q}[i]$ рациональных чисел вида $a + bi$, где $a,b \in \mathbb{Q}$
+    \item Поле $\mathbb{Z}[\sqrt{2}]$ вещественных чисел вида $a + b\sqrt{2}$ c рациональными $a,b$
+\end{itemize}
+
+\subsection{Полная система вычетов}
+
+Классом вычетов по модулю m называют множество чисел с одинаковым остатком при делении на m
+\subsubsection{Определение}
+Если взять по одному представителю из каждого класса вычетов, то эти m чисел образуют полную систему вычетов по модулю m
+
+\subsubsection{Примеры простейших полных систем вычетов}
+\begin{itemize}
+    \item $\{0, 1, 2, \dots, m-1\}$ наименьшие положительные вычеты
+    \item $\{0, -1, -2, \dots, -(m-1)\}$ наименьшие отрицательные вычеты
+    \item для произвольного $a \in \mathbb{Z} \quad\{a, a+1, a+2, \dots, a+(m-1)\}$
+    \item если $D(a,m) = 1$, то $\{0, a, 2a, \dots, (m-1)a\}$
+\end{itemize}
+
+\subsection{Теорема о кольцах вычетов по простому модулю}
+
+Китайская теорема об остатках утверждает, что система сравнений с попарно взаимно простыми модулями
+$m_1, m_2, \dots, m_k$:\\
+\begin{equation*}
+    \begin{cases}
+        x \equiv c_1  (\text{mod } m_1) \\
+        x \equiv c_2 (\text{mod } m_2)  \\
+        \dots                           \\
+        x \equiv c_k (\text{mod } m_k)
+    \end{cases}
+\end{equation*}
+всегда разрешима и имеет единственное решение по модулю ($m_1m_2\dots m_k$)\\
+\\
+Другими словами, китайская теорема об остатках утверждает, что кольцо вычетов по модулю произведения нескольких попарно взаимно простых чисел является прямым произведением соответствующих множителям колец вычетов
+
+\subsubsection{Теорема}
+Если модуль $m$ - составное число, то $\mathbb{Z}_m$ не является полем\\
+\\
+Доказательство\\
+\\
+Пусть \quad $m = p_1p_2$, \qquad $1 < p_1, p_2 < m$\\
+\\
+Будем считать, что $P_1, P_2 \in \mathbb{Z}_m$ - классы вычетов, которым принадлежат $p_1, p_2$. Тогда:\\
+\\
+\quad $P_1P_2 = 0$, \quad $P_1, P_2 \ne 0$ \quad и элементы $P_1, P_2$ необратимы.\\
+\\
+Следовательно, $\mathbb{Z}_m$ - не поле
+
+\end{document}

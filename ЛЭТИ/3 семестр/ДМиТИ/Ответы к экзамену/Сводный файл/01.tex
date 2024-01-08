@@ -1,0 +1,284 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+\section{Наибольший общий делитель, наименьшее общее кратное и их свойства}
+\textbf{Определение.}\par
+\begin{tabular}{ccc}
+$a_1,...,a_n \in \mathbb{Z} \, \, \backslash \{0\} \vspace{2 ex}$ \\
+$\{ d| \, \forall i \, \hspace{2 mm} a_i \, \mathop{\raisebox{-2pt}{\vdots}} \, d\textbraceright \hspace{2 cm}$ & $d$ - общий делитель$(a_1,...,a_n) \vspace{2 ex}$ & НОД$(a_1,...a_n) = max \, d \vspace{2 ex}$ \\
+& $s$ - общее кратное$(a_1,...,a_n)$ & НОК$(a_1,...a_n) = min \, s $ \\
+\end{tabular}\par
+
+\subsection{Свойства НОД и НОК}
+    \textbf{Утверждение 1}\par
+    $a_1,...,a_n \in \mathbb{N} \vspace{1 ex}$\par
+    $m =$ НОК$(a_1,...,a_n) \Rightarrow c\, \mathop{\raisebox{-2pt}{\vdots}} \,m$\par
+    $c \,$ - ОК$(a_1,...,a_n) \newline$\par
+    \textit{Доказательство:}\par
+    $\sqsupset c$ не $\mathop{\raisebox{-2pt}{\vdots}}$ на $m$ (от противного)\par
+    $c = qm+r \hspace{2 cm} 0 < r < m$\par
+    $\forall i \hspace{1 cm} c \mathop{\raisebox{-2pt}{\vdots}} a_i \hspace{1 cm} m \mathop{\raisebox{-2pt}{\vdots}} a_i$\par
+    $c-qm \mathop{\raisebox{-2pt}{\vdots}} a_i$\par
+    $r \mathop{\raisebox{-2pt}{\vdots}} a_i \hspace{1 cm} r$ - ОК$(a_1,...,a_n) \newline$\par
+    
+    \textbf{Утверждение 2}\par
+    $a_1,...,a_n \in \mathbb{N}$\par
+    $d_1,...,d_k$ - все натуральные ОД $(a_1,...,a_n)$\par
+    НОД$(a_1,...,a_n)=\,$НОК$(d_1,...,d_k) \newline$\par
+    \textit{Доказательство:}\par
+    $d_k =\,$ НОД $(a_1,...,a_n)$\par
+    $a_i \mathop{\raisebox{-2pt}{\vdots}} d_j$\par
+    $a_i \mathop{\raisebox{-2pt}{\vdots}} \,$ НОК $(d_1,...,d_k)$\par
+    $d_k \geq \,$ НОК $(d_1,...,d_k)$\par
+    НОК$(d_1,...,d_k)\mathop{\raisebox{-2pt}{\vdots}} d_k$\par
+    НОК$(d_1,...,d_k) \geq d_k \newline$\par
+    Следствие 2-1:\par
+    \begin{tabular}{ccc}
+    $a_1 \mathop{\raisebox{-2pt}{\vdots}} d$ \\
+    ... & $\Rightarrow$ & НОД $(a_1,...,a_n) \mathop{\raisebox{-2pt}{\vdots}} d$ \\
+    $a_n \mathop{\raisebox{-2pt}{\vdots}} d$ \\
+    \end{tabular}\par
+    \textit{Доказательство следствия:}\par
+    \begin{tabular}{ccc}
+         НОК $(d_1,...,d_k) \mathop{\raisebox{-2pt}{\vdots}} d_i$ \\
+         || \\
+         НОД $(a_1,...,a_n)$ \\ 
+    \end{tabular}\par
+    
+    \textbf{Утверждение 3.}\par
+    \begin{enumerate}
+        \item $a \mathop{\raisebox{-2pt}{\vdots}} d , \, b \mathop{\raisebox{-2pt}{\vdots}} d \Rightarrow$ НОД $(a,b) \mathop{\raisebox{-2pt}{\vdots}} d$
+        \item $s \mathop{\raisebox{-2pt}{\vdots}} a , \, s \mathop{\raisebox{-2pt}{\vdots}} b \Rightarrow s \mathop{\raisebox{-2pt}{\vdots}}$ НОК $(a,b)$
+        \item НОД $(a,b)$, НОК $(a,b) = ab$
+        \item $bc \mathop{\raisebox{-2pt}{\vdots}} a \hspace{4 mm}$ НОД $(a,b)=d \Rightarrow c \mathop{\raisebox{-2pt}{\vdots}} \frac{a}{d}$
+        \item $bc \mathop{\raisebox{-2pt}{\vdots}} a \hspace{4 mm}$ НОД $(a,b)=1 \Rightarrow c \mathop{\raisebox{-2pt}{\vdots}} a$
+        \item НОД $(ma, mb) = m$ НОД $(a,b)$
+        \item $a \mathop{\raisebox{-2pt}{\vdots}} d, \, b \mathop{\raisebox{-2pt}{\vdots}} d \Rightarrow$ НОД $(\frac{a}{d}, \frac{b}{d}) = \frac{HOD(a,b)}{d}$
+        \item НОД $(a,b) = d \Rightarrow$ НОД $(\frac{a}{d}, \frac{b}{d})=1$
+        \item НОД $(a,b)=b \Leftarrow a \mathop{\raisebox{-2pt}{\vdots}} b \hspace{4 mm} a,b \in \mathbb{N}$
+        \item НОД $(a+kb,b) =$ НОД $(a,b) \hspace{4 mm} \forall k$
+    \end{enumerate}\par
+    \textit{Доказательства:}\par
+    \begin{enumerate}
+        \item - следствие 2-1
+        \item - утверждение 1
+        \item
+        \begin{tabular}{c|ccc}
+            $ab \mathop{\raisebox{-2pt}{\vdots}} a$ \\
+            & $\Rightarrow$ & $ab \mathop{\raisebox{-2pt}{\vdots}}$ НОК $(a,b)$ & $\frac{ab}{HOK(a,b)} -d$ \\
+            $ab \mathop{\raisebox{-2pt}{\vdots}} b$ & & $\frac{a}{d} = \frac{HOK(a,b)}{b} \in \mathbb{Z}$ & $\frac{b}{d} = \frac{HOK(a,b)}{a} \in \mathbb{Z}$ \\
+        \end{tabular}\par
+        $\sqsupset d`$ - ОД $(a,b)$\par
+        $a \mathop{\raisebox{-2pt}{\vdots}} d`$\par
+        $b \mathop{\raisebox{-2pt}{\vdots}} d`$\par
+        $\frac{ab}{d`} = \frac{a}{d`}b \mathop{\raisebox{-2pt}{\vdots}} b \hspace{1 cm} \frac{ab}{d`} = \frac{b}{d`}a \mathop{\raisebox{-2pt}{\vdots}} a$\par
+        $\frac{ab}{d`}=k$ НОК $(a,b) = k \frac{ab}{d} \, | \Rightarrow (a,b) = 1$ и НОД $(a,c)=1$\par
+        $d = kd` \mathop{\raisebox{-2pt}{\vdots}} d`$\par
+        $|d| \geqslant |d`|$\par
+        $d =$ НОК $(a,b)$\par
+        \item $bc \mathop{\raisebox{-2pt}{\vdots}} a \hspace{1 cm} HOK(a,b) = \frac{ab}{d} \hspace{1 cm} HOD(a,b) = d$\par
+        \begin{tabular}{c|cc}
+           $bc \mathop{\raisebox{-2pt}{\vdots}} a$  & & $bc \mathop{\raisebox{-2pt}{\vdots}} HOK(a,b)$ \\
+           & $\Rightarrow$ \\
+           $bc \mathop{\raisebox{-2pt}{\vdots}} b$  & & $bc \mathop{\raisebox{-2pt}{\vdots}} \frac{ab}{d}$ \\
+           & & $c \mathop{\raisebox{-2pt}{\vdots}} \frac{a}{d}$ \\
+        \end{tabular}\par
+        
+        \item без доказательтсва\par
+        \item $a \mathop{\raisebox{-2pt}{\vdots}}$ НОД $(a,b)$\par
+        $ma \mathop{\raisebox{-2pt}{\vdots}} m$ НОД $(a,b)$\par
+        $mb \mathop{\raisebox{-2pt}{\vdots}} m$ НОД $ (a,b)$\par
+        НОД $(ma, mb) \mathop{\raisebox{-2pt}{\vdots}} m$ НОД $(a,b)$\par
+        $d$ - ОД $(ma,mb)$\par
+        $\frac{mab}{d} = \frac{ma}{d}b = \frac{mb}{d}a$\par
+        $\frac{mab}{d}$ - ОК $(a,b)$\par
+        $\frac{mab}{d} \mathop{\raisebox{-2pt}{\vdots}}$ НОК $(a,b) = \frac{ab}{HOK(a,b)}$\par
+        $mab$ НОД $(a,b) \mathop{\raisebox{-2pt}{\vdots}} abd$\par
+        $m$ НОД $(a,b) \mathop{\raisebox{-2pt}{\vdots}} d$\par
+        $m$ НОД $(a,b) =$ НОД $(ma,mb)$\par
+        \item $d$ НОД $(\frac{a}{d}, \frac{b}{d}) =$ НОД $(a,b)$ через 6\par
+        \item НОД $(\frac{a}{d}, \frac{b}{d}) = \frac{HOD(a,b)}{d} = \frac{d}{d} = 1$\par
+        \item $a \mathop{\raisebox{-2pt}{\vdots}} b$\par
+        $b \mathop{\raisebox{-2pt}{\vdots}} b$\par
+        $b$ - ОД $(a,b)$\par
+        $d$ - ОД $(a,b) \hspace{1 cm} d > b$\par
+        $b \mathop{\raisebox{-2pt}{\vdots}} d \hspace{2.5 cm} b \geqslant d \, (?)$\par
+        \item $d =$ НОД $(a,b)$\par
+        $b \mathop{\raisebox{-2pt}{\vdots}} d$\par
+        $a \mathop{\raisebox{-2pt}{\vdots}} d \hspace{2 cm} a + kb \mathop{\raisebox{-2pt}{\vdots}} d$\par
+        $d$ - ОД$(a+kb, b)$\par
+        $d`$ - ОД$(a+kb,b)$\par
+        $a+kb \mathop{\raisebox{-2pt}{\vdots}} d`$\par
+        $b \mathop{\raisebox{-2pt}{\vdots}} d`$\par
+        $a +kb-kb \mathop{\raisebox{-2pt}{\vdots}} d`$\par
+        $a \mathop{\raisebox{-2pt}{\vdots}} d`$\par
+        $d`$ - ОД$(a,b)$\par
+        $d \geqslant d`$\par
+    \end{enumerate}\par
+    
+    \textbf{Утверждение 4.}\par
+    НОД $(a, HOD(b,c)) =$ НОД $(a,b,c)$\par
+    \textit{Доказательство:}\par
+    НОД $(b,c) = f$\par
+    НОД $(a,f) = g$\par
+    \begin{tabular}{ccccc}
+        $a \mathop{\raisebox{-2pt}{\vdots}} g$ & $\sqsupset d$ - ОД $(a,b,c)$ \\
+        $b \mathop{\raisebox{-2pt}{\vdots}} f \mathop{\raisebox{-2pt}{\vdots}} g$ & $b \mathop{\raisebox{-2pt}{\vdots}} d$\\
+        & & $\Rightarrow$ & НОД $(f,c) \mathop{\raisebox{-2pt}{\vdots}} d$ \\
+        $c \mathop{\raisebox{-2pt}{\vdots}} f \mathop{\raisebox{-2pt}{\vdots}} g$ & $c \mathop{\raisebox{-2pt}{\vdots}} d$
+        & & $f \mathop{\raisebox{-2pt}{\vdots}} d$ \\
+        & & & & $\Rightarrow$ НОД $(a,f) \mathop{\raisebox{-2pt}{\vdots}} d$\\
+        & & & $c \mathop{\raisebox{-2pt}{\vdots}} d$ & $g \mathop{\raisebox{-2pt}{\vdots}} d$\\
+    \end{tabular}\par
+    
+    \textbf{Утверждение 5.} НОК $(a,$ НОК $(b,c))=$ НОК $(a,b,c)$\par
+    \textit{нет доказательства}\par
+    \subsection{Алгоритм нахождения НОД}\par
+    \subsubsection{Способ 1}
+    Поиск всех возможных делителей двух чисел и в выбор наибольшего из них. Пример на числах 12 и 9.\par
+    $12 : 1 = 12$\par
+    $12 : 2 = 6$\par
+    $12 : 3 = 4$\par
+    $12 : 4 = 3$\par
+    $12 : 5 = 2 \,$\textit{(2 остаток)}\par
+    $12 : 6 = 2$\par
+    $12 : 7 = 1 \,$\textit{(5 остаток)}\par
+    $12 : 8 = 1 \,$\textit{(4 остаток)}\par
+    $12 : 9 = 1 \,$\textit{(3 остаток)}\par
+    $12 : 10 = 1 \,$\textit{(2 остаток)}\par
+    $12 : 11 = 1 \,$\textit{(1 остаток)}\par
+    $12 : 12 = 1$\par
+    Теперь для числа 9 сделаем то же самое.\par
+    $9 : 1 = 9$\par
+    $9 : 2 = 4$\textit{(1 остаток)}\par
+    $9 : 3 = 3$\par
+    $9 : 4 = 2$\textit{(1 остаток)}\par
+    $9 : 5 = 1$\textit{(4 остаток)}\par
+    $9 : 6 = 1$\textit{(3 остаток)}\par
+    $9 : 7 = 1$\textit{(2 остаток)}\par
+    $9 : 8 = 1$\textit{(1 остаток)}\par
+    $9 : 9 = 1$\par
+    Выпишем делите обоих чисел (те, что без остатка).\par
+    Делители числа 12 - (1 2 3 4 6 12)\par
+    Делители числа 9 - (1 3 9)\par
+    Согласно определению, НОДом чисел 12 и 9, является число, на которое 12 и 9 делятся без остатка.\par
+    НОДом чисел 12 и 9 является число 3.\par
+    \subsubsection{Способ 2}
+    Суть данного способа заключается в том, чтобы разложить оба числа на простые множители и перемножить общие из них. Пример на числах 24 и 18.\par
+    Разложим оба числа на множители.\par
+    \begin{tabular}{c|cc|c}
+        24 & 2 & 18 & 2 \\
+        12 & 2 & 9 & 3 \\
+        6 & 2 & 3 & 3 \\
+        3 & 3 & 1 \\
+        1
+    \end{tabular}\par
+    Теперь перемножим их общие множители. Смотрим на разложение числа 24. Первый его множитель это 2. Ищем такой же множитель в разложении числа 18 и видим, что он там тоже есть.\par
+    Снова смотрим на разложение числа 24. Второй его множитель тоже 2. Ищем такой же множитель в разложении числа 18 и видим, что его там второй раз уже нет.\par
+    Следующая двойка в разложении числа 24 также отсутствует в разложении числа 18.\par
+    Переходим к последнему множителю в разложении числа 24. Это множитель 3. Ищем такой же множитель в разложении числа 18 и видим, что там он тоже есть.\par
+    Итак, общими множителями чисел 24 и 18 являются множители 2 и 3. Чтобы получить НОД, эти множители необходимо перемножить: $2 \times 2 = 6$\par
+    Значит НОД (24 и 18) = 6\par
+    \subsubsection{Способ 3}
+    Суть данного способа заключается в том, что числа подлежащие поиску наибольшего общего делителя раскладывают на простые множители. Затем из разложения первого числа вычеркивают множители, которые не входят в разложение второго числа. Оставшиеся числа в первом разложении перемножают и получают НОД. Рассмотрим на примере чисел 28 и 16.\par
+    В первую очередь, раскладываем числа 28 и 16 на простые множители:\par
+    \begin{tabular}{c|cc|c}
+        28 & 2 & 16 & 2 \\
+        14 & 2 & 8 & 2 \\
+        7 & 7 & 4 & 2 \\
+        1 & & 2 & 2 \\
+        & & 1 
+    \end{tabular}\par
+    Получили два разложения: $2 \times 2 \times 7$ и $2 \times 2 \times 2 \times 2$\par
+    Теперь из разложения первого числа вычеркнем множители, которые не входят в разложение второго числа. В разложение второго числа не входит семёрка. Её и вычеркнем из первого разложения.\par
+    Теперь перемножаем оставшиеся множители и получаем НОД: $2 \times 2 = 4$\par
+    Число 4 является наибольшим общим делителем чисел 28 и 16. Оба этих числа делятся на 4 без остатка:\par
+    $28 : 4 = 7$\par
+    $16 : 4 = 7$\par
+    НОД $(26,4)=4$\par
+
+    \subsection{Алгоритм нахождения НОК}
+    \subsubsection{Способ 1}
+    Можно выписать первые кратные двух чисел, а затем выбрать среди этих кратных такое число, которое будет общим для обоих чисел и маленьким. Рассмотрим на примере числа 9 и 12.\par
+    В первую очередь, найдем первые кратные для числа 9. Чтобы найти кратные для 9, нужно эту девятку поочерёдно умножить на числа от 1 до 9. Получаемые ответы будут кратными для числа 9.\par
+    $9 \times 1 = 9$\par
+    $9 \times 2 = 18$\par
+    $9 \times 3 = 27$\par
+    $9 \times 4 = 36$\par
+    $9 \times 5 = 45$\par
+    $9 \times 6 = 54$\par
+    $9 \times 7 = 63$\par
+    $9 \times 8 = 72$\par
+    $9 \times 9 = 81$\par
+    Теперь находим кратные для числа 12. Для этого поочерёдно умножим число 12 на все числа 1 до 12:\par
+    $12 \times 1 = 12$\par
+    $12 \times 2 = 24$\par
+    $12 \times 3 = 36$\par
+    $12 \times 4 = 48$\par
+    $12 \times 5 = 60$\par
+    $12 \times 6 = 72$\par
+    $12 \times 7 = 84$\par
+    $12 \times 8 = 96$\par
+    $12 \times 9 = 108$\par
+    $12 \times 10 = 120$\par
+    $12 \times 11 = 132$\par
+    $12 \times 12 = 144$\par
+    Теперь выпишем кратные обоих чисел:\par
+    9: 9 18 27 36 45 54 63 72 81\par
+    12: 12 24 36 48 60 72 84 96 108 120 132 144\par
+    Найдём общие кратные обоих чисел.\par
+    Общими кратными для чисел 9 и 12 являются кратные 36 и 72. Наименьшим же из них является 36.\par
+    Значит наименьшее общее кратное для чисел 9 и 12 это число 36. Данное число делится на 9 и 12 без остатка:\par
+    $36 : 9 = 4$\par
+    $36 : 12 = 3$\par
+    НОК(9 и 12) = 36\par
+
+    \subsubsection{Способ 2}
+    Второй способ заключается в том, что числа для которых ищется наименьшее общее кратное раскладываются на простые множители. Затем выписываются множители, входящие в первое разложение, и добавляют недостающие множители из второго разложения. Полученные множители перемножают и получают НОК.\par
+    Применим данный способ для предыдущей задачи. Найдём НОК для чисел 9 и 12.\par
+    Разложим на множители число 9 и 12:\par
+    \begin{tabular}{c|cc|c}
+         9 & 3 & 12 & 2 \\
+         3 & 3 & 6 & 2\\
+         1 & & 3 & 3\\
+         & & 1 
+    \end{tabular}\par
+    Выпишем первое  разложение и допишем множители из второго разложения, которых нет в первом разложении. В первом разложении нет двух двоек. Допишем и перемножим: $3 \times 3 \times 2 \times 2 = 36$\par
+    Получили ответ 36. Значит наименьшее общее кратное чисел 9 и 12 это число 36. Данное число делится на 9 и 12 без остатка:\par
+    $36 : 9 = 4$\par
+    $36 : 12 = 3$\par
+    НОК (9 и 12) = 36\par
+    Говоря простым языком, всё сводится к тому, чтобы организовать новое разложение куда входят оба разложения сразу. Разложением первого числа 9 являлись множители 3 и 3, а разложением второго числа 12 являлись множители 2, 2 и 3.\par
+    Наша задача состояла в том, чтобы организовать новое разложение куда входило бы разложение числа 9 и разложение числа 12 одновременно. Для этого мы выписали разложение первого числа и дописали туда множители из второго разложения, которых не было в первом разложении. В результате получили новое разложение 3 × 3 × 2 × 2. Нетрудно увидеть воочию, что в него одновременно входят разложение числа 9 и разложение числа 12.\par
+
+    \subsubsection{Способ 3}
+    Он работает при условии, что его ищут для двух чисел и при условии, что уже найден наибольший общий делитель этих чисел.\par
+    Данный способ разумнее использовать, когда одновременно нужно найти НОД и НОК двух чисел.\par
+    К примеру, пусть требуется найти НОД и НОК чисел 24 и 12. Сначала найдем НОД этих чисел:\par
+    \begin{tabular}{c|cc|c}
+         24 & 2 & 12 & 2 \\
+         12 & 2 & 6 & 2 \\
+         6 & 2 & 3 & 3 \\
+         3 & 3 & 1 & \\
+         1 & &  
+    \end{tabular}\par
+    Теперь для нахождения наименьшего общего кратного чисел 24 и 12, нужно перемножить эти два числа и полученный результат разделить на их наибольший общий делитель.\par
+    Итак, перемножим числа 24 и 12. (288)\par
+    Разделим полученное число 288 на НОД чисел 24 и 12. (288 : 12 = 24)\par
+    Получили ответ 24. Значит наименьшее общее кратное чисел 24 и 12 равно 24\par
+    НОК(24 и 12) = 24.\par
+\end{document}

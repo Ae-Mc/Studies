@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+
+\setcounter{section}{1}
+\section{Алгоритм Евклида. Линейное представление НОД(?)}
+
+\subsection{Алгоритм Евклида}
+\noindent $a, b \in \mathbb{N}$ \\
+НОД$(a, b)$ - ? \\
+while $b \ne 0$
+$(a, b) = (b, a \% b)$\\
+return a\\
+НОД$(a, b) = $ НОД$(a + kb, b)$\\
+$k = -[\frac{a}{b}]$\\
+НОД$(a, b) = $ НОД$(a -[\frac{a}{b}]b, b) =$ НОД$(a \% b, b)$\\
+$a $ \vdots $ $ $b: $ $ $ НОД$(a, b) = b$
+% , где $\vec{r_0} \in$ плоскости $\vec{n}$ - {\bf вектор нормы}.
+
+\subsection{Бинарный алгоритм Евклида}
+\noindent $a, b \in \mathbb{N}$\\
+$i = 0; j = 0;$\\
+while $(!(a \& 1))\{$
+\par $a \gg = 1;$
+\par $i++;$\\ $\}$\\
+while $(!(b \& 1))\{$
+\par $b \gg = 1;$
+\par $j++;$\\ $\}$\\
+if$(a > b) \{ t = a; a = b; b = t;\}$\\
+while$(a != 0)\{$\\
+\indent $b -= a;$\\
+\indent while $(!(b \& 1))$ $b \gg = 1;$\\
+\indent if $(a > b)\{$\\
+\indent\indent t = a;\\
+\indent\indent a = b;\\
+\indent\indent b = t;\\
+\indent $\}$\\
+$\}$\\
+return $b \ll$ std::min$(i, j);$
+
+
+
+\subsection{Расширенный алгоритм Евклида}
+\noindent $a, b \in \mathbb{N}$\\
+while $b \ne 0$\\
+\indent $q = a / b$\\
+\indent $(a, b) = (b, a - qb)$\\
+\indent $(x, y) = (y, x - qy)$\\
+\indent $a - $ НОД\\
+\indent $a, b$\\
+\indent $(x, y, u, v) = (1, 0, 0, 1)$\\
+while $b \ne 0$\\
+\indent $q = a / b$\\
+\indent $(a, b) = (b, a - qb)$\\
+\indent $(x, y, u, v) = (u, v, x - qu, y - qv)$\\
+return $(a, x, y)$
+% $z = U(x, y)$ 
+% \\ \\
+% \includegraphics[width=75mm]{pipiPNG.PNG}
+% \\ \\
+% $U(x, y)$ - дифференцируема $\Rightarrow U(x + \Delta x, y + \Delta y) - U(x, y) = U'_x \Delta x + U'_y \Delta y + o(\sqrt{\Delta x^2 + \Delta y^2})$\\
+% Или обозначается $(x, y) = \Vec{p}$ \\
+% $U(\vec{p}) - U(\vec{p_0}) = U'_x(x - x_0) + U'_y(y - y_0) + o(|\Vec{p} - \Vec{p_0}|)$ \\
+% $\Tilde{U}(p) - \Tilde{U}(p_0) = U'_x(x - x_0) + U'_y(y - y_0) \Rightarrow$ уравнение касательной плоскости: \\
+% (1) $z - z_0 = U'_x(x_0, y_0)(x - x_0) + U'_y(x_0, y_0)(y - y_0)$
+
+% \subsection{Неявное задание поверхности}
+% $F(x, y, z) = C \Rightarrow нормаль \Vec{n} = \Vec{\nabla}F \Rightarrow$ уравнение касательной (2) $F'_x(\Vec{r_0})(x - x_0) + F'_y(\Vec{r_0})(y - y_0) + F'_z(z - z_0)$ \\
+% {\bf Замечание 1:}\\
+% (1) - частный случай (2) для $F(x, y, z) = U(x, y) - z$ (тогда $\Vec{\nabla}F = (U'_x, U'_y, -1)$)\\
+% {\bf Замечание 2:}\\
+% (2) следует из (1) по теореме о неявной функции: $F(x, y, z) = C \longleftrightarrow z = U(x, y)$, причём $U'_x = -\frac{F'_x}{F'_z}, U'_y = -\frac{F'_y}{F'_z}$\\
+
+% \subsection{Параметрическое задание поверхности}
+% $\Vec{r} = \Vec{r}(t, s)$, где $(t, s)$ - параметры \\ \\
+% \includegraphics[width=75mm]{fff.PNG}\\ \\
+% $t_0, s_0$ - фиксированные \\
+% Тогда:\\
+% $\Vec{r} = \Vec{t_0, s}$ и $\Vec{r} = \Vec{t, s_0}$ - две кривые на поверхности\\
+
+% Соотв. касательные векторы:\\
+% $\Vec{a} = \Vec{r}'_s(t_0, s_0), \Vec{b} = \Vec{r}'_t(t_0, s_0)$\\
+% Тогда: $\Vec{n} = \Vec{a} \times \Vec{b} = $
+% $\begin{pmatrix}
+% \Vec{i} & \Vec{j} & \Vec{k}\\
+% x'_t & y'_t & z'_t\\
+% x'_s & y'_s & z'_s
+% \end{pmatrix}$
+
+% $= \Vec{i}(y'_tz'_s - y'_sz'_t) - \Vec{j}(x'_tz'_s - x'_sz'_t) + \Vec{k}(x'_ty'_s - x'_sy'_t) \Rightarrow$ уравнение касательной плоскости:\\
+% $(y'_t(t_0, s_0)z'_s(t_0, s_0) - y'_s(t_0, s_0)z'_t(t_0, s_0))(x - x_0) + (x'_s(t_0, s_0)z'_t(t_0, s_0) - x'_t(t_0, s_0)z'_s(t_0, s_0))(y - y_0) +$ \\
+% $ + (x'_t(t_0, s_0)y'_s(t_0, s_0) - x'_s(t_0, s_0)y'_t(t_0, s_0)) = 0$ \\
+% $\Vec{r} = \Vec{r}(t, s) \Longleftrightarrow $
+% $ \begin{cases}
+% 3x + 5y + z = 3\\
+% 7x - 2y + 4z = 4\\
+% -6x + 3y + 2z = 2
+% \end{cases} $
+
+\end{document}

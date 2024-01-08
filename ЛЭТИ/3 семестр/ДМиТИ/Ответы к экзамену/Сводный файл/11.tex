@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+\setcounter{section}{10}
+\section{Интерполяционная формула Лагранжа}
+
+\subsection{Формула Лагранжа}
+$L(x) = \sum_{i=0}^n y_i l_i(x)$
+
+
+$l_i(x) = \frac{x-x_0}{x_i-x_0} \times \frac{x-x_1}{x_i-x_1} \times ... \times \frac{x-x_{i-1}}{x_i-x_{i-1}} \times \frac{x-x_{i+1}}{x_i-x_{i+1}}$
+
+\subsection{Пример}
+Найти многочлен $P(x)$ минимальной степени, используя формулу Лагранжа:
+
+$P(-3) = -36$
+
+$P(0) = -9$
+
+$P(5) = -44$
+
+\newline
+
+Для удобства пронумеруем многочлены от 0 до 2, где $P_0(-3)$, $P_1(0)$, $P_2(5)$
+
+$l_0(x) = \frac{x-x_1}{x_0-x_1} \times \frac{x-x_2}{x_0-x_2} = \frac{x-0}{-3-0}} \times \frac{x-5}{-3-5} = \frac{x(x-5)}{(-3)*(-8)} = \frac{x(x-5)}{24}$
+
+$l_1(x) = \frac{x-x_0}{x_1-x_0} \times \frac{x-x_2}{x_1-x_2} = \frac{x+3}{0+3}} \times \frac{x-5}{0-5} = \frac{(x+3)(x-5)}{3*(-5)} = \frac{(x+3)(x-5)}{-15}$
+
+$l_2(x) = \frac{x-x_0}{x_2-x_0} \times \frac{x-x_1}{x_2-x_1} = \frac{x+3}{5+3}} \times \frac{x-0}{5-0} = \frac{x(x+3)}{5*8} = \frac{x(x+3)}{40}$
+
+Обозначим многочлен минимальной степени $L(x)$:
+
+$L(x) = -36\frac{x(x-5)}{24} + (-9)\frac{(x+3)(x+5)}{-15} + (-44)\frac{x(x+3)}{40}$
+
+Чтобы найти многочлен минимальной степени, преобразуем многочлен к стандартному виду:
+
+$L(x) = -\frac{3}{2}x(x-5) + \frac{3}{5}(x+3)(x-5) - \frac{11}{10}x(x+3) =$
+
+$= -\frac{3}{2}(x^2-5x) + \frac{3}{5}(x^2+3x-5x-15) - \frac{11}{10}(x^2+3x) =$
+
+$= -\frac{3}{2}x^2 + \frac{15}{2}x + \frac{3}{5}x^2 - \frac{6}{5}x - 9 - \frac{11}{10}x^2 - \frac{33}{10}x =$
+
+$= \frac{-15+6-11}{10}x^2 + \frac{75-12-33}{10}x - 9 = -2x^2 + 3x - 9$
+
+Итоговый вид многочлена: $L(x) = -2x^2 + 3x - 9$
+
+\end{document}

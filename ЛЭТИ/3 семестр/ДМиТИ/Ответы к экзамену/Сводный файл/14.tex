@@ -1,0 +1,158 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+\section{Кодирование с исправлением ошибок. Граница Хэмминга}
+$d:MxM \rightarrow \mathbb{R}$ - функция расстояния
+\begin{enumerate}
+    \item $d(a,b) \geq 0; \hspace{4 mm} d(a,b) = 0 \Leftrightarrow a = b$
+    \item $d(a,b) = d(b,a)$
+    \item $d(a,b) + d(b,c) = d(a,c)$
+\end{enumerate}\par
+    $M = \mathbb{Z}_2^m$\par
+    $a \in M, \,a = (a_0, a_1, ..., a_{m-1})$\par
+    $d(a,b) = \sum\limits_{i=0}^{m-1} |a_i - b_i|$ - кодовое расстояние Хэмминга (КХР)\par
+    $a \bigoplus b = (a_0 \bigoplus b_0, ... , a_{m-1} \bigoplus b_{m-1})$\par
+    $ $\par
+    Теорема КРХ - формула расстояния на $\mathbb{Z}_2^m$\par
+    $d(a,b)+d(b,c) = \sum\limits_{i=0}^{n-1}|a_i - b_i|+\sum\limits_{i=0}^{n-1}|b_i - c_i|=\sum\limits_{i=0}^{n-1}(|a_i - b_i|+|b_i - c_i|) \geq \sum\limits_{i=0}^{n-1}|a_i - b_i + b_i - c_i| =$\par
+    $ =\sum\limits_{i=0}^{n-1}|a_i - c_i| = d(a,c)$\par
+    $A=\{a^{(0)}, a^{(1)}, ... , a^{(k)}\} \leq \mathbb{Z}_2^m$\par
+    $\hspace{1 cm} \uparrow$\par
+    \textit{кодовое слово}\par
+    $ $\par
+    Теорема. Если $\forall i \neq j$\par
+    $d(a^{(i)},a^{(j)} \geq 2r+1 \Rightarrow$ можно исправить $\leq r$ ошибок \par
+    $ $\par
+    \textit{Доказательство:} $a \in \mathbb{Z}_2^m$\par
+    $A_i = \{ b / d(a^{(i)}, b) \leq r \}$\par
+    $\sqsupset | \, A_i \cap A_j = \{ c \}$\par
+    \begin{tabular}{c|cc}
+        $c \subset A_i$ & & $d(c,a^{(i)}) \leq r$ \\
+         & $\Rightarrow$ \\
+        $c \subset A_j$ & & $d(c,a^{(j)}) \leq r$ \\
+    \end{tabular}\par
+    $ $\par
+    $d(a^{(i)},a^{(j)}) \leq d(a^{(j)},c) + d(c,a^{(i)}) \leq 2r \hspace{4 mm} ?!$\par
+    $A_i$ - область декодирвоания $a^{(i)}$\par
+    $a^{(i)}+e \hspace{4 mm} d(a^{(i)}+e, a^{(j)}) \leq r \, | \Rightarrow a^{(i)}+e \in A_i \, | \Rightarrow$ декодирование однознач.\par
+    $|A_i| = 1 + C_m^1 + C_m^2 + ... + C_m^r \hspace{1 cm} |\mathbb{Z}_2^m| = 2^m$\par
+    $\sum\limits_{i=0}^{n-1}|A_i| \leq |\mathbb{Z}_2^m|; \hspace{1 cm} k = |A| \hspace{1 cm} k|A_i| \leq |\mathbb{Z}_2^m| \, |\Rightarrow k = \frac{2^m}{\sum\limits_{i=0}^{r} C_m^i}$ - граница Хэмминга\par
+    $M = \{ 0, 1 \} \, |\to A = \{ 000,...,111 \}$\par
+    $m = 3 \Rightarrow r = 1 \hspace{1 cm} d(a^0, a^1)=3 \geq 2r+1 \hspace{1 cm} k \leq \frac{2^3}{C_3^0 + C_3^1} = \frac{8}{1+3} = 2$\par
+    \textbf{Определение.} Код называется совершенным (или плотно упакованным), если $\bigcup\limits_{i=0}^{n-1}A_i = \mathbb{Z}_2^m$\par
+
+    \section{Полиномиальное кодирование}
+    $M \Rightarrow \widetilde{M}$\par
+    $M \to C \Rightarrow \widetilde{C} \to M$\par
+    $\uparrow \hspace{1 cm}$ $\uparrow$\par
+    \textit{сообщ.} \textit{код. слово}\par
+    Код линейный if $\, \forall a,b \in A$\par
+    Вес Хэмминга$\, W(a)$\par
+    $a \in A \leq \mathbb{Z}_2^m$\par
+    $a = (a_0,...,a_{m-1})$\par
+    $W(a) =$ количество ненулевых $a_i$\par
+    Минимальное кодовое расстояние $d^* = \overset{}{\underset{i \neq j}{min}} \, d(a^{(i)},a^{(j)})$\par
+    Лемма. $d^* = \overset{}{\underset{a \neq 0}{min}} \, W(a)$\par
+    \textit{Доказательство:} $\, W(a) = d(a,0) \geq d^*$\par
+    $d(a,b) = d(a+b,b+b) = d(a+b, 0) = W(a+b)$\par
+    $d^* = \overset{}{\underset{a \neq b}{min}} \, d(a,b) = \overset{}{\underset{a \neq b}{min}} \, W(a+b) = \overset{}{\underset{a \neq 0}{min} \, W(a)}$\par
+    $a = (a_0, a_1, ..., a_{m-1}) \, |\to a_0+a_1k+...+a_{m-1}x^{m-1}$\par
+    $ $\par
+    Код циклический\par
+    $if (a_0,a_1,...,a_{m-1}) \in A \Rightarrow (a_{m-1},...,a_{m-2}) \in A$\par
+    \begin{tabular}{cccc}
+        $a \to A(x)$ \\
+         &  $a+b \to A(x) + B(x)$\\
+        $b \to B(x)$ \\
+        \\
+        $a \to a_0 +a_1 x +...+ a_{m-1}x^{m-1}$ & & $xA(x) \, mod(x^m + 1)$\\
+        $a_2 \to a_{m-1} + a_0 x + ... + a_{m-2}x^{m-1}$ & & $x^m \equiv 1 \, mod(x^m +1)$\\
+    \end{tabular}\par
+    $ $\par
+    $A(x)$ - количество кодов $\Rightarrow P(x)A(x)$ - кодов\par
+    Порождающий многочлен - ненулевое приведение мн. наименьшей степени в коде.\par
+    $A = \{ ... \}$\par
+    $ $\par
+    Теорема. $G(x)$ - порождающий многочлен\par
+    минимальный цикл кода $\Leftrightarrow x^m + 1 \mathop{\raisebox{-2pt}{\vdots}} G(x)$\par
+    \textit{Доказательство:}\par
+    $\Leftarrow \, x^m+1 \mathop{\raisebox{-2pt}{\vdots}} G(x)$\par
+    $A(x),B(x)$\par
+    $A=\{ P(x)G(x) \, mod(x^m +1 )\}$\par
+    \begin{tabular}{ccc}
+        $A(x) = P_A(x)G(x)$ & & $A(x)+B(x) = (P_A(x)+P_B(x))G(x)$\\
+        $B(x) = P_B(x)G(x)$ & & $\alpha A(x) = (\alpha P_A(x))G(x)$\\
+    \end{tabular}\par
+    $ $\par
+    $xA(x) \, mod(x^m+1)$\par
+    $xA(x) = xP_A(x)G(x)$\par
+    $ $\par
+    $r(x) = xA(x) \equiv _{x^m+1} Q(x)G(x)+R(x)$\par
+    $xA(x) = S(x)(x^m+1)+r(x)=S(x)(x^n+1)+Q(x)G(x)+R(x)$\par
+    $P(x)G(x)=Q(x)(x^m+1)+R(x)$\par
+    $ $\par
+    \begin{tabular}{ccc}
+        $P(x)G(x) \, mod(x^m+1)$ & $0 \equiv _{(x^m+1)}Q(x)G(x)+R(x)$ \\
+        $x^m+1 \mathop{\raisebox{-2pt}{\vdots}} G(x)$ & $degR < deg G \, ?! \Rightarrow$ \\
+        $x^m+1 = Q(x)G(x)+R(x)$ & \textit{обязательно делится}\\
+    \end{tabular}\par
+    $ $\par
+    $x^m+1$\par
+    $G(x)$\par
+    $d^* = \overset{}{\underset{P(x) \neq 0}{min}} \, W(P(x)G(x) \, mod x^m+1)$\par
+    $d^* > 2r+1 \hspace{2 cm} r < \frac{d^*}{2}$\par
+    $ $\par
+    $M \to C$\par
+    $M(x) \to C(x)$\par
+    $C(x) = M(x)G(x)$\par
+    $C(x)+E(x)$\par
+    $\widetilde{C}(x)= C(x)+E(x)$ - многочлен ошибок\par
+    \textit{$W(E(x)) \leq r$}\par
+    $\widetilde{C}(x) \, mod(G(x))=S(x)$ - синдром \par
+    $ $\par
+    Теорема. $E_1(x) \neq E_2(x) \Rightarrow E_1(x) \, mod G(x) \neq E_2(x) \, mod G(x)$\par
+    $W(E_1(x)) \leq r$\par
+    $W(E_2(x)) \leq r$\par
+    $ $\par
+    \textit{Доказательство:}\par
+    $E_1(x) + E_2(x) \neq 0$\par
+    $W(E_1(x)+E_2(x)) \leq 2r$\par
+    $ $\par
+    $\sqsupset E_1(x) \equiv E_2(x) \, mod G(x)$\par
+    $E_1(x)+E_2(x) \mathop{\raisebox{-2pt}{\vdots}} G(x), \, W(E_1+E_2) \geq d^* \geq 2r+1$\par
+    $\widetilde{C}(x)=C(x)+E(x) = M(x)G(x)+E(x)$\par
+    $mod G(x):$\par
+    $\hspace{1 cm} S(x) \equiv E(x), \, C(x) = \widetilde{C}+E(x)$\par
+    $\hspace{1 cm} M(x) = \frac{C}{G}$\par
+    Если все ошибки в $deg G$ послед.  разр.\par
+    $x^i S(x) \equiv_{G(x)}T(x)$\par
+    $i \in [0;m-1]$\par
+    $W(T(x)) \leq r$\par
+    $x^mS(x) \equiv_{G(x)} x^{m-i}T(x)$\par
+    $\hspace{5 mm} |||$\par
+    $x^m+1 \equiv_{G(x)}0$\par
+    $ $\par
+    Теорема. $G(x) \mathop{\raisebox{-2pt}{\vdots}} x+1 \geq W(P(x)G(x)) \mathop{\raisebox{-2pt}{\vdots}} 2$\par
+    $ $\par
+    \textit{Доказательство:} $\, G(x) = (x+1)A(x)$\par
+    $P(x)G(x) \mathop{\raisebox{-2pt}{\vdots}} x+1$\par
+    $P(1)G(1) = 0$\par
+    $W(P(x)G(x)) \mathop{\raisebox{-2pt}{\vdots}} 2$\par
+    $ $\par
+    Следствие. $G(x) \mathop{\raisebox{-2pt}{\vdots}} x+1 \geq$ детект. $\forall$ на ошиб.\par
+    $C(x)+E(x)$\par
+\end{document}

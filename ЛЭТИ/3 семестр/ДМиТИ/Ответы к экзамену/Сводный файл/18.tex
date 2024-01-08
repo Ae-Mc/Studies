@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+\usepackage[linguistics]{forest}
+\usepackage{tikz}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+\usepackage{pgfplots}
+%\pgfplotsset{compat=1.9}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+
+\section{Энтропия. Информационное неравенство}
+\subsection{Пример}
+Рассмотрим две чёрных коробки, одна и вторая может генерировать символы A,B,C и D.
+\newline В \it{первой} вероятности появления символов: $p(A)=0.25, p(B)=0.25, p(C)=0,25, p(D)=0,25$
+\newline Во \textit{второй}: $p(A)=0.5, p(B)=0.125, p(C)=0,125, p(D)=0,25$
+Зададимся вопросом сколько вопросов да или нет нужно задать, чтобы узнать следующий символ, который появится
+\newline В первом случае сначала надо можно разделить символы на две равновероятные группы, AB и CD или любые другие по два символа. Мы должны спросить явлется ли A или B\\
+\begin{center}\begin{forest}
+  for tree={circle,draw, l sep=20pt}
+  [A or B
+    [A or B,edge label={node[midway,left] {yes}}
+     ][C or D,edge label={node[midway,right]{no}}]]
+\end{forest}\\
+\end{center}
+если да,то выбираем из A и B\\
+\begin{center}\begin{forest}
+  for tree={circle,draw, l sep=20pt, minimum size=40pt}
+  [A or B
+    [A or B,edge label={node[midway,left] {yes}}
+     [C, edge label={node[midway,left]{yes}}]
+      [D, edge label={node[midway,right]{no}}]]
+     [C or D,edge label={node[midway,right]{no}}]]
+\end{forest}
+\end{center}\\
+В среднем количество вопрос для определение - 2\\
+Во втором случае выгоднее сначала спросить является ли это A, т.к. у появление A вероятность 0.5 В случае отрицательного ответа необходимо спросить самое вероятное - D, B и C равновероятны.\\
+\begin{center}\begin{forest}
+  for tree={circle,draw, l sep=20pt, minimum size=40pt}
+  [A 
+    [A?,edge label={node[midway,left] {yes}}
+     ][D? ,edge label={node[midway,right]{no}}[D ,edge label={node[midway,left]{yes}}
+     ][B?,edge label={node[midway,right]{no}}[B
+     ,edge label={node[midway,left]{yes}}][C,edge label={node[midway,right]{no}}]]]]
+\end{forest}\\
+\end{center}
+Вычислим количество вопросов:$\quad\sum\limits_{i=1}^{4}p_i\cdot amount_i=1\cdot p(A)+2\cdot p(D)+3\cdot p(C)+3\cdot p(B)=1,75$
+
+Вторая коробка генерирует меньше информации, так как генерирует меньше неопределённости, меньше неожиданности.
+Это и есть энтропия. Обозначается как $H(p_1,p_2,\cdots ,p_n)$\\
+За единицу измерения был выбран бит - неопределённость о броске монеты, что эквивалентно одному вопросу\\
+$H=\sum\limits_{i=1}^{n}x_i\cdot amount_i$\\
+Количество вопросов$=\log_2(\textbf{количество исходов})$\\
+Количество исходов$=\frac{1}{p}$\\
+Количество вопросов$=\log_2(\frac{1}{p})$\\
+$H=\sum\limits_{i=1}^n \log_2(\frac{1}{p})$ или $H=-\sum\limits_{i=1}^n log_2(p_i)$
+
+
+\subsection{Максимум энтропии}
+Энтропия максимальна когда вероятности вероятности одинаковы.\\ Данный график для двух исходов, из вероятности $p$  и $1-p$ 
+\begin{center}   
+\begin{tikzpicture}
+\begin{axis}[xlabel={$p$},
+ylabel={$H$},grid=major
+]
+\addplot+ [ 
+domain=0:1, no markers, samples=100
+] {-x*ln(x)/ln(2)-(1-x)*ln(1-x)/ln(2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\subsection{Свойства функции энтропии}
+\begin{itemize}
+    \item $H(p_1,\cdots ,p_n)$ определена и непрерывна для всех $p_1,\cdots ,p_n$, где $p_i\in [0,\: 1]$ для всех $i=1,\cdots ,n\:\textbf{и}\\ p_1+\cdots +p_n=1$
+    \item $H\underbrace {\left({\frac  {1}{n}},\;\ldots ,\;{\frac  {1}{n}}\right)}_{n}<H\underbrace {\left({\frac  {1}{n+1}},\;\ldots ,\;{\frac  {1}{n+1}}\right)}_{{n+1}}$ для целых, положительных $n$ должно это должно $\qquad$ выполняться
+    \item $H\underbrace {\left({\frac  {1}{n}},\;\ldots ,\;{\frac  {1}{n}}\right)}_{n}=H\left({\frac  {b_{1}}{n}},\;\ldots ,\;{\frac  {b_{k}}{n}}\right)+\sum\limits _{{i=1}}^{k}{\frac  {b_{i}}{n}}H\underbrace {\left({\frac  {1}{b_{i}}},\;\ldots ,\;{\frac  {1}{b_{i}}}\right)}_{{b_{i}}}.$
+    \\Для целых положительных $b_i,\:$Если$\sum\limits_{i=1}^n b_i=n$
+\end{itemize}
+Шенон показал, что функция выглядит так:
+$-K\sum\limits _{{i=1}}^{n}p(i)\log _{2}p(i)$\\
+Коэффицент K нужен для перевода в другую систему исчисления, из бит в нат(основание логарифма e), трит(3), хартли
+
+\subsection{Th:$H=-K\sum\limits _{{i=1}}^{n}p(i)\log _{2}p(i)$}
+$S^m\leq t^n\leq S^{m+1}$\\
+$H(\cfrac{1}{S^m}\cdots)\leq H(\cfrac{1}{t^n}\cdots) < H(\cfrac{1}{S^{m+1}}\cdots)$\\
+$]A(n)\equiv H(\cfrac{1}{n},\cdots,\cfrac{1}{n})$\\
+$A(S^m)\leq A(t^n) < A(S^{m+1})$\\
+$A(S^m)=A(S)+\sum\limits_{i=1}^s=A(S)+A(S^{m-1})=2A(S)+A(S^{m-2})=\cdots =(m+1)A(S)\qquad \mid :nA(S)$\\
+$\cfrac{m}{n}\leq \cfrac{A(t)}{A(S)}\leq \cfrac{m+1}{n}\qquad \mid -\cfrac{m}{n}$\\
+$0\leq \cfrac{A(t)}{A(S)}-\cfrac{m}{n}\leq \cfrac{1}{n}\qquad $\\
+\\$m\cdot log(s)\leq n\cdot \log (t)<(m+1)\cdot \log (s)\qquad \mid : n\cdot \log (s)$ - Из начальных условий\\
+$\cfrac{m}{n}\leq \cfrac{\log (t)}{\log (s)}<\cfrac{m+1}{n}\qquad \mid -\cfrac{m}{n}$\\
+$0\leq \cfrac{\log (t)}{\log (s)}-\cfrac{m}{n}<\cfrac{1}{n}$
+\\Заметим, что $\left|\cfrac{A(t)}{A(S)}-\cfrac{\log (t)}{\log (s)}\right|< \cfrac{1}{n} \\
+\cfrac{A(t)}{A(S)}=\cfrac{\log (t)}{\log (s)};
+\cfrac{A(t)}{\log (t)}=\cfrac{A(S)}{\log (s)}\implies A(s)=k\log (s) \qquad \sum\limits_{i=1}^s k =N\\
+p_1=\cfrac{k_1}{N}, \ldots,p_s =\cfrac{k_s}{N}\\
+A(N)=H(p_1,\ldots,p_n)+\sum\limits_{i=1}^s p_i\cdot\ A(k_i)\\
+k\cdot\log N=H(p_1,\ldots,p_n)+\sum\limits_{i=1}^s p_i\cdot k\cdot \log (k_i)\\
+H(p_1,\ldots,p_n)=k\cdot \bigg ( \log (N)-\sum\limits_{i=1}^s p_i\cdot\log (k_i) \bigg )\\
+k\cdot \bigg ( \log (N)-\sum\limits_{i=1}^s p_i\cdot\log (p_i)
+-\sum\limits_{i=1}^s p_i\cdot\log (N) \bigg ) = -k\cdot\sum\limits_{i=1}^s p_i\cdot\log (p_i)$ч.т.д.
+\section{Относительная энтропия}
+\[D(p\mid\mid q)=\sum\limits_{i=1}^n p_i\cdot\log \cfrac{p_i}{q_i}\]
+\subsection{Th:$D(p\mid\mid q)\geq 0$ и $D(p\mid\mid q)=0
+\Leftrightarrow p\equiv q$ - Информационное неравенство}
+$f\big ( \sum\limits_{i=1}^k p_i\cdot x_i \big ) \geq \sum\limits_{i=1}^k p_i\cdot x_i$\quad-\quad Неравенство Иенсона\\
+$-f\big ( \sum\limits_{i=1}^k p_i\cdot x_i \big ) \leq -\sum\limits_{i=1}^k p_i\cdot x_i \Leftrightarrow 
+-\sum\limits_{i=1}^n p_i\cdot \log \cfrac{q_i}{ p_i} \geq -\log\sum\limits_{i=1}^n p_i\cdot  \cfrac{ q_i}{p_i}=0$ч.т.д.
+\subsection{}
+$H(p_1,\ldots,p_n)\qquad q_1=\ldots =q_n=\cfrac{1}{n}
+D(p\mid \mid q)=\sum\limits_{i=1}^n p_i\cdot \log \cfrac{p_i}{ q_i}=\sum\limits_{i=1}^n p_i\cdot \log (n\cdot p_i)=\\=
+\sum\limits_{i=1}^n p_i\cdot \log n+
+\sum\limits_{i=1}^n p_i\cdot \log (p_i)=\log n+
+\sum\limits_{i=1}^n p_i\cdot \log p_i = A(n)-H(p_1,\ldots,p_n)$\\
+Так как $A(n)\geq H(p_1,\ldots,p_n) \implies$ максимум достигается при равновероятных событиях
+
+
+
+
+
+
+
+
+
+
+\end{document}

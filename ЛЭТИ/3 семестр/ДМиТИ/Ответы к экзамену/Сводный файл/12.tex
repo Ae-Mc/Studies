@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+\setcounter{section}{11}
+
+\section{(Билет 12) Разложение многочленов на свободные от квадратов множетели.}
+\subsection{Определение:}
+\noindent Пусть K - поле
+  \\$P(x)\in K[x]$  \textbf{неприводим} if не $\exists$ нетривиальный делитель: не $\exists$ $Q(x) \in K[x]: 0 < deg(Q) < deg(P)$ и $ P(x) \vdots Q(x) $;
+  \\$ P(x) \vdots  $ С 
+  \\$ P(x) \vdots cP(x)$
+  \\$x^2 - 2 $ над $\mathbb{Q}$
+  \\$\sqsupset\mid x^2-2 \vdots x - a$
+  \\$a^2-2=0$
+  \\$a^2=2$
+  \\$x^2-2=(x-\sqrt2)(x+\sqrt2)$
+  \\То есть
+  \\$x^2+1$ над $\mathbb{Q}$ \textbf{неприводим}!
+  \\над $\mathbb{R}$ \textbf{неприводим}!
+  \\$x^2+1=(x-i)(x+i)$ над $\mathbb{C}$
+  \\$x^2+1=(x^2+1)$ над $\mathbb{Z}$
+\subsection{Определение: $P(x)$ свободный от квадратов }
+    \noindent не $\exists$ $ Q(x)$: $deg(Q) > 0$
+    \\$ P(x) \vdots Q(x)^2 $ 
+    \\$ P(x) = {P_1(x)}{P_2(x)^2}{P_3(x)^3}$...${P_n(x)^n}$
+    \\${P_1(x)}$,...,${P_n(x)}$ попарно взаимно/пр. и свободны от квадратов
+\subsection{Утверждение: $P(x) = Q(x)^kM(x)$}
+\noindent $NOD(Q(x),M(x)) = 1$ и $Q(x)$ неприводим => $P'(x) = Q(x)^{k-1}N(x)$
+\\$NOD(Q(x),N(x)) = 1$
+\\ Доказательство: 
+\\$P'(x) = kQ(x)^{x-1}Q'(x)M(x)+Q(x)M'(x)$
+\\$P'(x) = Q(x)^{x-1}(kQ'(x)M(x)+Q(x)M'(x))$
+\\$kQ'(x)M(x)=N(x)- Q(x)M'(x) \vdots Q(x)$
+\\$kQ'(x)\vdots Q(x)$ ?! Противоречие
+\\Это работает при $Z_k$ k характ поля, p - характ. k if $\forall a\in K a+a+...+a=0 $
+\\$K$-поле характеристики ноль
+\subsection{Следствие:}
+\noindent $P(x)=Q_1(x)^{k_1}$$... Q_m(x)^{k_n}$,$Q_i$- неприводимы => $P'(x)=Q_1(x)^{k_1-1}$$... Q_m(x)^{k_n-1}$,$Q$ вз./пр. с $Q_i$
+\\Доказательство:
+\\$P'(x)=\sum\limits _{i=1}^{m} K_iQ_1(x)^{k_1}$$...Q_m(x)^{k_n}$$Q'_i(x)=Q_1(x)^{k_1-1}$$...Q_m(x)^{k_m-1}$$\sum\limits _{i=1}^{n}\frac{k_iQ_1(x)...Q_m(x)}{Q_i(x)}Q'_i(x)$
+\\$NOD(Q_1,Q_i)\neq 1$
+\\$NOD(Q_1,Q_i) = Q_i$
+\\$Q \vdots Q_i$
+\\$Q(x)= k_1Q_2Q_3...Q_mQ'_1+k_2Q_1Q_3...Q_mQ'_2+...+...Q_{m-1}Q'_m\vdots Q_i$
+\\$k_iQ'_i\vdots Q_i$
+\\$Q'_i\vdots Q_i =>$ Противоречие 
+\subsection{Алгоритм разложения на свободные от  квадратов множ.:}
+\noindent На языке программирования питон: 
+\\$j=1$
+\\$while$ $deg P>0$
+\\$p' = diff(P)$
+\\$S=NOD(P,P')$
+\\$r = \frac{P}{S}$
+\\$t = NOD(r,P')$
+\\$P_j=\frac{r}{t}$
+\\$P:=\frac{P}{r}$
+\\$j++$
+\\$return$ $P_1P^2_2...P_{j-1}$
+\\
+\\Где:
+\\
+\\$P=P_1P^2_2P^3_3...P^n_n$
+\\$P'=P_2P^2_3...P_n^{n-1}$
+\\$NOD(P,P')=P_2P_3^2...P_n^{n-1}$
+\\$r=\frac{P}{NOD(P,P')}=P_1P_2...P_n$
+\\$NOD(r,P')=P_2...P_n$
+\\$\frac{r}{NOD(r,P')}=P_1$
+\\
+\\Пример:
+\\$P(x)=x^3+x^2-x-1$
+\\$P'(x)=3x^2+2x-1$
+\\$NOD(P(x),P'(x))=x+1=S(x)$
+\\$r(x)= P/S=x^2-1$
+\\$NOD(r,P')=x+1=t(x)$
+\\$P_1=x-1$
+\\new $P=x+1$
+\\$P'=1$
+\\$S=1$
+\\$r = x+1$
+\\$t = 1$
+\\$P_2=x+1$
+\\$P(x) = P_1(x)P_2(x)^2P_3(x)^3...P_n(x)^n$
+\\$P_1(x),...,P_n(x)$ попарно вз./пр. и свободные от квадратов множетели
+\subsection{$P(x) \in\mathbb{Z} P(x)\vdots x - \frac{p}{q}\\NOD(p,q)=1 => a_n \vdots q $, где $p(v)=a_n(x^n)+...+a_0$}
+\subsection{Теорема Безу}
+\noindent $P(x) \vdots x - \frac{p}{q} => p(\frac{p}{q} = 0)$
+\\Доказательство: 
+\\$\frac{a_nP^n}{q_n}+\frac{a_{n-1}P^{n-1}}{q^{n-1}}+\frac{a_1P}{q}+a_0=0$
+\\$a_nP^n+a_{n-1}P^{n-1}q+...+a_nPq^{n-1}+a_0q^n=0$
+\\$a_np^n \vdots q => a_n \vdots q$
+\\$a_0p^n \vdots p => a_0 \vdots q$
+\subsection{Критерий Эзерштейна}
+\noindent $P(x) \in \mathbb{Z}[x]$
+\\$P(x) = a_nx^n+...+a_0$
+\\$a_{n-1}\vdots P, a_{n-2} \vdots P,...,a_0\vdots P$ и $a_n$не$\vdots P=>$ неприводима над $Q$ 
+\\Доказательство: 
+\\Пусть $P(x) = f(x)g(x)$
+\\$f(x) = b_mx^m+...+b_0$
+\\$g(x) = C_{n-m}x^{n-m}+...+C_0$
+\\$P(x) = a_nx^n+...+a_0=(b_mx^n+...+b_0)(C_{n-m}x^{n-m}+...+C_0)$
+\\$a_0=b_0C_0 \qquad b_0 \vdots P$
+\\$. \hspace{6em}C_0$ не$ \vdots P$
+\\$a_1=b_0C_2+b_1C_1+b_2C_0 => b_2\vdots P $
+\\$a_m=b_nC_m+...+b_mC_0 => b_{n-1}\vdots P $
+\end{document}

@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+
+\section{Линейные сравнения}
+\textbf{Теорема:}
+Если $\gcd(a, b) = d$, то уравнение $a*x\equiv b \pmod{m}$ имеет решение тогда и только тогда, когда $b \vdots d$.\\
+\textbf{Доказательство} ---------------------------------------------------------
+
+\vspace{0.3cm} %
+
+$\Rightarrow$ $ax \equiv b \pmod{m}$, то $ax - b \vdots m \vdots d$, так как $ax \vdots d$ и $b \vdots d$.
+
+$\Leftarrow$$\frac{a}{d}x \equiv \frac{b}{d} \pmod{\frac{m}{d}}$
+
+$\gcd\left(\frac{a}{d}, \frac{b}{d}\right) = 1$ и $\left(\frac{a}{d}\right)^{\phi\left(\frac{m}{d}\right)} \equiv 1 \pmod{\frac{m}{d}}$.
+
+\vspace{0.5cm} %
+ $\left(\frac{a}{d}\right)^{\phi\left(\frac{m}{d}\right)} x \equiv \left(\frac{a}{d}\right)^{\phi\left(\frac{m}{d}\right) - 1} \frac{b}{d} \pmod{m}$
+
+\vspace{0.5cm} %
+$x \equiv \left(\frac{a}{d}\right)^{\phi\left(\frac{m}{d}\right) - 1} \frac{b}{d} \pmod{\frac{m}{d}}$
+
+\vspace{0.5cm} %
+$\left(\frac{a}{d}\right)^{\phi\left(\frac{m}{d}\right) - 1} \cdot \frac{b}{d} \equiv d \cdot \left(\frac{a}{d}\right)^{\phi\left(\frac{m}{d}\right)} \cdot \frac{b}{d} \pmod{m}= d\left[k\frac{m}{d} + 1\right]\frac{b}{d} = [km + d]\frac{b}{d} \equiv d\frac{b}{d} \pmod{m} = b$.
+
+\vspace{0.3cm} %
+--------------------------------------------------------------------------------
+
+\vspace{0.5cm} %
+$1)
+ax \equiv b \pmod{m} \\
+\gcd(a, m) = 1 $! решение$ \Rightarrow x \equiv a^{\phi(m)-1}b \pmod{m}
+$
+\vspace{0.5cm} %
+
+$2)
+\gcd(a, m) = d ;   b \vdots d  \\
+\frac{a}{d} x \equiv \frac{b}{d} \pmod{\frac{m}{d}} \\
+x \equiv \left(\frac{a}{d}\right)^{\phi\left(\frac{m}{d}\right) - 1} \frac{b}{d} \pmod{\frac{m}{d}}, \text{ где } \left(\frac{a}{d}\right)^{\phi\left(\frac{m}{d}\right) - 1} \frac{b}{d} = x_0
+$
+\vspace{0.5cm} %
+
+$d \text{ реш:}\left[ \begin{array}{l}
+x \equiv x_0 \pmod{m} \\
+x \equiv x_0 + \frac{m}{d} \pmod{m} \\
+x \equiv x_0 + (d-1)\frac{m}{d} \pmod{m}
+\end{array} \right.
+$
+\vspace{0.5cm} %
+
+$3)
+\gcd(a, m) = d ; b \not\vdots d $   => $\emptyset  \\$
+
+$4)
+ax \equiv b \pmod{m} \\$
+$ax - b \vdots m$\\
+$ax - b = my$\\
+$b =ax- my$\\
+$x=x_0+t\frac{m}{d}$\\
+
+\textbf{Утв:}
+$p$-простое$ , a<p $\\
+Решение  $x\equiv \frac{C_p^a}{p}*b*(-1)^k \pmod{m}$,где k = a -1\\
+\textbf{Доказательство:}\\ 
+$ C_p^a = \frac{p!}{a!(p-a)!}=\frac{p(p-1)....(p-a+1)}{1*2...a} $\\
+$\frac{C_p^a}{p}= =\frac{p(p-1)....(p-a+1)}{1*2...(a-1)a}$\\
+$(p-1)(p-2)...(p-a+1)\equiv (-1)(-2)....(-a+1) = (-1)^k*1*2....*(a-1)$,где k=a-1\\
+$a\frac{C_p^a}{p}\equiv (-1)^k \pmod{p}$,где k=a-1\\
+$ab\frac{C_p^a}{p} * (-1)^k\equiv b \pmod{p} $,где k=a-1\\
+\\
+\textbf{Теорема Критерий Вильсона}
+\\
+$p$-простое $<=> (p-1)! \equiv -1 \pmod{p} $\\
+\textbf{Доказательство:}\\ 
+$|=>|  (p-1)!= 1(p-1) $\\
+$a^2 \equiv 1 \pmod{p}$\\
+$a^2 -1 \vdots p$\\
+$(a-1)(a+1) \vdots p$\\
+\\
+$\left[ \begin{array}{l}
+a-1  \equiv p\\
+a+1  \equiv p\\
+\end{array} \right.
+$
+\\$\left[ \begin{array}{l}
+a \equiv 1 \pmod{p}\\
+a \equiv -1 \pmod{p}\\
+\end{array} \right.
+$
+$|<=| p $- не простое $p = mn$\\
+$(p-1)!\vdots m $\\
+$(p-1)!\equiv -1 \pmod{p}$\\
+$(p-1)!+1\vdots m\vdots p $\\
+
+
+\\
+\textbf{Теорема Китайскаяя теорема об остатках}
+\\
+$m_1,..,m_n $- попарно взаимно простые \\
+
+$
+d \text{ имеет ! реш:}\left\{
+\begin{aligned}
+x \equiv C_1 \pmod{m1}\\
+..............................\\
+..............................\\
+x \equiv C_n \pmod{m_n}\\.
+\end{aligned}
+\right.
+$\\
+$x\equiv C\pmod{M} $, где$M = m_1,...m_n$\\
+
+\textbf{Доказательство:}\\ 
+$M_i=\frac{M}{m_i}$\\
+\\
+$\gcd(M_i, m_i) = 1 $\\
+\\
+$x*M_i\equiv 1\pmod{m_i} => x\equiv a_i\pmod{m_i} $\\
+\\
+$x = \sum_{i=1}^{n} M_i*a_i*C_i\equiv M_i*a_i*C_i\pmod{m_i}\equiv C_i\pmod{m_i} $\\
+$|!| x \not\equiv y \pmod{M} $\\
+$x\equiv C_i\pmod{m_i}\equiv y\pmod{m_i}$\\
+$x-y\vdots m_i => x-y\vdots M$\\
+$x = (C_1,...C_n)$-китайский код числа X\\
+$y = (d_1,..d_n)$\\
+$x+y = (C_1+d_1,...C_n+d_n)$
+
+
+\end{document}
+
+
