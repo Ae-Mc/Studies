@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, portrait, margin=1cm, bottom=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{polyglossia}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+\renewcommand{\gcd}{\text{НОД}}
+
+\setmainfont[Ligatures=TeX]{Times New Roman}
+\setdefaultlanguage{russian}
+\setotherlanguages{english}
+\graphicspath{graphics}
+
+\begin{document}
+
+\setcounter{section}{12}
+\section{Неприводимые многочлены. Поля Галуа}
+\subsection{Неприводимые многочлены}
+\subsubsection{Определение}
+Пусть $K$ — поле. Тогда $P(x) \in K[x]$ неприводим, если не существует нетривиальный делитель $Q(x) \in K[x]$, такой, что его степень больше 0, меньше степени многочлена $P$ и $P(x)$ делится на $Q(x)$:
+\[
+      \nexists Q(x) \in K[x] : 0 < \deg Q < \deg P \text{ и } P(x) \vdots Q(x)
+\]
+\subsubsection{Определение}
+$P(x)$ свободный от квадратов, если не существует $Q(x)$, такой, что $\deg Q >$ и $P(x) \vdots Q^2(x)$.
+\subsubsection{Утверждение}
+$
+      \begin{aligned}
+             & P(x) = Q^k(x)M(x)                                                                             \\
+             & \gcd(Q(x), M(X)) = 1 \text{ и } Q(x) \text{ неприводим } \Rightarrow P'(x) = Q^{k - 1}(x)N(x) \\
+             & \gcd(Q(x), N(x)) = 1
+      \end{aligned}
+$
+\subsubsection{Доказательство}
+$
+      \begin{aligned}
+             & P'(x) = kQ^{k - 1}(x)Q'(x)M(x) + Q^k(x)M'(x)                                             \\
+             & P'(x) = Q^{k - 1}(x)(kQ'(x)M(x) + Q(x)M'(x)) \text{, где } kQ'(x)M(x) + Q(x)M'(x) = N(x) \\
+             & kQ'(x)M(x) = N(x) - Q(x)M'(x)\ \vdots\ Q(x)                                              \\
+             & kQ'(x) \ \vdots\ Q(x) \text{ — противоречие}                                             \\
+             & \deg Q' = \deg Q - 1                                                                     \\
+      \end{aligned}
+$
+
+Это работает при $\mathbb{Z}_k$ ($k \not \vdots$  характериситку поля).
+
+\subsubsection{Следствие}
+$P(x) = Q_1^{k_1}(x)...Q_m^{k_m}(x)$, $Q_i$ — неприводимы $\Rightarrow\ P'(x) = Q_1^{k_1-1}(x)...Q_m^{k_m - 1}Q(x)$, $Q$ взаимно прост с $Q_i$
+\subsubsection{Критерий Эйзенштейн}
+$
+      \begin{aligned}
+             & P(x) \in \mathbb{Z}[x]                                                                                               \\
+             & P(x) = a_nx^n + ... + a_0                                                                                            \\
+             & a_{n-1} \vdots p,\ a_{n - 2} \vdots p,\ ..., a_0 \vdots p,\ a_n \not \vdots p \Rightarrow \text{ неприводима над } Q
+      \end{aligned}
+$
+\subsubsection{Доказательство}
+Рассмотрим $P(x) = f(x)g(x)$.
+\allowdisplaybreaks[4]
+\begin{align*}
+       & f(x) = b_mx^m + ... + b_0                                                              \\
+       & g(x) = c_{n - m}x^{n - m} + ... + c_0                                                  \\
+       & p(x) = a_nx^n + ... + a_0 = (b_mx^m + ... + b_0)\cdot(c_{n - m} x^{n - m} + ... + c_0) \\
+       & a_0 = b_0c_0\ \vdots\ p \qquad b_0\ \vdots\ p \qquad c_0 \not\vdots\ \ p               \\
+       & a_1 = b_0c_2 + b_1c_1 + b_2c_0\ \vdots\ p \Rightarrow b_2\ \vdots\ p                   \\
+       & \vdots                                                                                 \\
+       & a_m = b_0c_m + ... + b_mc_0\ \vdots\ p \Rightarrow b_{m - 1}\ \vdots\ p                \\
+       & a_n = b_nc_{n - m}\ \vdots\ p \text{ — противоречие}                                   \\
+\end{align*}
+\subsection{Поля Галуа}
+\subsubsection{Определение}
+Конечное поле, или поле Галуа в общей алгебре — поле, состоящее из конечного числа элементов. Обозначается $\mathbb{F}_q$ или $\mathbf{GF}(q)$ или $<\mathbf{GF}(q), +, *>$, где $q = |\mathbf{GF}(q)|$ — порядок поля. Порядком поля называется количество входящих в него элементов. Пример: $\mathbb{Z}_p,\ p \in \mathbb{P}$.
+\subsubsection{Определение}
+Характериситка поля $F$ — наименьшее $n$, такое, что $\forall a \in F$ выполняется следующее равенство:
+\[
+      \underbrace{a + a + ... + a}_{n\text{ раз}} = 0
+\]
+
+Если такого $n$ не существует, то $n$ считается равным $0$.
+
+\subsubsection{Лемма}
+Характериситка поля — простое или $0$.
+\subsubsection{Доказательство}
+Рассмотрим $n = \alpha \beta$.
+\[
+      \underbrace{1 + 1 + ... + 1}_{n \text{ раз}} = 0
+\]
+\[
+      \underbrace{\underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}} + \underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}} + ... + \underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}}}_{\beta \text{ раз}} = 0
+\]
+\[
+      \underbrace{\alpha + \alpha + ... + \alpha}_{\beta \text{ раз}} = 0 \qquad \Rightarrow \text{ характеристика — } \mathbb{P}
+\]
+\subsubsection{Свойства}
+$f(x) \in \mathbb{Z}_p[x]$ ($f(x)$ принадлежит множеству многочленов с целыми коэффициентами по модулю $p$)  $\mathbb{Z}_p[x] / f(x)$ (кольцо вычетов многочленов с целыми коэффициентами по модулю $f(x)$)
+
+$
+      \displaystyle
+      \left.\begin{aligned}
+             & g_1(x) \equiv_{f(x)} h_1(x) \\
+             & g_2(x) \equiv_{f(x)} h_2(x) \\
+      \end{aligned}\right| \Rightarrow \begin{aligned}
+             & g_1 + g_2 \equiv_{f(x)} h_1 + h_2 \\
+             & g_1g_2 \equiv_{f(x)} h_1h_2       \\
+      \end{aligned}
+$
+\subsubsection{Теорема}
+$\mathbb{Z}_p[x] / f(x)\ \Leftrightarrow\ f(x)$ неприводим над $\mathbb{Z}_p$.
+
+$\deg f = m$    $\mathbf{GF}(p^m)$
+\subsubsection{Доказательство}
+\textbf{Прямое.} Рассмотрим $f(x) = g(x)h(x)$ \\
+$g(x)h(x) \equiv_{f(x)} 0 \qquad | \cdot g^{-1}(x) $ \\
+$h(x) \equiv_{f(x)} 0 |\Rightarrow f(x) = 0$
+
+\textbf{От обратного.} $\forall g(x) \neq 0$ $\deg g < \deg p$ \\
+$\gcd(g(x), f(x)) = 1\ \Rightarrow$ по расширенному алгоритму Евклида:\\
+$a(x)g(x) + b(x)f(x) = 1$ \\
+$a(x)g(x) \equiv_{f(x)} 1\ \Rightarrow\ a = g^{-1} \ \Rightarrow\ \mathbb{Z}_p$ — поле
+
+\subsubsection{Связь с линейным пространством}
+Поле Галуа образует линейное (векторное) пространство. Его аксиомы:
+\begin{itemize}
+      \item $(a + b) + c = a + (b + c)$
+      \item $\exists 0 : a + 0 = a$
+      \item $\forall a \  \exists(-a) : a + (-a) = 0$
+      \item $a + b = b + a$
+      \item $\alpha(a + b) = \alpha a + \alpha b$
+      \item $(\alpha + \beta)a = \alpha a + \beta a$
+      \item $\alpha(\beta a) = (\alpha \beta) a$
+      \item $\exists 1 : 1 \cdot a = a$
+\end{itemize}
+
+$\alpha, \beta \in \mathbb{Z}_p$, $F$ — линейное пространство. $m = \dim F$.
+
+\subsubsection{Определение}
+$\alpha$ — примитивный элемент, если $\forall b \neq 0 \in F$ \qquad $b = \alpha^i$.
+\end{document}
