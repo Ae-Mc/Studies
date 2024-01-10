@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{indentfirst}
+\usepackage{inputenc}[utf8]
 \usepackage{polyglossia}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{svg}
@@ -16,7 +17,11 @@
 \usetikzlibrary{datavisualization.formats.functions}
 \usepackage{pgfplots}
 
-\renewcommand{\gcd}{\text{НОД}}
+\let\gcd\relax
+\DeclareMathOperator{\gcd}{НОД}
+\DeclareMathOperator{\cd}{ОД}
+\DeclareMathOperator{\lcm}{НОК}
+\DeclareMathOperator{\cm}{ОК}
 
 \setmainfont[Ligatures=TeX]{Times New Roman}
 \setdefaultlanguage{russian}
@@ -27,22 +32,25 @@
 \section{Наибольший общий делитель, наименьшее общее кратное и их свойства}
 \textbf{Определение.}\par
 \begin{tabular}{ccc}
-    $a_1,...,a_n \in \mathbb{Z} \, \, \backslash \{0\} \vspace{2 ex}$                                                                                                 \\
-    $\{ d|\forall i \ \hspace{2 mm} a_i \ \vdots\ d\} \hspace{2 cm}$ & $d$ - общий делитель$(a_1,...,a_n) \vspace{2 ex}$ & НОД$(a_1,...a_n) = max \, d \vspace{2 ex}$ \\
-    $\{ s|\forall i \ \hspace{2 mm} s \ \vdots\ a_i\} \hspace{2 cm}$ & $s$ - общее кратное$(a_1,...,a_n)$                & НОК$(a_1,...a_n) = min \, s $              \\
+    $a_1,...,a_n \in \mathbb{Z} \, \, \backslash \{0\} \vspace{2 ex}$                                                                                                  \\
+    $\{ d|\forall i \ \hspace{2 mm} a_i \ \vdots\ d\} \hspace{2 cm}$ & $d$ - общий делитель$(a_1,...,a_n) \vspace{2 ex}$ & $\gcd(a_1,...a_n) = max \, d \vspace{2 ex}$ \\
+    $\{ s|\forall i \ \hspace{2 mm} s \ \vdots\ a_i\} \hspace{2 cm}$ & $s$ - общее кратное$(a_1,...,a_n)$                & НОК$(a_1,...a_n) = min \, s $               \\
 \end{tabular}\par
 
 \subsection{Свойства НОД и НОК}
 \textbf{Утверждение 1}\par
-$a_1,...,a_n \in \mathbb{N} \vspace{1 ex}$\par
-$m =$ НОК$(a_1,...,a_n) \Rightarrow c\, \mathop{\raisebox{-2pt}{\vdots}} \,m$\par
-$c \,$ - ОК$(a_1,...,a_n) \newline$\par
+$\left.\begin{array}{l}
+        a_1,...,a_n \in \mathbb{N} \\
+        m = \lcm(a_1,...,a_n)      \\
+        c  = \cm(a_1,...,a_n)
+    \end{array}\right| \Rightarrow c\ \vdots\ m$
+
 \textit{Доказательство:}\par
-$\sqsupset c$ не $\mathop{\raisebox{-2pt}{\vdots}}$ на $m$ (от противного)\par
+$\sqsupset c$ не $\ \vdots\ $ на $m$ (от противного)\par
 $c = qm+r \hspace{2 cm} 0 < r < m$\par
-$\forall i \hspace{1 cm} c \mathop{\raisebox{-2pt}{\vdots}} a_i \hspace{1 cm} m \mathop{\raisebox{-2pt}{\vdots}} a_i$\par
-$c-qm \mathop{\raisebox{-2pt}{\vdots}} a_i$\par
-$r \mathop{\raisebox{-2pt}{\vdots}} a_i \hspace{1 cm} r$ - ОК$(a_1,...,a_n) \newline$\par
+$\forall i \hspace{1 cm} c \ \vdots\  a_i \hspace{1 cm} m \ \vdots\  a_i$\par
+$c-qm \ \vdots\  a_i$\par
+$r \ \vdots\  a_i \hspace{1 cm} r$ - ОК$(a_1,...,a_n) \newline$\par
 
 \textbf{Утверждение 2}\par
 $a_1,...,a_n \in \mathbb{N}$\par
@@ -50,36 +58,36 @@ $d_1,...,d_k$ - все натуральные ОД $(a_1,...,a_n)$\par
 НОД$(a_1,...,a_n)=\,$НОК$(d_1,...,d_k) \newline$\par
 \textit{Доказательство:}\par
 $d_k =\,$ НОД $(a_1,...,a_n)$\par
-$a_i \mathop{\raisebox{-2pt}{\vdots}} d_j$\par
-$a_i \mathop{\raisebox{-2pt}{\vdots}} \,$ НОК $(d_1,...,d_k)$\par
+$a_i \ \vdots\  d_j$\par
+$a_i \ \vdots\  \,$ НОК $(d_1,...,d_k)$\par
 $d_k \geq \,$ НОК $(d_1,...,d_k)$\par
-НОК$(d_1,...,d_k)\mathop{\raisebox{-2pt}{\vdots}} d_k$\par
+НОК$(d_1,...,d_k)\ \vdots\  d_k$\par
 НОК$(d_1,...,d_k) \geq d_k \newline$\par
 Следствие 2-1:\par
 \begin{tabular}{ccc}
-    $a_1 \mathop{\raisebox{-2pt}{\vdots}} d$                                     \\
-    ... & $\Rightarrow$ & НОД $(a_1,...,a_n) \mathop{\raisebox{-2pt}{\vdots}} d$ \\
-    $a_n \mathop{\raisebox{-2pt}{\vdots}} d$                                     \\
+    $a_1 \ \vdots\  d$                                     \\
+    ... & $\Rightarrow$ & НОД $(a_1,...,a_n) \ \vdots\  d$ \\
+    $a_n \ \vdots\  d$                                     \\
 \end{tabular}\par
 \textit{Доказательство следствия:}\par
 \begin{tabular}{ccc}
-    НОК $(d_1,...,d_k) \mathop{\raisebox{-2pt}{\vdots}} d_i$ \\
-    ||                                                       \\
-    НОД $(a_1,...,a_n)$                                      \\
+    $\lcm(d_1,...,d_k) \ \vdots\  d_i$ \\
+    ||                                 \\
+    $\gcd(a_1,...,a_n)$                \\
 \end{tabular}\par
 
 \textbf{Утверждение 3.}\par
 \begin{enumerate}
-    \item $a \mathop{\raisebox{-2pt}{\vdots}} d , \, b \mathop{\raisebox{-2pt}{\vdots}} d \Rightarrow$ НОД $(a,b) \mathop{\raisebox{-2pt}{\vdots}} d$
-    \item $s \mathop{\raisebox{-2pt}{\vdots}} a , \, s \mathop{\raisebox{-2pt}{\vdots}} b \Rightarrow s \mathop{\raisebox{-2pt}{\vdots}}$ НОК $(a,b)$
+    \item $a \ \vdots\  d , \, b \ \vdots\  d \Rightarrow$ НОД $(a,b) \ \vdots\  d$
+    \item $s \ \vdots\  a , \, s \ \vdots\  b \Rightarrow s \ \vdots\ $ НОК $(a,b)$
     \item НОД $(a,b)$, НОК $(a,b) = ab$
-    \item $bc \mathop{\raisebox{-2pt}{\vdots}} a \hspace{4 mm}$ НОД $(a,b)=d \Rightarrow c \mathop{\raisebox{-2pt}{\vdots}} \frac{a}{d}$
-    \item $bc \mathop{\raisebox{-2pt}{\vdots}} a \hspace{4 mm}$ НОД $(a,b)=1 \Rightarrow c \mathop{\raisebox{-2pt}{\vdots}} a$
+    \item $bc \ \vdots\  a \hspace{4 mm}$ НОД $(a,b)=d \Rightarrow c \ \vdots\  \frac{a}{d}$
+    \item $bc \ \vdots\  a \hspace{4 mm}$ НОД $(a,b)=1 \Rightarrow c \ \vdots\  a$
     \item НОД $(ma, mb) = m$ НОД $(a,b)$
-    \item $a \mathop{\raisebox{-2pt}{\vdots}} d, \, b \mathop{\raisebox{-2pt}{\vdots}} d \Rightarrow$ НОД $(\frac{a}{d}, \frac{b}{d}) = \frac{HOD(a,b)}{d}$
+    \item $a \ \vdots\  d, \, b \ \vdots\  d \Rightarrow$ НОД $(\frac{a}{d}, \frac{b}{d}) = \frac{\gcd(a,b)}{d}$
     \item НОД $(a,b) = d \Rightarrow$ НОД $(\frac{a}{d}, \frac{b}{d})=1$
-    \item НОД $(a,b)=b \Leftarrow a \mathop{\raisebox{-2pt}{\vdots}} b \hspace{4 mm} a,b \in \mathbb{N}$
-    \item НОД $(a+kb,b) =$ НОД $(a,b) \hspace{4 mm} \forall k$
+    \item НОД $(a,b)=b \Leftarrow a \ \vdots\  b \hspace{4 mm} a,b \in \mathbb{N}$
+    \item НОД $(a+kb,b) =$ НОД $(a,b) \hspace{4 mm} \forall k \in \mathbb{Z}$
 \end{enumerate}\par
 \textit{Доказательства:}\par
 \begin{enumerate}
@@ -87,75 +95,77 @@ $d_k \geq \,$ НОК $(d_1,...,d_k)$\par
     \item - утверждение 1
     \item
           \begin{tabular}{c|ccc}
-              $ab \mathop{\raisebox{-2pt}{\vdots}} a$                                                                                                                         \\
-                                                      & $\Rightarrow$ & $ab \mathop{\raisebox{-2pt}{\vdots}}$ НОК $(a,b)$ & $\frac{ab}{HOK(a,b)} -d$                          \\
-              $ab \mathop{\raisebox{-2pt}{\vdots}} b$ &               & $\frac{a}{d} = \frac{HOK(a,b)}{b} \in \mathbb{Z}$ & $\frac{b}{d} = \frac{HOK(a,b)}{a} \in \mathbb{Z}$ \\
+              $ab \ \vdots\  a$                                                                                                                           \\
+                                & $\Rightarrow$ & $ab \ \vdots\ \lcm(a,b)$                           & $d = \frac{ab}{\lcm(a,b)}$                         \\
+              $ab \ \vdots\  b$ &               & $\frac{a}{d} = \frac{\lcm(a,b)}{b} \in \mathbb{Z}$ & $\frac{b}{d} = \frac{\lcm(a,b)}{a} \in \mathbb{Z}$ \\
           \end{tabular}\par
-          $\sqsupset d`$ - ОД $(a,b)$\par
-          $a \mathop{\raisebox{-2pt}{\vdots}} d`$\par
-          $b \mathop{\raisebox{-2pt}{\vdots}} d`$\par
-          $\frac{ab}{d`} = \frac{a}{d`}b \mathop{\raisebox{-2pt}{\vdots}} b \hspace{1 cm} \frac{ab}{d`} = \frac{b}{d`}a \mathop{\raisebox{-2pt}{\vdots}} a$\par
-          $\frac{ab}{d`}=k$ НОК $(a,b) = k \frac{ab}{d} \, | \Rightarrow (a,b) = 1$ и НОД $(a,c)=1$\par
-          $d = kd` \mathop{\raisebox{-2pt}{\vdots}} d`$\par
+          $\sqsupset d`$ — $\cd(a,b)$\par
+          $a \ \vdots\  d`$\par
+          $b \ \vdots\  d`$\par
+          $\frac{ab}{d`} = \frac{a}{d`}b \ \vdots\  b \hspace{1 cm} \frac{ab}{d`} = \frac{b}{d`}a \ \vdots\  a$\par
+          $\frac{ab}{d`}=k \lcm(a,b) = k \frac{ab}{d}\ | \Rightarrow \ d = kd` \ \vdots\  d`$\par
           $|d| \geqslant |d`|$\par
-          $d =$ НОК $(a,b)$\par
-    \item $bc \mathop{\raisebox{-2pt}{\vdots}} a \hspace{1 cm} HOK(a,b) = \frac{ab}{d} \hspace{1 cm} HOD(a,b) = d$\par
+          $d = \gcd(a,b)$\par
+    \item $bc \ \vdots\  a \hspace{1 cm} \gcd(a,b) = d \hspace{1 cm} \lcm(a,b) = \frac{ab}{d}$\par
           \begin{tabular}{c|cc}
-              $bc \mathop{\raisebox{-2pt}{\vdots}} a$ &               & $bc \mathop{\raisebox{-2pt}{\vdots}} HOK(a,b)$     \\
-                                                      & $\Rightarrow$                                                      \\
-              $bc \mathop{\raisebox{-2pt}{\vdots}} b$ &               & $bc \mathop{\raisebox{-2pt}{\vdots}} \frac{ab}{d}$ \\
-                                                      &               & $c \mathop{\raisebox{-2pt}{\vdots}} \frac{a}{d}$   \\
+              $bc \ \vdots\  a$ &               & $bc \ \vdots\  \lcm(a,b)$    \\
+                                & $\Rightarrow$                                \\
+              $bc \ \vdots\  b$ &               & $bc \ \vdots\  \frac{ab}{d}$ \\
+                                &               & $c \ \vdots\  \frac{a}{d}$   \\
           \end{tabular}\par
 
     \item без доказательтсва\par
-    \item $a \mathop{\raisebox{-2pt}{\vdots}}$ НОД $(a,b)$\par
-          $ma \mathop{\raisebox{-2pt}{\vdots}} m$ НОД $(a,b)$\par
-          $mb \mathop{\raisebox{-2pt}{\vdots}} m$ НОД $ (a,b)$\par
-          НОД $(ma, mb) \mathop{\raisebox{-2pt}{\vdots}} m$ НОД $(a,b)$\par
-          $d$ - ОД $(ma,mb)$\par
+    \item $a \ \vdots\ \gcd(a,b)$\par
+          $ma \ \vdots\ m \gcd(a,b)$\par
+          $mb \ \vdots\ m \gcd(a,b)$\par
+          НОД $(ma, mb) \ \vdots\  m\gcd(a,b)$\par
+          $d$ — ОД $(ma,mb)$\par
           $\frac{mab}{d} = \frac{ma}{d}b = \frac{mb}{d}a$\par
-          $\frac{mab}{d}$ - ОК $(a,b)$\par
-          $\frac{mab}{d} \mathop{\raisebox{-2pt}{\vdots}}$ НОК $(a,b) = \frac{ab}{HOK(a,b)}$\par
-          $mab$ НОД $(a,b) \mathop{\raisebox{-2pt}{\vdots}} abd$\par
-          $m$ НОД $(a,b) \mathop{\raisebox{-2pt}{\vdots}} d$\par
-          $m$ НОД $(a,b) =$ НОД $(ma,mb)$\par
-    \item $d$ НОД $(\frac{a}{d}, \frac{b}{d}) =$ НОД $(a,b)$ через 6\par
-    \item НОД $(\frac{a}{d}, \frac{b}{d}) = \frac{HOD(a,b)}{d} = \frac{d}{d} = 1$\par
-    \item $a \mathop{\raisebox{-2pt}{\vdots}} b$\par
-          $b \mathop{\raisebox{-2pt}{\vdots}} b$\par
+          $\frac{mab}{d}$ — ОК $(a,b)$\par
+          $\frac{mab}{d} \ \vdots\ $ НОК $(a,b) = \frac{ab}{\gcd(a,b)}$\par
+          $mab\ \gcd(a,b) \ \vdots\  abd$\par
+          $m\ \gcd(a,b) \ \vdots\  d$\par
+          $m\ \gcd(a,b) =\ \gcd(ma,mb)$\par
+    \item $d\ \gcd(\frac{a}{d}, \frac{b}{d}) = \gcd(a,b)$ через 6\par
+    \item $\gcd(\frac{a}{d}, \frac{b}{d}) = \frac{\gcd(a,b)}{d} = \frac{d}{d} = 1$\par
+    \item $a \ \vdots\  b$\par
+          $b \ \vdots\  b$\par
           $b$ - ОД $(a,b)$\par
           $d$ - ОД $(a,b) \hspace{1 cm} d > b$\par
-          $b \mathop{\raisebox{-2pt}{\vdots}} d \hspace{2.5 cm} b \geqslant d \, (?)$\par
-    \item $d =$ НОД $(a,b)$\par
-          $b \mathop{\raisebox{-2pt}{\vdots}} d$\par
-          $a \mathop{\raisebox{-2pt}{\vdots}} d \hspace{2 cm} a + kb \mathop{\raisebox{-2pt}{\vdots}} d$\par
-          $d$ - ОД$(a+kb, b)$\par
-          $d`$ - ОД$(a+kb,b)$\par
-          $a+kb \mathop{\raisebox{-2pt}{\vdots}} d`$\par
-          $b \mathop{\raisebox{-2pt}{\vdots}} d`$\par
-          $a +kb-kb \mathop{\raisebox{-2pt}{\vdots}} d`$\par
-          $a \mathop{\raisebox{-2pt}{\vdots}} d`$\par
-          $d`$ - ОД$(a,b)$\par
+          $b \ \vdots\  d \hspace{2.5 cm} b \geqslant d \ (\text{противоречие})$\par
+    \item $d = \gcd(a,b)$\par
+          $b \ \vdots\  d$\par
+          $a \ \vdots\  d \hspace{2 cm} a + kb \ \vdots\  d$\par
+          $d$ — $\cd(a+kb, b)$\par
+          $d`$ — $\cd(a+kb,b)$\par
+          $a+kb \ \vdots\  d`$\par
+          $b \ \vdots\  d`$\par
+          $a +kb-kb \ \vdots\  d`$\par
+          $a \ \vdots\  d`\ \Rightarrow\ d`$ — $\cd(a,b)$\par
           $d \geqslant d`$\par
 \end{enumerate}\par
 
 \textbf{Утверждение 4.}\par
-НОД $(a, HOD(b,c)) =$ НОД $(a,b,c)$\par
+$\gcd(a, \gcd(b,c)) = \gcd (a,b,c)$\par
 \textit{Доказательство:}\par
-НОД $(b,c) = f$\par
-НОД $(a,f) = g$\par
-\begin{tabular}{ccccc}
-    $a \mathop{\raisebox{-2pt}{\vdots}} g$                                    & $\sqsupset d$ - ОД $(a,b,c)$                                                                                                                                                                    \\
-    $b \mathop{\raisebox{-2pt}{\vdots}} f \mathop{\raisebox{-2pt}{\vdots}} g$ & $b \mathop{\raisebox{-2pt}{\vdots}} d$                                                                                                                                                          \\
-                                                                              &                                        & $\Rightarrow$                          & НОД $(f,c) \mathop{\raisebox{-2pt}{\vdots}} d$                                                                \\
-    $c \mathop{\raisebox{-2pt}{\vdots}} f \mathop{\raisebox{-2pt}{\vdots}} g$ & $c \mathop{\raisebox{-2pt}{\vdots}} d$
-                                                                              &                                        & $f \mathop{\raisebox{-2pt}{\vdots}} d$                                                                                                                 \\
-                                                                              &                                        &                                        &                                                & $\Rightarrow$ НОД $(a,f) \mathop{\raisebox{-2pt}{\vdots}} d$ \\
-                                                                              &                                        &                                        & $c \mathop{\raisebox{-2pt}{\vdots}} d$         & $g \mathop{\raisebox{-2pt}{\vdots}} d$                       \\
-\end{tabular}\par
+$\gcd(b,c) = f$\par
+$\gcd(a,f) = g$\par
+$a\ \vdots\ g$\par
+$b\ \vdots\ f\ \vdots\ g$\par
+$c\ \vdots\ f\ \vdots\ g$\par
+$\sqsupset d$ — $\cd(a, b, c)$\par
+$\left.\begin{array}{l}
+        b\ \vdots\ d \\
+        c\ \vdots\ d \\
+    \end{array}\right| \Rightarrow \gcd(b, c) = f \ \vdots\ d$
 
-\textbf{Утверждение 5.} НОК $(a,$ НОК $(b,c))=$ НОК $(a,b,c)$\par
-\textit{нет доказательства}\par
+$\left.\begin{array}{l}
+        a \ \vdots\ d \\
+        f \ \vdots\ d \\
+    \end{array}\right| \Rightarrow \gcd(a, f) = g \ \vdots\ d \ \Rightarrow\ g = \gcd(a, b, c)$
+
+\textbf{Утверждение 5.} $\lcm(a,\lcm(b,c)) = \lcm(a,b,c)$\par
+\textit{Доказательство аналогично доказательству утверждения 4}\par
 \subsection{Алгоритм нахождения НОД}\par
 \subsubsection{Способ 1}
 Поиск всех возможных делителей двух чисел и в выбор наибольшего из них. Пример на числах 12 и 9.\par
@@ -189,28 +199,30 @@ $9 : 9 = 1$\par
 \subsubsection{Способ 2}
 Суть данного способа заключается в том, чтобы разложить оба числа на простые множители и перемножить общие из них. Пример на числах 24 и 18.\par
 Разложим оба числа на множители.\par
-\begin{tabular}{c|cc|c}
-    24 & 2 & 18 & 2 \\
-    12 & 2 & 9  & 3 \\
-    6  & 2 & 3  & 3 \\
-    3  & 3 & 1      \\
+\begin{tabular}{c|c@{\hskip 1cm}c|c}
+    \text{Делимое} & \text{Делитель} & \text{Делимое} & \text{Делитель} \\
+    24             & 2               & 18             & 2               \\
+    12             & 2               & 9              & 3               \\
+    6              & 2               & 3              & 3               \\
+    3              & 3               & 1                                \\
     1
 \end{tabular}\par
 Теперь перемножим их общие множители. Смотрим на разложение числа 24. Первый его множитель это 2. Ищем такой же множитель в разложении числа 18 и видим, что он там тоже есть.\par
 Снова смотрим на разложение числа 24. Второй его множитель тоже 2. Ищем такой же множитель в разложении числа 18 и видим, что его там второй раз уже нет.\par
 Следующая двойка в разложении числа 24 также отсутствует в разложении числа 18.\par
 Переходим к последнему множителю в разложении числа 24. Это множитель 3. Ищем такой же множитель в разложении числа 18 и видим, что там он тоже есть.\par
-Итак, общими множителями чисел 24 и 18 являются множители 2 и 3. Чтобы получить НОД, эти множители необходимо перемножить: $2 \times 2 = 6$\par
-Значит НОД (24 и 18) = 6\par
+Итак, общими множителями чисел 24 и 18 являются множители 2 и 3. Чтобы получить НОД, эти множители необходимо перемножить: $2 \times 3 = 6$\par
+Значит $\gcd(24, 18) = 6$\par
 \subsubsection{Способ 3}
 Суть данного способа заключается в том, что числа подлежащие поиску наибольшего общего делителя раскладывают на простые множители. Затем из разложения первого числа вычеркивают множители, которые не входят в разложение второго числа. Оставшиеся числа в первом разложении перемножают и получают НОД. Рассмотрим на примере чисел 28 и 16.\par
 В первую очередь, раскладываем числа 28 и 16 на простые множители:\par
-\begin{tabular}{c|cc|c}
-    28 & 2 & 16 & 2 \\
-    14 & 2 & 8  & 2 \\
-    7  & 7 & 4  & 2 \\
-    1  &   & 2  & 2 \\
-       &   & 1
+\begin{tabular}{c|c@{\hskip 1cm}c|c}
+    \text{Делимое} & \text{Делитель} & \text{Делимое} & \text{Делитель} \\
+    28             & 2               & 16             & 2               \\
+    14             & 2               & 8              & 2               \\
+    7              & 7               & 4              & 2               \\
+    1              &                 & 2              & 2               \\
+                   &                 & 1
 \end{tabular}\par
 Получили два разложения: $2 \times 2 \times 7$ и $2 \times 2 \times 2 \times 2$\par
 Теперь из разложения первого числа вычеркнем множители, которые не входят в разложение второго числа. В разложение второго числа не входит семёрка. Её и вычеркнем из первого разложения.\par
@@ -260,11 +272,12 @@ $36 : 12 = 3$\par
 Второй способ заключается в том, что числа для которых ищется наименьшее общее кратное раскладываются на простые множители. Затем выписываются множители, входящие в первое разложение, и добавляют недостающие множители из второго разложения. Полученные множители перемножают и получают НОК.\par
 Применим данный способ для предыдущей задачи. Найдём НОК для чисел 9 и 12.\par
 Разложим на множители число 9 и 12:\par
-\begin{tabular}{c|cc|c}
-    9 & 3 & 12 & 2 \\
-    3 & 3 & 6  & 2 \\
-    1 &   & 3  & 3 \\
-      &   & 1
+\begin{tabular}{c|c@{\hskip 1cm}c|c}
+    \text{Делимое} & \text{Делитель} & \text{Делимое} & \text{Делитель} \\
+    9              & 3               & 12             & 2               \\
+    3              & 3               & 6              & 2               \\
+    1              &                 & 3              & 3               \\
+                   &                 & 1
 \end{tabular}\par
 Выпишем первое  разложение и допишем множители из второго разложения, которых нет в первом разложении. В первом разложении нет двух двоек. Допишем и перемножим: $3 \times 3 \times 2 \times 2 = 36$\par
 Получили ответ 36. Значит наименьшее общее кратное чисел 9 и 12 это число 36. Данное число делится на 9 и 12 без остатка:\par
@@ -278,12 +291,13 @@ $36 : 12 = 3$\par
 Он работает при условии, что его ищут для двух чисел и при условии, что уже найден наибольший общий делитель этих чисел.\par
 Данный способ разумнее использовать, когда одновременно нужно найти НОД и НОК двух чисел.\par
 К примеру, пусть требуется найти НОД и НОК чисел 24 и 12. Сначала найдем НОД этих чисел:\par
-\begin{tabular}{c|cc|c}
-    24 & 2 & 12 & 2 \\
-    12 & 2 & 6  & 2 \\
-    6  & 2 & 3  & 3 \\
-    3  & 3 & 1  &   \\
-    1  &   &
+\begin{tabular}{c|c@{\hskip 1cm}c|c}
+    \text{Делимое} & \text{Делитель} & \text{Делимое} & \text{Делитель} \\
+    24             & 2               & 12             & 2               \\
+    12             & 2               & 6              & 2               \\
+    6              & 2               & 3              & 3               \\
+    3              & 3               & 1              &                 \\
+    1              &                 &
 \end{tabular}\par
 Теперь для нахождения наименьшего общего кратного чисел 24 и 12, нужно перемножить эти два числа и полученный результат разделить на их наибольший общий делитель.\par
 Итак, перемножим числа 24 и 12. (288)\par
@@ -1163,76 +1177,76 @@ $\gcd\left(\frac{a}{d}, \frac{b}{d}\right) = 1$ и $\left(\frac{a}{d}\right)^{\p
     \noindent $P(x)=Q_1(x)^{k_1}$$... Q_m(x)^{k_n}$,$Q_i$- неприводимы => $P'(x)=Q_1(x)^{k_1-1}$$... Q_m(x)^{k_n-1}$,$Q$ вз./пр. с $Q_i$
     \\Доказательство:
     \\$P'(x)=\sum\limits _{i=1}^{m} K_iQ_1(x)^{k_1}$$...Q_m(x)^{k_n}$$Q'_i(x)=Q_1(x)^{k_1-1}$$...Q_m(x)^{k_m-1}$$\sum\limits _{i=1}^{n}\frac{k_iQ_1(x)...Q_m(x)}{Q_i(x)}Q'_i(x)$
-\\$NOD(Q_1,Q_i)\neq 1$
+        \\$NOD(Q_1,Q_i)\neq 1$
     \\$NOD(Q_1,Q_i) = Q_i$
-\\$Q \vdots Q_i$
+        \\$Q \vdots Q_i$
     \\$Q(x)= k_1Q_2Q_3...Q_mQ'_1+k_2Q_1Q_3...Q_mQ'_2+...+...Q_{m-1}Q'_m\vdots Q_i$
-\\$k_iQ'_i\vdots Q_i$
+        \\$k_iQ'_i\vdots Q_i$
     \\$Q'_i\vdots Q_i =>$ Противоречие
-\subsection{Алгоритм разложения на свободные от  квадратов множ.:}
-\noindent На языке программирования питон:
-\\$j=1$
+        \subsection{Алгоритм разложения на свободные от  квадратов множ.:}
+        \noindent На языке программирования питон:
+        \\$j=1$
     \\$while$ $deg P>0$
-\\$p' = diff(P)$
+        \\$p' = diff(P)$
     \\$S=NOD(P,P')$
-\\$r = \frac{P}{S}$
+        \\$r = \frac{P}{S}$
     \\$t = NOD(r,P')$
-\\$P_j=\frac{r}{t}$
+        \\$P_j=\frac{r}{t}$
     \\$P:=\frac{P}{r}$
-\\$j++$
+        \\$j++$
     \\$return$ $P_1P^2_2...P_{j-1}$
-\\
-\\Где:
-\\
-\\$P=P_1P^2_2P^3_3...P^n_n$
+        \\
+        \\Где:
+        \\
+        \\$P=P_1P^2_2P^3_3...P^n_n$
     \\$P'=P_2P^2_3...P_n^{n-1}$
-\\$NOD(P,P')=P_2P_3^2...P_n^{n-1}$
+        \\$NOD(P,P')=P_2P_3^2...P_n^{n-1}$
     \\$r=\frac{P}{NOD(P,P')}=P_1P_2...P_n$
-\\$NOD(r,P')=P_2...P_n$
+        \\$NOD(r,P')=P_2...P_n$
     \\$\frac{r}{NOD(r,P')}=P_1$
-\\
-\\Пример:
-\\$P(x)=x^3+x^2-x-1$
+        \\
+        \\Пример:
+        \\$P(x)=x^3+x^2-x-1$
     \\$P'(x)=3x^2+2x-1$
-\\$NOD(P(x),P'(x))=x+1=S(x)$
+        \\$NOD(P(x),P'(x))=x+1=S(x)$
     \\$r(x)= P/S=x^2-1$
-\\$NOD(r,P')=x+1=t(x)$
+        \\$NOD(r,P')=x+1=t(x)$
     \\$P_1=x-1$
-\\new $P=x+1$
-\\$P'=1$
+        \\new $P=x+1$
+        \\$P'=1$
     \\$S=1$
-\\$r = x+1$
+        \\$r = x+1$
     \\$t = 1$
-\\$P_2=x+1$
+        \\$P_2=x+1$
     \\$P(x) = P_1(x)P_2(x)^2P_3(x)^3...P_n(x)^n$
-\\$P_1(x),...,P_n(x)$ попарно вз./пр. и свободные от квадратов множетели
+        \\$P_1(x),...,P_n(x)$ попарно вз./пр. и свободные от квадратов множетели
     \subsection{$P(x) \in\mathbb{Z} P(x)\vdots x - \frac{p}{q}\\NOD(p,q)=1 => a_n \vdots q $, где $p(v)=a_n(x^n)+...+a_0$}
     \subsection{Теорема Безу}
     \noindent $P(x) \vdots x - \frac{p}{q} => p(\frac{p}{q} = 0)$
     \\Доказательство:
     \\$\frac{a_nP^n}{q_n}+\frac{a_{n-1}P^{n-1}}{q^{n-1}}+\frac{a_1P}{q}+a_0=0$
-\\$a_nP^n+a_{n-1}P^{n-1}q+...+a_nPq^{n-1}+a_0q^n=0$
+        \\$a_nP^n+a_{n-1}P^{n-1}q+...+a_nPq^{n-1}+a_0q^n=0$
     \\$a_np^n \vdots q => a_n \vdots q$
-\\$a_0p^n \vdots p => a_0 \vdots q$
+        \\$a_0p^n \vdots p => a_0 \vdots q$
     \subsection{Критерий Эзерштейна}
     \noindent $P(x) \in \mathbb{Z}[x]$
     \\$P(x) = a_nx^n+...+a_0$
-\\$a_{n-1}\vdots P, a_{n-2} \vdots P,...,a_0\vdots P$ и $a_n$не$\vdots P=>$ неприводима над $Q$
+        \\$a_{n-1}\vdots P, a_{n-2} \vdots P,...,a_0\vdots P$ и $a_n$не$\vdots P=>$ неприводима над $Q$
     \\Доказательство:
     \\Пусть $P(x) = f(x)g(x)$
     \\$f(x) = b_mx^m+...+b_0$
-\\$g(x) = C_{n-m}x^{n-m}+...+C_0$
+        \\$g(x) = C_{n-m}x^{n-m}+...+C_0$
     \\$P(x) = a_nx^n+...+a_0=(b_mx^n+...+b_0)(C_{n-m}x^{n-m}+...+C_0)$
-\\$a_0=b_0C_0 \qquad b_0 \vdots P$
+        \\$a_0=b_0C_0 \qquad b_0 \vdots P$
     \\$. \hspace{6em}C_0$ не$ \vdots P$
-\\$a_1=b_0C_2+b_1C_1+b_2C_0 => b_2\vdots P $
+        \\$a_1=b_0C_2+b_1C_1+b_2C_0 => b_2\vdots P $
     \\$a_m=b_nC_m+...+b_mC_0 => b_{n-1}\vdots P $
 
-\setcounter{section}{12}
-\section{Неприводимые многочлены. Поля Галуа}
-\subsection{Неприводимые многочлены}
-\subsubsection{Определение}
-Пусть $K$ — поле. Тогда $P(x) \in K[x]$ неприводим, если не существует нетривиальный делитель $Q(x) \in K[x]$, такой, что его степень больше 0, меньше степени многочлена $P$ и $P(x)$ делится на $Q(x)$:
+        \setcounter{section}{12}
+        \section{Неприводимые многочлены. Поля Галуа}
+        \subsection{Неприводимые многочлены}
+        \subsubsection{Определение}
+        Пусть $K$ — поле. Тогда $P(x) \in K[x]$ неприводим, если не существует нетривиальный делитель $Q(x) \in K[x]$, такой, что его степень больше 0, меньше степени многочлена $P$ и $P(x)$ делится на $Q(x)$:
 \[
     \nexists Q(x) \in K[x] : 0 < \deg Q < \deg P \text{ и } P(x) \vdots Q(x)
 \]
@@ -1425,9 +1439,9 @@ $A(x)$ - количество кодов $\Rightarrow P(x)A(x)$ - кодов\par
 $A = \{ ... \}$\par
 $ $\par
 Теорема. $G(x)$ - порождающий многочлен\par
-минимальный цикл кода $\Leftrightarrow x^m + 1 \mathop{\raisebox{-2pt}{\vdots}} G(x)$\par
+минимальный цикл кода $\Leftrightarrow x^m + 1 \ \vdots\  G(x)$\par
 \textit{Доказательство:}\par
-$\Leftarrow \, x^m+1 \mathop{\raisebox{-2pt}{\vdots}} G(x)$\par
+$\Leftarrow \, x^m+1 \ \vdots\  G(x)$\par
 $A(x),B(x)$\par
 $A=\{ P(x)G(x) \, mod(x^m +1 )\}$\par
 \begin{tabular}{ccc}
@@ -1443,9 +1457,9 @@ $xA(x) = S(x)(x^m+1)+r(x)=S(x)(x^n+1)+Q(x)G(x)+R(x)$\par
 $P(x)G(x)=Q(x)(x^m+1)+R(x)$\par
 $ $\par
 \begin{tabular}{ccc}
-    $P(x)G(x) \, mod(x^m+1)$                      & $0 \equiv _{(x^m+1)}Q(x)G(x)+R(x)$ \\
-    $x^m+1 \mathop{\raisebox{-2pt}{\vdots}} G(x)$ & $degR < deg G \, ?! \Rightarrow$   \\
-    $x^m+1 = Q(x)G(x)+R(x)$                       & \textit{обязательно делится}       \\
+    $P(x)G(x) \, mod(x^m+1)$ & $0 \equiv _{(x^m+1)}Q(x)G(x)+R(x)$ \\
+    $x^m+1 \ \vdots\  G(x)$  & $degR < deg G \, ?! \Rightarrow$   \\
+    $x^m+1 = Q(x)G(x)+R(x)$  & \textit{обязательно делится}       \\
 \end{tabular}\par
 $ $\par
 $x^m+1$\par
@@ -1470,7 +1484,7 @@ $E_1(x) + E_2(x) \neq 0$\par
 $W(E_1(x)+E_2(x)) \leq 2r$\par
 $ $\par
 $\sqsupset E_1(x) \equiv E_2(x) \, mod G(x)$\par
-$E_1(x)+E_2(x) \mathop{\raisebox{-2pt}{\vdots}} G(x), \, W(E_1+E_2) \geq d^* \geq 2r+1$\par
+$E_1(x)+E_2(x) \ \vdots\  G(x), \, W(E_1+E_2) \geq d^* \geq 2r+1$\par
 $\widetilde{C}(x)=C(x)+E(x) = M(x)G(x)+E(x)$\par
 $mod G(x):$\par
 $\hspace{1 cm} S(x) \equiv E(x), \, C(x) = \widetilde{C}+E(x)$\par
@@ -1483,14 +1497,14 @@ $x^mS(x) \equiv_{G(x)} x^{m-i}T(x)$\par
 $\hspace{5 mm} |||$\par
 $x^m+1 \equiv_{G(x)}0$\par
 $ $\par
-Теорема. $G(x) \mathop{\raisebox{-2pt}{\vdots}} x+1 \geq W(P(x)G(x)) \mathop{\raisebox{-2pt}{\vdots}} 2$\par
+Теорема. $G(x) \ \vdots\  x+1 \geq W(P(x)G(x)) \ \vdots\  2$\par
 $ $\par
 \textit{Доказательство:} $\, G(x) = (x+1)A(x)$\par
-$P(x)G(x) \mathop{\raisebox{-2pt}{\vdots}} x+1$\par
+$P(x)G(x) \ \vdots\  x+1$\par
 $P(1)G(1) = 0$\par
-$W(P(x)G(x)) \mathop{\raisebox{-2pt}{\vdots}} 2$\par
+$W(P(x)G(x)) \ \vdots\  2$\par
 $ $\par
-Следствие. $G(x) \mathop{\raisebox{-2pt}{\vdots}} x+1 \geq$ детект. $\forall$ на ошиб.\par
+Следствие. $G(x) \ \vdots\  x+1 \geq$ детект. $\forall$ на ошиб.\par
 $C(x)+E(x)$\par
 \section{15. Префиксные коды.Неравенство Крафта.Алгоритм Хаффмана.}
 \subsection{Префиксные коды}
