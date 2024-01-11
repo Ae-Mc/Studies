@@ -598,12 +598,31 @@ $Q_{n+1} > Q_n$
 
 $\dfrac{1}{Q_{n+1}} < \dfrac{1}{Q_n} $
 
-Пример:
-$\sqrt{28} = 5 + (\sqrt{28} -5) = 5 + \dfrac{1}{\dfrac{1}{\sqrt{28} - 5}} = 5 + \dfrac{1}{\dfrac{\sqrt{28} + 5}{3}} =  5 + \dfrac{1}{3 + \dfrac{\sqrt{28}-4}{3}} = 5 + \dfrac{1}{3 + \dfrac{1}{\dfrac{3}{\sqrt{28}-4}}} \vspace{1 ex}$
+\subsection{Пример}
+\subsubsection{Действие:}  ты берёшь и смотришь хмммм к какому числу $\sqrt{28}$ ближе СНИЗУ то есть $\sqrt{28}$ это примерно $5.xxxx$ значит пишем 5+ и 5- \par
+$\sqrt{28} = 5 + (\sqrt{28} - 5)$\par
+\subsubsection{Действие:} Мы переворачиваем дробь тупо берём и переворачиваем\par
+$5 + \dfrac{1}{\dfrac{1}{\sqrt{28} - 5}}$
+\subsubsection{Действие:}
+Теперь мы домножаем на сопяжённые верхнюю и нижнюю чать, то есть $\dfrac{1 * (\sqrt{28} + 5)}{(\sqrt{28} - 5)(\sqrt{28} + 5)}$
+(Надеюсь, все знают что такое сопряжённые и как на них домнажать)\par
+$5 + \dfrac{1}{\dfrac{\sqrt{28}+5}{3}}$
 
-$\dfrac{3}{\sqrt{28} -4} = \dfrac{3(\sqrt{28} + 4)}{12} = 2 + \dfrac{\sqrt{28} - 4}{4} =|\dfrac{4}{\sqrt{28} - 4} \dfrac{\sqrt{28} + 4}{3} = 3 + \dfrac{\sqrt{28} - 5}{3}| \vspace{1 ex}$
-
-$\dfrac{3}{\sqrt{28} -5} = \sqrt{28} + 5 = 10 (\sqrt{28} - 5)...$ итого: $\sqrt{28} = [5;3,2,3,10] = [5;(3,2,3,10)]$
+\subsubsection{Действие:}
+И последенее действиие после которого весь алгоритм зацикливается\par
+Мы должны вынести целую часть то есть у нас есть $\dfrac{\sqrt{28}+5}{3}$ наверху у нас примерно получится $10.xxxxx$ значит мы выносим целую часть, которая равна 3 наверху у нас остаётся $1.xxxx$ и чтобы это получить из корня который равен $\sqrt{28} = 5.xxxx$ мы вычитаем $4$. Таким образом у нас получается\par
+$5 + \dfrac{1}{3 + \dfrac{\sqrt{28} - 4}{3}}$
+\subsubsection{Действие:}
+Мы снова переварачиваем дробь и получаем уже\par
+$5 + \dfrac{1}{3 + \dfrac{1}{\dfrac{3}{\sqrt{28}-4}}}$\par
+\vspace{2 ex}
+и опять домножаем на сопряжённые получаем\par
+$5 + \dfrac{1}{3 + \dfrac{1}{\dfrac{3(\sqrt{28} + 4)}{12}}} = 5 + \dfrac{1}{3 + \dfrac{1}{\dfrac{\sqrt{28} + 4}{4}}}$\par
+\vspace{2 ex}
+Выносим целую часть\par
+$5 + \dfrac{1}{3 + \dfrac{1}{2 + \dfrac{\sqrt{28} - 4}{4}}}$\par
+\vspace{2 ex}
+И так далее. Каждое целое число это значение в цепной дроби. Сейчас мы дошли до $[5;3,2]$. Продолжать можно пока не захотите остановиться или пока не начнётся уже период тогда уже нет смысла считать одно и тоже будет.
 
 \section{Простые числа. Основная теорема арифметики.}
 \subsection{Определение}
@@ -615,19 +634,20 @@ $p$ - простое, $ab$ $\vdots$ $p$ $\Rightarrow$ $a$ $\vdots$ $p$ или $b
 \subsubsection{Доказательство}
 Пусть $a$ не делится на $p$, НОД($a, p$) = 1 $\Rightarrow$ $b$ $\vdots$ $p$
 \subsection{Утверждение}
-$\gcd(a, b, c) = 1 \Leftrightarrow \ \gcd(a, b) = 1$ и $\gcd(a, c) = 1$
+$\gcd(a, bc) = 1 \Leftrightarrow \ \gcd(a, b) = 1$ и $\gcd(a, c) = 1$
 \subsubsection{Доказательство}
-$|=>/$ НОД($a, b$) = $d$ \par
+$|=>|$ НОД($a, b$) = $d$ \par
 $a$ $\vdots$ $d$ \par
 $bc$ $\vdots$ $b$ $\vdots$ $d$ \par
-НОД($a, b, c$) $\vdots$ $d$ \par
+НОД($a, bc$) $\vdots$ $d$ \par
 $1$ $\vdots$ $d$ \par
 $d$ = $1$\par
-$|<=|$ НОД($a, b, c) = d$\par
+$|<=|$ НОД($a, bc) = d$\par
+НОД($b, d) = f$ \par
 $a$ $\vdots$ $d$ $\vdots$ $f$ \qquad  $a$ $\vdots$ $d$ $\vdots$ $\frac{d}{f}$ \par
 $bc$ $\vdots$ $d$ \par
-НОД($b, d) = f$ \qquad  $c$ $\vdots$ $\frac{d}{f}$\par
 $b$ $\vdots$ $f$ \par
+$c$ $\vdots$ $\frac{d}{f}$\par
 НОД($a, b) \vdots f$ \par
 $1$ $\vdots$ $f$ \qquad $\frac{d}{f}$ = $1$\par
 $f = 1$ \qquad $d = 1$ \par
@@ -783,7 +803,10 @@ $m_1, m_2, \dots, m_k$:\\
 Будем считать, что $P_1, P_2 \in \mathbb{Z}_m$ - классы вычетов, которым принадлежат $p_1, p_2$. Тогда:\\
 \\
 \quad $P_1P_2 = 0$, \quad $P_1, P_2 \ne 0$ \quad и элементы $P_1, P_2$ необратимы.\\
-\\
+Почему $p_1$ и $p_2$ необратимы:\\
+$\forall i \in [1, p_2) \qquad p_1 \cdot i < m, p_1 \neq 1$ \\
+$p_1 * p_2 = 0 \neq 1$\\
+$p_1 * (p_2 + 1) = p_1 (\mod m) \neq 1\ \Rightarrow$ у $p_1$ нет обратного \\
 Следовательно, $\mathbb{Z}_m$ - не поле
 
 \section{Линейные сравнения}
@@ -981,7 +1004,7 @@ $x+y = (C_1+d_1,...C_n+d_n)$
 \subsection{Следствие: Малая теорема Ферма}
 Если $p$ - простое число, то $a^{p}\equiv_{p}a$
 \par \textit{Доказательство.}
-\par Если НОД$(a,p)=1$, то $a^{\varphi(p)}\equiv_{p}1$, $a^{p-1}\equiv_{p}1$, $a^{p}\equiv_{p}a\equiv_{p}0$.
+\par Если НОД$(a,p)=1$, то $a^{\varphi(p)}\equiv_{p}1$, $a^{p-1}\equiv_{p}1$.
 \par Если $a\vdots p$, то $a\equiv_{p}0$, $a^{p}\equiv_{p}a\equiv_{p}0$.
 
 \subsection{Следствие}
@@ -1025,17 +1048,19 @@ RSA, разработанная Райвестом, Шамиром и Адлем
 
 RSA также может использоваться для создания электронных подписей. Электронная подпись используется для подтверждения подлинности и целостности данных. Она создается путем хеширования сообщения и шифрования полученного хеша закрытым ключом отправителя. Получатель может проверить подлинность сообщения, расшифровав подпись с помощью открытого ключа отправителя и сравнив полученный хеш с хешем исходного сообщения.
 
+P. S. $e$ в данном случае коэффициент, а не число Эйлера.
+
 \section{Определение деления многочленов с остатком. Теорема Безу. Схема Горнера}
 \subsection{Определение деления многочленов с остатком:}
 \subsection{Определение:}
 Для любых двух многочленов $f(x)$ и $g(x)$, $g(x)\neq {0}$ существуют $q(x)$ и $r(x)$, такие что: $f(x) = g(x)q(x) + r(x)$, при этом степень $r(x)$ строго меньше степени $g(x)$\par
 \subsection{Свойства:}
 \begin{itemize}
-    \item $f(x) \div g(x)$, $g(x) \div h(x)$ $\Rightarrow$ $f(x) \div h(x)$
-    \item $f(x) \div g(x)$, $g(x) \div h(x)$ $\Rightarrow$ $f(x){\pm}g(x) \div h(x)$
-    \item $f(x) \div h(x)$ $\Rightarrow$ $f(x)g(x) \div h(x)$
-    \item $f(x) \div c, c\neq{0}$
-    \item $f(x) \div g(x)$ $\Rightarrow$ $f(x) \div cg(x), c\neq{0}$
+    \item $f(x) \ \vdots\ g(x)$, $g(x) \ \vdots\  h(x)$ $\Rightarrow$ $f(x) \ \vdots\ h(x)$
+    \item $f(x) \ \vdots\ g(x)$, $g(x) \ \vdots\  h(x)$ $\Rightarrow$ $f(x){\pm}g(x) \ \vdots\ h(x)$
+    \item $f(x) \ \vdots\ h(x)$ $\Rightarrow$ $f(x)g(x) \ \vdots\ h(x)$
+    \item $f(x) \ \vdots\ c, c\neq{0}$
+    \item $f(x) \ \vdots\ g(x)$ $\Rightarrow$ $f(x) \ \vdots\ cg(x), c\neq{0}$
 \end{itemize}
 \subsection{Теорема Безу:}
 \subsubsection{Теорема:}
@@ -1166,8 +1191,8 @@ $= \frac{-15+6-11}{10}x^2 + \frac{75-12-33}{10}x - 9 = -2x^2 + 3x - 9$
 \\$ P(x) = {P_1(x)}{P_2(x)^2}{P_3(x)^3}$...${P_n(x)^n}$
     \\${P_1(x)}$,...,${P_n(x)}$ попарно взаимно/пр. и свободны от квадратов
 \subsection{Утверждение: $P(x) = Q(x)^kM(x)$}
-\noindent $NOD(Q(x),M(x)) = 1$ и $Q(x)$ неприводим => $P'(x) = Q(x)^{k-1}N(x)$
-\\$NOD(Q(x),N(x)) = 1$
+\noindent $\gcd(Q(x),M(x)) = 1$ и $Q(x)$ неприводим => $P'(x) = Q(x)^{k-1}N(x)$
+\\$\gcd(Q(x),N(x)) = 1$
     \\ Доказательство:
     \\$P'(x) = kQ(x)^{x-1}Q'(x)M(x)+Q(x)M'(x)$
 \\$P'(x) = Q(x)^{x-1}(kQ'(x)M(x)+Q(x)M'(x))$
@@ -1177,742 +1202,742 @@ $= \frac{-15+6-11}{10}x^2 + \frac{75-12-33}{10}x - 9 = -2x^2 + 3x - 9$
     \\$K$-поле характеристики ноль
 \subsection{Следствие:}
 \noindent $P(x)=Q_1(x)^{k_1}$$... Q_m(x)^{k_n}$,$Q_i$- неприводимы => $P'(x)=Q_1(x)^{k_1-1}$$... Q_m(x)^{k_n-1}$,$Q$ вз./пр. с $Q_i$
-        \\Доказательство:
-        \\$P'(x)=\sum\limits _{i=1}^{m} K_iQ_1(x)^{k_1}$$...Q_m(x)^{k_n}$$Q'_i(x)=Q_1(x)^{k_1-1}$$...Q_m(x)^{k_m-1}$$\sum\limits _{i=1}^{n}\frac{k_iQ_1(x)...Q_m(x)}{Q_i(x)}Q'_i(x)$
-    \\$NOD(Q_1,Q_i)\neq 1$
-        \\$NOD(Q_1,Q_i) = Q_i$
+\\Доказательство:
+\\$P'(x)=\sum\limits _{i=1}^{m} K_iQ_1(x)^{k_1}$$...Q_m(x)^{k_n}$$Q'_i(x)=Q_1(x)^{k_1-1}$$...Q_m(x)^{k_m-1}$$\sum\limits _{i=1}^{n}\frac{k_iQ_1(x)...Q_m(x)}{Q_i(x)}Q'_i(x)$
+    \\$\gcd(Q_1,Q_i)\neq 1$
+\\$\gcd(Q_1,Q_i) = Q_i$
     \\$Q \vdots Q_i$
-        \\$Q(x)= k_1Q_2Q_3...Q_mQ'_1+k_2Q_1Q_3...Q_mQ'_2+...+...Q_{m-1}Q'_m\vdots Q_i$
+\\$Q(x)= k_1Q_2Q_3...Q_mQ'_1+k_2Q_1Q_3...Q_mQ'_2+...+...Q_{m-1}Q'_m\vdots Q_i$
     \\$k_iQ'_i\vdots Q_i$
-        \\$Q'_i\vdots Q_i =>$ Противоречие
+\\$Q'_i\vdots Q_i =>$ Противоречие
     \subsection{Алгоритм разложения на свободные от  квадратов множ.:}
     \noindent На языке программирования питон:
     \\$j=1$
-        \\$while$ $deg P>0$
-    \\$p' = diff(P)$
-        \\$S=NOD(P,P')$
-    \\$r = \frac{P}{S}$
-        \\$t = NOD(r,P')$
-    \\$P_j=\frac{r}{t}$
-        \\$P:=\frac{P}{r}$
-    \\$j++$
-        \\$return$ $P_1P^2_2...P_{j-1}$
+\\$while$ $deg P>0$
+    \\\indent$p' = diff(P)$
+    \\\indent$S=\gcd(P,P')$
+    \\\indent$r = \dfrac{P}{S}$
+    \\\indent$t = \gcd(r,P')$
+    \\\indent$P_j=\dfrac{r}{t}$
+    \\\indent$P=\dfrac{P}{r}$
+    \\\indent$j+= 1$
+    \\$return$ $P_1P^2_2...P_{j-1}$
+\\
+\\Где:
+\\
+\\$P=P_1P^2_2P^3_3...P^n_n$
+    \\$P'=P_2P^2_3...P_n^{n-1}$
+\\$\gcd(P,P')=P_2P_3^2...P_n^{n-1}$
+    \\$r=\frac{P}{\gcd(P,P')}=P_1P_2...P_n$
+\\$\gcd(r,P')=P_2...P_n$
+    \\$\frac{r}{\gcd(r,P')}=P_1$
+\\
+\\Пример:
+\\$P(x)=x^3+x^2-x-1$
+    \\$P'(x)=3x^2+2x-1$
+\\$\gcd(P(x),P'(x))=x+1=S(x)$
+    \\$r(x)= P/S=x^2-1$
+\\$\gcd(r,P')=x+1=t(x)$
+    \\$P_1=x-1$
+\\new $P=x+1$
+\\$P'=1$
+    \\$S=1$
+\\$r = x+1$
+    \\$t = 1$
+\\$P_2=x+1$
+    \\$P(x) = P_1(x)P_2(x)^2P_3(x)^3...P_n(x)^n$
+\\$P_1(x),...,P_n(x)$ попарно вз./пр. и свободные от квадратов множетели
+    \subsection{$P(x) \in\mathbb{Z} P(x)\vdots x - \frac{p}{q}\\NOD(p,q)=1 => a_n \vdots q $, где $p(v)=a_n(x^n)+...+a_0$}
+    \subsection{Теорема Безу}
+    \noindent $P(x) \vdots x - \frac{p}{q} => p(\frac{p}{q} = 0)$
+    \\Доказательство:
+    \\$\frac{a_nP^n}{q_n}+\frac{a_{n-1}P^{n-1}}{q^{n-1}}+\frac{a_1P}{q}+a_0=0$
+\\$a_nP^n+a_{n-1}P^{n-1}q+...+a_nPq^{n-1}+a_0q^n=0$
+    \\$a_np^n \vdots q => a_n \vdots q$
+\\$a_0p^n \vdots p => a_0 \vdots q$
+    \subsection{Критерий Эйзенштейна}
+    \noindent $P(x) \in \mathbb{Z}[x]$
+    \\$P(x) = a_nx^n+...+a_0$
+\\$a_{n-1}\vdots P, a_{n-2} \vdots P,...,a_0\vdots P$ и $a_n$не$\vdots P=>$ $P(x)$ неприводим над $Q$
+    \\Доказательство:
+    \\Пусть $P(x) = f(x)g(x)$
+    \\$f(x) = b_mx^m+...+b_0$
+\\$g(x) = C_{n-m}x^{n-m}+...+C_0$
+    \\$P(x) = a_nx^n+...+a_0=(b_mx^n+...+b_0)(C_{n-m}x^{n-m}+...+C_0)$
+\\$a_0=b_0C_0 \qquad b_0 \vdots P$
+    \\$. \hspace{6em}C_0$ не$ \vdots P$
+\\$a_1=b_0C_2+b_1C_1+b_2C_0 => b_2\vdots P $
+    \\$a_m=b_nC_m+...+b_mC_0 => b_{n-1}\vdots P $
+
+\setcounter{section}{12}
+\section{Неприводимые многочлены. Поля Галуа}
+\subsection{Неприводимые многочлены}
+\subsubsection{Определение}
+Пусть $K$ — поле. Тогда $P(x) \in K[x]$ неприводим, если не существует нетривиальный делитель $Q(x) \in K[x]$, такой, что его степень больше 0, меньше степени многочлена $P$ и $P(x)$ делится на $Q(x)$:
+\[
+    \nexists Q(x) \in K[x] : 0 < \deg Q < \deg P \text{ и } P(x) \vdots Q(x)
+\]
+\subsubsection{Определение}
+$P(x)$ свободный от квадратов, если не существует $Q(x)$, такой, что $\deg Q >$ и $P(x) \vdots Q^2(x)$.
+\subsubsection{Утверждение}
+$
+    \begin{aligned}
+         & P(x) = Q^k(x)M(x)                                                                             \\
+         & \gcd(Q(x), M(X)) = 1 \text{ и } Q(x) \text{ неприводим } \Rightarrow P'(x) = Q^{k - 1}(x)N(x) \\
+         & \gcd(Q(x), N(x)) = 1
+    \end{aligned}
+$
+\subsubsection{Доказательство}
+$
+    \begin{aligned}
+         & P'(x) = kQ^{k - 1}(x)Q'(x)M(x) + Q^k(x)M'(x)                                             \\
+         & P'(x) = Q^{k - 1}(x)(kQ'(x)M(x) + Q(x)M'(x)) \text{, где } kQ'(x)M(x) + Q(x)M'(x) = N(x) \\
+         & kQ'(x)M(x) = N(x) - Q(x)M'(x)\ \vdots\ Q(x)                                              \\
+         & kQ'(x) \ \vdots\ Q(x) \text{ — противоречие}                                             \\
+         & \deg Q' = \deg Q - 1                                                                     \\
+    \end{aligned}
+$
+
+Это работает при $\mathbb{Z}_k$ ($k \not \vdots$  характериситку поля).
+
+\subsubsection{Следствие}
+$P(x) = Q_1^{k_1}(x)...Q_m^{k_m}(x)$, $Q_i$ — неприводимы $\Rightarrow\ P'(x) = Q_1^{k_1-1}(x)...Q_m^{k_m - 1}Q(x)$, $Q$ взаимно прост с $Q_i$
+\subsubsection{Критерий Эйзенштейна}
+$
+    \begin{aligned}
+         & P(x) \in \mathbb{Z}[x]                                                                                                            \\
+         & P(x) = a_nx^n + ... + a_0                                                                                                         \\
+         & a_{n-1} \vdots p,\ a_{n - 2} \vdots p,\ ..., a_0 \vdots p,\ a_n \not \vdots p \Rightarrow P(x) \text{ неприводим над } \mathbb{Q}
+    \end{aligned}
+$
+\subsubsection{Доказательство}
+Рассмотрим $P(x) = f(x)g(x)$.
+\allowdisplaybreaks[4]
+\begin{align*}
+     & f(x) = b_mx^m + ... + b_0                                                              \\
+     & g(x) = c_{n - m}x^{n - m} + ... + c_0                                                  \\
+     & p(x) = a_nx^n + ... + a_0 = (b_mx^m + ... + b_0)\cdot(c_{n - m} x^{n - m} + ... + c_0) \\
+     & a_0 = b_0c_0\ \vdots\ p \qquad b_0\ \vdots\ p \qquad c_0 \not\vdots\ \ p               \\
+     & a_1 = b_0c_2 + b_1c_1 + b_2c_0\ \vdots\ p \Rightarrow b_2\ \vdots\ p                   \\
+     & \vdots                                                                                 \\
+     & a_m = b_0c_m + ... + b_mc_0\ \vdots\ p \Rightarrow b_{m - 1}\ \vdots\ p                \\
+     & a_n = b_nc_{n - m}\ \vdots\ p \text{ — противоречие}                                   \\
+\end{align*}
+\subsection{Поля Галуа}
+\subsubsection{Определение}
+Конечное поле, или поле Галуа в общей алгебре — поле, состоящее из конечного числа элементов. Обозначается $\mathbb{F}_q$ или $\mathbf{GF}(q)$ или $<\mathbf{GF}(q), +, *>$, где $q = |\mathbf{GF}(q)|$ — порядок поля. Порядком поля называется количество входящих в него элементов. Пример: $\mathbb{Z}_p,\ p \in \mathbb{P}$.
+\subsubsection{Определение}
+Характериситка поля $F$ — наименьшее $n$, такое, что $\forall a \in F$ выполняется следующее равенство:
+\[
+    \underbrace{a + a + ... + a}_{n\text{ раз}} = 0
+\]
+
+Если такого $n$ не существует, то $n$ считается равным $0$.
+
+\subsubsection{Лемма}
+Характериситка поля — простое или $0$.
+\subsubsection{Доказательство}
+Рассмотрим $n = \alpha \beta$.
+\[
+    \underbrace{1 + 1 + ... + 1}_{n \text{ раз}} = 0
+\]
+\[
+    \underbrace{\underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}} + \underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}} + ... + \underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}}}_{\beta \text{ раз}} = 0
+\]
+\[
+    \underbrace{\alpha + \alpha + ... + \alpha}_{\beta \text{ раз}} = 0 \qquad \Rightarrow \text{ характеристика — } \mathbb{P}
+\]
+\subsubsection{Свойства}
+$f(x) \in \mathbb{Z}_p[x]$ ($f(x)$ принадлежит множеству многочленов с целыми коэффициентами по модулю $p$)  $\mathbb{Z}_p[x] / f(x)$ (кольцо вычетов многочленов с целыми коэффициентами по модулю $f(x)$)
+
+$
+    \displaystyle
+    \left.\begin{aligned}
+         & g_1(x) \equiv_{f(x)} h_1(x) \\
+         & g_2(x) \equiv_{f(x)} h_2(x) \\
+    \end{aligned}\right| \Rightarrow \begin{aligned}
+         & g_1 + g_2 \equiv_{f(x)} h_1 + h_2 \\
+         & g_1g_2 \equiv_{f(x)} h_1h_2       \\
+    \end{aligned}
+$
+\subsubsection{Теорема}
+$\mathbb{Z}_p[x] / f(x)\ \Leftrightarrow\ f(x)$ неприводим над $\mathbb{Z}_p$.
+
+$\deg f = m$    $\mathbf{GF}(p^m)$
+\subsubsection{Доказательство}
+\textbf{Прямое.} Рассмотрим $f(x) = g(x)h(x)$ \\
+$g(x)h(x) \equiv_{f(x)} 0 \qquad | \cdot g^{-1}(x) $ \\
+$h(x) \equiv_{f(x)} 0 |\Rightarrow f(x) = 0$
+
+\textbf{От обратного.} $\forall g(x) \neq 0$ $\deg g < \deg p$ \\
+$\gcd(g(x), f(x)) = 1\ \Rightarrow$ по расширенному алгоритму Евклида:\\
+$a(x)g(x) + b(x)f(x) = 1$ \\
+$a(x)g(x) \equiv_{f(x)} 1\ \Rightarrow\ a = g^{-1} \ \Rightarrow\ \mathbb{Z}_p$ — поле
+
+\subsubsection{Связь с линейным пространством}
+Поле Галуа образует линейное (векторное) пространство. Его аксиомы:
+\begin{itemize}
+    \item $(a + b) + c = a + (b + c)$
+    \item $\exists 0 : a + 0 = a$
+    \item $\forall a \  \exists(-a) : a + (-a) = 0$
+    \item $a + b = b + a$
+    \item $\alpha(a + b) = \alpha a + \alpha b$
+    \item $(\alpha + \beta)a = \alpha a + \beta a$
+    \item $\alpha(\beta a) = (\alpha \beta) a$
+    \item $\exists 1 : 1 \cdot a = a$
+\end{itemize}
+
+$\alpha, \beta \in \mathbb{Z}_p$, $F$ — линейное пространство. $m = \dim F$.
+
+\subsubsection{Определение}
+$\alpha$ — примитивный элемент, если $\forall b \neq 0 \in F$ \qquad $b = \alpha^i$.
+
+\section{Кодирование с исправлением ошибок. Граница Хэмминга. Полиномиальное кодирование}
+\subsection{Кодирование с исправлением ошибок. Граница Хэмминга}
+$d:M\times M \rightarrow \mathbb{R}$ - функция расстояния
+\begin{enumerate}
+    \item $d(a,b) \geq 0; \hspace{4 mm} d(a,b) = 0 \Leftrightarrow a = b$
+    \item $d(a,b) = d(b,a)$
+    \item $d(a,b) + d(b,c) \geq d(a,c)$
+\end{enumerate}\par
+$M = \mathbb{Z}_2^m$\par
+$a \in M, \,a = (a_0, a_1, ..., a_{m-1})$\par
+$d(a,b) = \sum\limits_{i=0}^{m-1} |a_i - b_i|$ - кодовое расстояние Хэмминга (КХР)\par
+$a \bigoplus b = (a_0 \bigoplus b_0, ... , a_{m-1} \bigoplus b_{m-1})$\par
+$ $\par
+Теорема КРХ - формула расстояния на $\mathbb{Z}_2^m$\par
+$d(a,b)+d(b,c) = \sum\limits_{i=0}^{n-1}|a_i - b_i|+\sum\limits_{i=0}^{n-1}|b_i - c_i|=\sum\limits_{i=0}^{n-1}(|a_i - b_i|+|b_i - c_i|) \geq \sum\limits_{i=0}^{n-1}|a_i - b_i + b_i - c_i| =$\par
+$ =\sum\limits_{i=0}^{n-1}|a_i - c_i| = d(a,c)$\par
+$A=\{a^{(0)}, a^{(1)}, ... , a^{(k)}\} \leq \mathbb{Z}_2^m$\par
+$\hspace{1 cm} \uparrow$\par
+\textit{кодовое слово}\par
+$ $\par
+Теорема. Если $\forall i \neq j$\par
+$d(a^{(i)},a^{(j)} \geq 2r+1 \Rightarrow$ можно исправить $\leq r$ ошибок \par
+$ $\par
+\textit{Доказательство:} $a \in \mathbb{Z}_2^m$\par
+$A_i = \{ b / d(a^{(i)}, b) \leq r \}$\par
+$\sqsupset | \, A_i \cap A_j = \{ c \}$\par
+\begin{tabular}{c|cc}
+    $c \subset A_i$ &               & $d(c,a^{(i)}) \leq r$ \\
+                    & $\Rightarrow$                         \\
+    $c \subset A_j$ &               & $d(c,a^{(j)}) \leq r$ \\
+\end{tabular}\par
+$ $\par
+$d(a^{(i)},a^{(j)}) \leq d(a^{(j)},c) + d(c,a^{(i)}) \leq 2r \hspace{4 mm} ?!$\par
+$A_i$ - область декодирвоания $a^{(i)}$\par
+$a^{(i)}+e \hspace{4 mm} d(a^{(i)}+e, a^{(j)}) \leq r \, | \Rightarrow a^{(i)}+e \in A_i \, | \Rightarrow$ декодирование однознач.\par
+$|A_i| = 1 + C_m^1 + C_m^2 + ... + C_m^r \hspace{1 cm} |\mathbb{Z}_2^m| = 2^m$\par
+$\sum\limits_{i=0}^{n-1}|A_i| \leq |\mathbb{Z}_2^m|; \hspace{1 cm} k = |A| \hspace{1 cm} k|A_i| \leq |\mathbb{Z}_2^m| \, |\Rightarrow k = \frac{2^m}{\sum\limits_{i=0}^{r} C_m^i}$ - граница Хэмминга\par
+$M = \{ 0, 1 \} \, |\to A = \{ 000,...,111 \}$\par
+$m = 3 \Rightarrow r = 1 \hspace{1 cm} d(a^0, a^1)=3 \geq 2r+1 \hspace{1 cm} k \leq \frac{2^3}{C_3^0 + C_3^1} = \frac{8}{1+3} = 2$\par
+\textbf{Определение.} Код называется совершенным (или плотно упакованным), если $\bigcup\limits_{i=0}^{n-1}A_i = \mathbb{Z}_2^m$\par
+
+\subsection{Полиномиальное кодирование}
+$M \Rightarrow \widetilde{M}$\par
+$M \to C \Rightarrow \widetilde{C} \to M$\par
+$\uparrow \hspace{1 cm}$ $\uparrow$\par
+\textit{сообщ.} \textit{код. слово}\par
+Код линейный if $\, \forall a,b \in A$\par
+Вес Хэмминга$\, W(a)$\par
+$a \in A \leq \mathbb{Z}_2^m$\par
+$a = (a_0,...,a_{m-1})$\par
+$W(a) =$ количество ненулевых $a_i$\par
+Минимальное кодовое расстояние $d^* = \overset{}{\underset{i \neq j}{min}} \, d(a^{(i)},a^{(j)})$\par
+Лемма. $d^* = \overset{}{\underset{a \neq 0}{min}} \, W(a)$\par
+\textit{Доказательство:} $\, W(a) = d(a,0) \geq d^*$\par
+$d(a,b) = d(a+b,b+b) = d(a+b, 0) = W(a+b)$\par
+$d^* = \overset{}{\underset{a \neq b}{min}} \, d(a,b) = \overset{}{\underset{a \neq b}{min}} \, W(a+b) = \overset{}{\underset{a \neq 0}{min} \, W(a)}$\par
+$a = (a_0, a_1, ..., a_{m-1}) \, |\to a_0+a_1k+...+a_{m-1}x^{m-1}$\par
+$ $\par
+Код циклический\par
+$if (a_0,a_1,...,a_{m-1}) \in A \Rightarrow (a_{m-1},...,a_{m-2}) \in A$\par
+\begin{tabular}{cccc}
+    $a \to A(x)$                                                                                             \\
+                                                     & $a+b \to A(x) + B(x)$                                 \\
+    $b \to B(x)$                                                                                             \\
     \\
-    \\Где:
-    \\
-    \\$P=P_1P^2_2P^3_3...P^n_n$
-        \\$P'=P_2P^2_3...P_n^{n-1}$
-    \\$NOD(P,P')=P_2P_3^2...P_n^{n-1}$
-        \\$r=\frac{P}{NOD(P,P')}=P_1P_2...P_n$
-    \\$NOD(r,P')=P_2...P_n$
-        \\$\frac{r}{NOD(r,P')}=P_1$
-    \\
-    \\Пример:
-    \\$P(x)=x^3+x^2-x-1$
-        \\$P'(x)=3x^2+2x-1$
-    \\$NOD(P(x),P'(x))=x+1=S(x)$
-        \\$r(x)= P/S=x^2-1$
-    \\$NOD(r,P')=x+1=t(x)$
-        \\$P_1=x-1$
-    \\new $P=x+1$
-    \\$P'=1$
-        \\$S=1$
-    \\$r = x+1$
-        \\$t = 1$
-    \\$P_2=x+1$
-        \\$P(x) = P_1(x)P_2(x)^2P_3(x)^3...P_n(x)^n$
-    \\$P_1(x),...,P_n(x)$ попарно вз./пр. и свободные от квадратов множетели
-        \subsection{$P(x) \in\mathbb{Z} P(x)\vdots x - \frac{p}{q}\\NOD(p,q)=1 => a_n \vdots q $, где $p(v)=a_n(x^n)+...+a_0$}
-        \subsection{Теорема Безу}
-        \noindent $P(x) \vdots x - \frac{p}{q} => p(\frac{p}{q} = 0)$
-        \\Доказательство:
-        \\$\frac{a_nP^n}{q_n}+\frac{a_{n-1}P^{n-1}}{q^{n-1}}+\frac{a_1P}{q}+a_0=0$
-    \\$a_nP^n+a_{n-1}P^{n-1}q+...+a_nPq^{n-1}+a_0q^n=0$
-        \\$a_np^n \vdots q => a_n \vdots q$
-    \\$a_0p^n \vdots p => a_0 \vdots q$
-        \subsection{Критерий Эзерштейна}
-        \noindent $P(x) \in \mathbb{Z}[x]$
-        \\$P(x) = a_nx^n+...+a_0$
-    \\$a_{n-1}\vdots P, a_{n-2} \vdots P,...,a_0\vdots P$ и $a_n$не$\vdots P=>$ неприводима над $Q$
-        \\Доказательство:
-        \\Пусть $P(x) = f(x)g(x)$
-        \\$f(x) = b_mx^m+...+b_0$
-    \\$g(x) = C_{n-m}x^{n-m}+...+C_0$
-        \\$P(x) = a_nx^n+...+a_0=(b_mx^n+...+b_0)(C_{n-m}x^{n-m}+...+C_0)$
-    \\$a_0=b_0C_0 \qquad b_0 \vdots P$
-        \\$. \hspace{6em}C_0$ не$ \vdots P$
-    \\$a_1=b_0C_2+b_1C_1+b_2C_0 => b_2\vdots P $
-        \\$a_m=b_nC_m+...+b_mC_0 => b_{n-1}\vdots P $
+    $a \to a_0 +a_1 x +...+ a_{m-1}x^{m-1}$          &                       & $xA(x) \, mod(x^m + 1)$       \\
+    $a_2 \to a_{m-1} + a_0 x + ... + a_{m-2}x^{m-1}$ &                       & $x^m \equiv 1 \, mod(x^m +1)$ \\
+\end{tabular}\par
+$ $\par
+$A(x)$ - количество кодов $\Rightarrow P(x)A(x)$ - кодов\par
+Порождающий многочлен - ненулевое приведение мн. наименьшей степени в коде.\par
+$A = \{ ... \}$\par
+$ $\par
+Теорема. $G(x)$ - порождающий многочлен\par
+минимальный цикл кода $\Leftrightarrow x^m + 1 \ \vdots\  G(x)$\par
+\textit{Доказательство:}\par
+$\Leftarrow \, x^m+1 \ \vdots\  G(x)$\par
+$A(x),B(x)$\par
+$A=\{ P(x)G(x) \, mod(x^m +1 )\}$\par
+\begin{tabular}{ccc}
+    $A(x) = P_A(x)G(x)$ &  & $A(x)+B(x) = (P_A(x)+P_B(x))G(x)$   \\
+    $B(x) = P_B(x)G(x)$ &  & $\alpha A(x) = (\alpha P_A(x))G(x)$ \\
+\end{tabular}\par
+$ $\par
+$xA(x) \, mod(x^m+1)$\par
+$xA(x) = xP_A(x)G(x)$\par
+$ $\par
+$r(x) = xA(x) \equiv _{x^m+1} Q(x)G(x)+R(x)$\par
+$xA(x) = S(x)(x^m+1)+r(x)=S(x)(x^n+1)+Q(x)G(x)+R(x)$\par
+$P(x)G(x)=Q(x)(x^m+1)+R(x)$\par
+$ $\par
+\begin{tabular}{ccc}
+    $P(x)G(x) \, mod(x^m+1)$ & $0 \equiv _{(x^m+1)}Q(x)G(x)+R(x)$ \\
+    $x^m+1 \ \vdots\  G(x)$  & $degR < deg G \, ?! \Rightarrow$   \\
+    $x^m+1 = Q(x)G(x)+R(x)$  & \textit{обязательно делится}       \\
+\end{tabular}\par
+$ $\par
+$x^m+1$\par
+$G(x)$\par
+$d^* = \overset{}{\underset{P(x) \neq 0}{min}} \, W(P(x)G(x) \, mod x^m+1)$\par
+$d^* > 2r+1 \hspace{2 cm} r < \frac{d^*}{2}$\par
+$ $\par
+$M \to C$\par
+$M(x) \to C(x)$\par
+$C(x) = M(x)G(x)$\par
+$C(x)+E(x)$\par
+$\widetilde{C}(x)= C(x)+E(x)$ - многочлен ошибок\par
+\textit{$W(E(x)) \leq r$}\par
+$\widetilde{C}(x) \, mod(G(x))=S(x)$ - синдром \par
+$ $\par
+Теорема. $E_1(x) \neq E_2(x) \Rightarrow E_1(x) \, mod G(x) \neq E_2(x) \, mod G(x)$\par
+$W(E_1(x)) \leq r$\par
+$W(E_2(x)) \leq r$\par
+$ $\par
+\textit{Доказательство:}\par
+$E_1(x) + E_2(x) \neq 0$\par
+$W(E_1(x)+E_2(x)) \leq 2r$\par
+$ $\par
+$\sqsupset E_1(x) \equiv E_2(x) \, mod G(x)$\par
+$E_1(x)+E_2(x) \ \vdots\  G(x), \, W(E_1+E_2) \geq d^* \geq 2r+1$\par
+$\widetilde{C}(x)=C(x)+E(x) = M(x)G(x)+E(x)$\par
+$mod G(x):$\par
+$\hspace{1 cm} S(x) \equiv E(x), \, C(x) = \widetilde{C}+E(x)$\par
+$\hspace{1 cm} M(x) = \frac{C}{G}$\par
+Если все ошибки в $deg G$ послед.  разр.\par
+$x^i S(x) \equiv_{G(x)}T(x)$\par
+$i \in [0;m-1]$\par
+$W(T(x)) \leq r$\par
+$x^mS(x) \equiv_{G(x)} x^{m-i}T(x)$\par
+$\hspace{5 mm} |||$\par
+$x^m+1 \equiv_{G(x)}0$\par
+$ $\par
+Теорема. $G(x) \ \vdots\  x+1 \geq W(P(x)G(x)) \ \vdots\  2$\par
+$ $\par
+\textit{Доказательство:} $\, G(x) = (x+1)A(x)$\par
+$P(x)G(x) \ \vdots\  x+1$\par
+$P(1)G(1) = 0$\par
+$W(P(x)G(x)) \ \vdots\  2$\par
+$ $\par
+Следствие. $G(x) \ \vdots\  x+1 \geq$ детект. $\forall$ на ошиб.\par
+$C(x)+E(x)$\par
+\section{15. Префиксные коды.Неравенство Крафта.Алгоритм Хаффмана.}
+\subsection{Префиксные коды}
+$A = {a_1, \dots, a_n}$ - алфавит $ n \leq2^k\rightarrow$
+$\begin{cases}
+        a_1  \sim \underbrace{0\dots0}_{\text{k}} - c_1  \\
+        a_2  \sim \underbrace{0\dots0}_{\text{k}}1 - c_2 \\
+        \dots
+    \end{cases}$
+\newline$l_1=l_2=l_k$ ; $M:a_{i_1},a_{i_2},\dots,a_{i_s}$ ; $\alpha=ks\geq s\log{n}$
 
-    \setcounter{section}{12}
-    \section{Неприводимые многочлены. Поля Галуа}
-    \subsection{Неприводимые многочлены}
-    \subsubsection{Определение}
-    Пусть $K$ — поле. Тогда $P(x) \in K[x]$ неприводим, если не существует нетривиальный делитель $Q(x) \in K[x]$, такой, что его степень больше 0, меньше степени многочлена $P$ и $P(x)$ делится на $Q(x)$:
-    \[
-        \nexists Q(x) \in K[x] : 0 < \deg Q < \deg P \text{ и } P(x) \vdots Q(x)
-    \]
-    \subsubsection{Определение}
-    $P(x)$ свободный от квадратов, если не существует $Q(x)$, такой, что $\deg Q >$ и $P(x) \vdots Q^2(x)$.
-    \subsubsection{Утверждение}
-    $
-        \begin{aligned}
-             & P(x) = Q^k(x)M(x)                                                                             \\
-             & \gcd(Q(x), M(X)) = 1 \text{ и } Q(x) \text{ неприводим } \Rightarrow P'(x) = Q^{k - 1}(x)N(x) \\
-             & \gcd(Q(x), N(x)) = 1
-        \end{aligned}
-    $
-    \subsubsection{Доказательство}
-    $
-        \begin{aligned}
-             & P'(x) = kQ^{k - 1}(x)Q'(x)M(x) + Q^k(x)M'(x)                                             \\
-             & P'(x) = Q^{k - 1}(x)(kQ'(x)M(x) + Q(x)M'(x)) \text{, где } kQ'(x)M(x) + Q(x)M'(x) = N(x) \\
-             & kQ'(x)M(x) = N(x) - Q(x)M'(x)\ \vdots\ Q(x)                                              \\
-             & kQ'(x) \ \vdots\ Q(x) \text{ — противоречие}                                             \\
-             & \deg Q' = \deg Q - 1                                                                     \\
-        \end{aligned}
-    $
+\textbf{Шеннон-Фано}
 
-    Это работает при $\mathbb{Z}_k$ ($k \not \vdots$  характериситку поля).
+aabc
 
-    \subsubsection{Следствие}
-    $P(x) = Q_1^{k_1}(x)...Q_m^{k_m}(x)$, $Q_i$ — неприводимы $\Rightarrow\ P'(x) = Q_1^{k_1-1}(x)...Q_m^{k_m - 1}Q(x)$, $Q$ взаимно прост с $Q_i$
-    \subsubsection{Критерий Эйзенштейн}
-    $
-        \begin{aligned}
-             & P(x) \in \mathbb{Z}[x]                                                                                               \\
-             & P(x) = a_nx^n + ... + a_0                                                                                            \\
-             & a_{n-1} \vdots p,\ a_{n - 2} \vdots p,\ ..., a_0 \vdots p,\ a_n \not \vdots p \Rightarrow \text{ неприводима над } Q
-        \end{aligned}
-    $
-    \subsubsection{Доказательство}
-    Рассмотрим $P(x) = f(x)g(x)$.
-    \allowdisplaybreaks[4]
-    \begin{align*}
-         & f(x) = b_mx^m + ... + b_0                                                              \\
-         & g(x) = c_{n - m}x^{n - m} + ... + c_0                                                  \\
-         & p(x) = a_nx^n + ... + a_0 = (b_mx^m + ... + b_0)\cdot(c_{n - m} x^{n - m} + ... + c_0) \\
-         & a_0 = b_0c_0\ \vdots\ p \qquad b_0\ \vdots\ p \qquad c_0 \not\vdots\ \ p               \\
-         & a_1 = b_0c_2 + b_1c_1 + b_2c_0\ \vdots\ p \Rightarrow b_2\ \vdots\ p                   \\
-         & \vdots                                                                                 \\
-         & a_m = b_0c_m + ... + b_mc_0\ \vdots\ p \Rightarrow b_{m - 1}\ \vdots\ p                \\
-         & a_n = b_nc_{n - m}\ \vdots\ p \text{ — противоречие}                                   \\
-    \end{align*}
-    \subsection{Поля Галуа}
-    \subsubsection{Определение}
-    Конечное поле, или поле Галуа в общей алгебре — поле, состоящее из конечного числа элементов. Обозначается $\mathbb{F}_q$ или $\mathbf{GF}(q)$ или $<\mathbf{GF}(q), +, *>$, где $q = |\mathbf{GF}(q)|$ — порядок поля. Порядком поля называется количество входящих в него элементов. Пример: $\mathbb{Z}_p,\ p \in \mathbb{P}$.
-    \subsubsection{Определение}
-    Характериситка поля $F$ — наименьшее $n$, такое, что $\forall a \in F$ выполняется следующее равенство:
-    \[
-        \underbrace{a + a + ... + a}_{n\text{ раз}} = 0
-    \]
+\includegraphics[width=20mm]{images/tree1.png}
 
-    Если такого $n$ не существует, то $n$ считается равным $0$.
+$\underbrace{0}_{\text{a}}\underbrace{0}_{\text{a}}\underbrace{11}_{\text{b}}\underbrace{01}_{\text{c}}$
 
-    \subsubsection{Лемма}
-    Характериситка поля — простое или $0$.
-    \subsubsection{Доказательство}
-    Рассмотрим $n = \alpha \beta$.
-    \[
-        \underbrace{1 + 1 + ... + 1}_{n \text{ раз}} = 0
-    \]
-    \[
-        \underbrace{\underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}} + \underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}} + ... + \underbrace{1 + 1 + ... + 1}_{\alpha \text{ раз}}}_{\beta \text{ раз}} = 0
-    \]
-    \[
-        \underbrace{\alpha + \alpha + ... + \alpha}_{\beta \text{ раз}} = 0 \qquad \Rightarrow \text{ характеристика — } \mathbb{P}
-    \]
-    \subsubsection{Свойства}
-    $f(x) \in \mathbb{Z}_p[x]$ ($f(x)$ принадлежит множеству многочленов с целыми коэффициентами по модулю $p$)  $\mathbb{Z}_p[x] / f(x)$ (кольцо вычетов многочленов с целыми коэффициентами по модулю $f(x)$)
+$\begin{cases}
+        a  \sim 0  \\
+        b  \sim 11 \\
+        c \sim 01
+    \end{cases}$
 
-    $
-        \displaystyle
-        \left.\begin{aligned}
-             & g_1(x) \equiv_{f(x)} h_1(x) \\
-             & g_2(x) \equiv_{f(x)} h_2(x) \\
-        \end{aligned}\right| \Rightarrow \begin{aligned}
-             & g_1 + g_2 \equiv_{f(x)} h_1 + h_2 \\
-             & g_1g_2 \equiv_{f(x)} h_1h_2       \\
-        \end{aligned}
-    $
-    \subsubsection{Теорема}
-    $\mathbb{Z}_p[x] / f(x)\ \Leftrightarrow\ f(x)$ неприводим над $\mathbb{Z}_p$.
+\subsubsection{Определение}
+Код называется \textit{префиксным}, если ни одно кодовое слово не является началом другого кодового слова.
 
-    $\deg f = m$    $\mathbf{GF}(p^m)$
-    \subsubsection{Доказательство}
-    \textbf{Прямое.} Рассмотрим $f(x) = g(x)h(x)$ \\
-    $g(x)h(x) \equiv_{f(x)} 0 \qquad | \cdot g^{-1}(x) $ \\
-    $h(x) \equiv_{f(x)} 0 |\Rightarrow f(x) = 0$
+\subsection{Неравенство Крафта}
+Для префиксного кода с длинами $l_1,\dots,l_s$
 
-    \textbf{От обратного.} $\forall g(x) \neq 0$ $\deg g < \deg p$ \\
-    $\gcd(g(x), f(x)) = 1\ \Rightarrow$ по расширенному алгоритму Евклида:\\
-    $a(x)g(x) + b(x)f(x) = 1$ \\
-    $a(x)g(x) \equiv_{f(x)} 1\ \Rightarrow\ a = g^{-1} \ \Rightarrow\ \mathbb{Z}_p$ — поле
+$\sum\limits_{i=1}^s 2^{-l_i} \leq 1$
+\subsubsection{Доказательство}
+$l_1\leq l_2 \leq \dots \leq l_s=q$
 
-    \subsubsection{Связь с линейным пространством}
-    Поле Галуа образует линейное (векторное) пространство. Его аксиомы:
-    \begin{itemize}
-        \item $(a + b) + c = a + (b + c)$
-        \item $\exists 0 : a + 0 = a$
-        \item $\forall a \  \exists(-a) : a + (-a) = 0$
-        \item $a + b = b + a$
-        \item $\alpha(a + b) = \alpha a + \alpha b$
-        \item $(\alpha + \beta)a = \alpha a + \beta a$
-        \item $\alpha(\beta a) = (\alpha \beta) a$
-        \item $\exists 1 : 1 \cdot a = a$
-    \end{itemize}
+$A_i=\{\underbrace{(\dots)}_{\text{q двоичных чисел}})|$нач. с $l_i\}$
 
-    $\alpha, \beta \in \mathbb{Z}_p$, $F$ — линейное пространство. $m = \dim F$.
+$A_i\cap A_j=\emptyset$
 
-    \subsubsection{Определение}
-    $\alpha$ — примитивный элемент, если $\forall b \neq 0 \in F$ \qquad $b = \alpha^i$.
+\subsubsection{Замечание}
+$\cup A_i \leq \{ \underbrace{(\dots)}_{\text{q раз p}}\}$
 
-    \section{Кодирование с исправлением ошибок. Граница Хэмминга. Полиномиальное кодирование}
-    \subsection{Кодирование с исправлением ошибок. Граница Хэмминга}
-    $d:MxM \rightarrow \mathbb{R}$ - функция расстояния
-    \begin{enumerate}
-        \item $d(a,b) \geq 0; \hspace{4 mm} d(a,b) = 0 \Leftrightarrow a = b$
-        \item $d(a,b) = d(b,a)$
-        \item $d(a,b) + d(b,c) \geq d(a,c)$
-    \end{enumerate}\par
-    $M = \mathbb{Z}_2^m$\par
-    $a \in M, \,a = (a_0, a_1, ..., a_{m-1})$\par
-    $d(a,b) = \sum\limits_{i=0}^{m-1} |a_i - b_i|$ - кодовое расстояние Хэмминга (КХР)\par
-    $a \bigoplus b = (a_0 \bigoplus b_0, ... , a_{m-1} \bigoplus b_{m-1})$\par
-    $ $\par
-    Теорема КРХ - формула расстояния на $\mathbb{Z}_2^m$\par
-    $d(a,b)+d(b,c) = \sum\limits_{i=0}^{n-1}|a_i - b_i|+\sum\limits_{i=0}^{n-1}|b_i - c_i|=\sum\limits_{i=0}^{n-1}(|a_i - b_i|+|b_i - c_i|) \geq \sum\limits_{i=0}^{n-1}|a_i - b_i + b_i - c_i| =$\par
-    $ =\sum\limits_{i=0}^{n-1}|a_i - c_i| = d(a,c)$\par
-    $A=\{a^{(0)}, a^{(1)}, ... , a^{(k)}\} \leq \mathbb{Z}_2^m$\par
-    $\hspace{1 cm} \uparrow$\par
-    \textit{кодовое слово}\par
-    $ $\par
-    Теорема. Если $\forall i \neq j$\par
-    $d(a^{(i)},a^{(j)} \geq 2r+1 \Rightarrow$ можно исправить $\leq r$ ошибок \par
-    $ $\par
-    \textit{Доказательство:} $a \in \mathbb{Z}_2^m$\par
-    $A_i = \{ b / d(a^{(i)}, b) \leq r \}$\par
-    $\sqsupset | \, A_i \cap A_j = \{ c \}$\par
-    \begin{tabular}{c|cc}
-        $c \subset A_i$ &               & $d(c,a^{(i)}) \leq r$ \\
-                        & $\Rightarrow$                         \\
-        $c \subset A_j$ &               & $d(c,a^{(j)}) \leq r$ \\
-    \end{tabular}\par
-    $ $\par
-    $d(a^{(i)},a^{(j)}) \leq d(a^{(j)},c) + d(c,a^{(i)}) \leq 2r \hspace{4 mm} ?!$\par
-    $A_i$ - область декодирвоания $a^{(i)}$\par
-    $a^{(i)}+e \hspace{4 mm} d(a^{(i)}+e, a^{(j)}) \leq r \, | \Rightarrow a^{(i)}+e \in A_i \, | \Rightarrow$ декодирование однознач.\par
-    $|A_i| = 1 + C_m^1 + C_m^2 + ... + C_m^r \hspace{1 cm} |\mathbb{Z}_2^m| = 2^m$\par
-    $\sum\limits_{i=0}^{n-1}|A_i| \leq |\mathbb{Z}_2^m|; \hspace{1 cm} k = |A| \hspace{1 cm} k|A_i| \leq |\mathbb{Z}_2^m| \, |\Rightarrow k = \frac{2^m}{\sum\limits_{i=0}^{r} C_m^i}$ - граница Хэмминга\par
-    $M = \{ 0, 1 \} \, |\to A = \{ 000,...,111 \}$\par
-    $m = 3 \Rightarrow r = 1 \hspace{1 cm} d(a^0, a^1)=3 \geq 2r+1 \hspace{1 cm} k \leq \frac{2^3}{C_3^0 + C_3^1} = \frac{8}{1+3} = 2$\par
-    \textbf{Определение.} Код называется совершенным (или плотно упакованным), если $\bigcup\limits_{i=0}^{n-1}A_i = \mathbb{Z}_2^m$\par
+$\sum\limits_{i=1}^s 2^{q-l_i} \leq 2^q$
+\subsubsection{Теорема}
+$p_1,\dots, p_n$ - вер, с которой встречаются $a_1, \dots, a_n$
 
-    \subsection{Полиномиальное кодирование}
-    $M \Rightarrow \widetilde{M}$\par
-    $M \to C \Rightarrow \widetilde{C} \to M$\par
-    $\uparrow \hspace{1 cm}$ $\uparrow$\par
-    \textit{сообщ.} \textit{код. слово}\par
-    Код линейный if $\, \forall a,b \in A$\par
-    Вес Хэмминга$\, W(a)$\par
-    $a \in A \leq \mathbb{Z}_2^m$\par
-    $a = (a_0,...,a_{m-1})$\par
-    $W(a) =$ количество ненулевых $a_i$\par
-    Минимальное кодовое расстояние $d^* = \overset{}{\underset{i \neq j}{min}} \, d(a^{(i)},a^{(j)})$\par
-    Лемма. $d^* = \overset{}{\underset{a \neq 0}{min}} \, W(a)$\par
-    \textit{Доказательство:} $\, W(a) = d(a,0) \geq d^*$\par
-    $d(a,b) = d(a+b,b+b) = d(a+b, 0) = W(a+b)$\par
-    $d^* = \overset{}{\underset{a \neq b}{min}} \, d(a,b) = \overset{}{\underset{a \neq b}{min}} \, W(a+b) = \overset{}{\underset{a \neq 0}{min} \, W(a)}$\par
-    $a = (a_0, a_1, ..., a_{m-1}) \, |\to a_0+a_1k+...+a_{m-1}x^{m-1}$\par
-    $ $\par
-    Код циклический\par
-    $if (a_0,a_1,...,a_{m-1}) \in A \Rightarrow (a_{m-1},...,a_{m-2}) \in A$\par
-    \begin{tabular}{cccc}
-        $a \to A(x)$                                                                                             \\
-                                                         & $a+b \to A(x) + B(x)$                                 \\
-        $b \to B(x)$                                                                                             \\
-        \\
-        $a \to a_0 +a_1 x +...+ a_{m-1}x^{m-1}$          &                       & $xA(x) \, mod(x^m + 1)$       \\
-        $a_2 \to a_{m-1} + a_0 x + ... + a_{m-2}x^{m-1}$ &                       & $x^m \equiv 1 \, mod(x^m +1)$ \\
-    \end{tabular}\par
-    $ $\par
-    $A(x)$ - количество кодов $\Rightarrow P(x)A(x)$ - кодов\par
-    Порождающий многочлен - ненулевое приведение мн. наименьшей степени в коде.\par
-    $A = \{ ... \}$\par
-    $ $\par
-    Теорема. $G(x)$ - порождающий многочлен\par
-    минимальный цикл кода $\Leftrightarrow x^m + 1 \ \vdots\  G(x)$\par
-    \textit{Доказательство:}\par
-    $\Leftarrow \, x^m+1 \ \vdots\  G(x)$\par
-    $A(x),B(x)$\par
-    $A=\{ P(x)G(x) \, mod(x^m +1 )\}$\par
-    \begin{tabular}{ccc}
-        $A(x) = P_A(x)G(x)$ &  & $A(x)+B(x) = (P_A(x)+P_B(x))G(x)$   \\
-        $B(x) = P_B(x)G(x)$ &  & $\alpha A(x) = (\alpha P_A(x))G(x)$ \\
-    \end{tabular}\par
-    $ $\par
-    $xA(x) \, mod(x^m+1)$\par
-    $xA(x) = xP_A(x)G(x)$\par
-    $ $\par
-    $r(x) = xA(x) \equiv _{x^m+1} Q(x)G(x)+R(x)$\par
-    $xA(x) = S(x)(x^m+1)+r(x)=S(x)(x^n+1)+Q(x)G(x)+R(x)$\par
-    $P(x)G(x)=Q(x)(x^m+1)+R(x)$\par
-    $ $\par
-    \begin{tabular}{ccc}
-        $P(x)G(x) \, mod(x^m+1)$ & $0 \equiv _{(x^m+1)}Q(x)G(x)+R(x)$ \\
-        $x^m+1 \ \vdots\  G(x)$  & $degR < deg G \, ?! \Rightarrow$   \\
-        $x^m+1 = Q(x)G(x)+R(x)$  & \textit{обязательно делится}       \\
-    \end{tabular}\par
-    $ $\par
-    $x^m+1$\par
-    $G(x)$\par
-    $d^* = \overset{}{\underset{P(x) \neq 0}{min}} \, W(P(x)G(x) \, mod x^m+1)$\par
-    $d^* > 2r+1 \hspace{2 cm} r < \frac{d^*}{2}$\par
-    $ $\par
-    $M \to C$\par
-    $M(x) \to C(x)$\par
-    $C(x) = M(x)G(x)$\par
-    $C(x)+E(x)$\par
-    $\widetilde{C}(x)= C(x)+E(x)$ - многочлен ошибок\par
-    \textit{$W(E(x)) \leq r$}\par
-    $\widetilde{C}(x) \, mod(G(x))=S(x)$ - синдром \par
-    $ $\par
-    Теорема. $E_1(x) \neq E_2(x) \Rightarrow E_1(x) \, mod G(x) \neq E_2(x) \, mod G(x)$\par
-    $W(E_1(x)) \leq r$\par
-    $W(E_2(x)) \leq r$\par
-    $ $\par
-    \textit{Доказательство:}\par
-    $E_1(x) + E_2(x) \neq 0$\par
-    $W(E_1(x)+E_2(x)) \leq 2r$\par
-    $ $\par
-    $\sqsupset E_1(x) \equiv E_2(x) \, mod G(x)$\par
-    $E_1(x)+E_2(x) \ \vdots\  G(x), \, W(E_1+E_2) \geq d^* \geq 2r+1$\par
-    $\widetilde{C}(x)=C(x)+E(x) = M(x)G(x)+E(x)$\par
-    $mod G(x):$\par
-    $\hspace{1 cm} S(x) \equiv E(x), \, C(x) = \widetilde{C}+E(x)$\par
-    $\hspace{1 cm} M(x) = \frac{C}{G}$\par
-    Если все ошибки в $deg G$ послед.  разр.\par
-    $x^i S(x) \equiv_{G(x)}T(x)$\par
-    $i \in [0;m-1]$\par
-    $W(T(x)) \leq r$\par
-    $x^mS(x) \equiv_{G(x)} x^{m-i}T(x)$\par
-    $\hspace{5 mm} |||$\par
-    $x^m+1 \equiv_{G(x)}0$\par
-    $ $\par
-    Теорема. $G(x) \ \vdots\  x+1 \geq W(P(x)G(x)) \ \vdots\  2$\par
-    $ $\par
-    \textit{Доказательство:} $\, G(x) = (x+1)A(x)$\par
-    $P(x)G(x) \ \vdots\  x+1$\par
-    $P(1)G(1) = 0$\par
-    $W(P(x)G(x)) \ \vdots\  2$\par
-    $ $\par
-    Следствие. $G(x) \ \vdots\  x+1 \geq$ детект. $\forall$ на ошиб.\par
-    $C(x)+E(x)$\par
-    \section{15. Префиксные коды.Неравенство Крафта.Алгоритм Хаффмана.}
-    \subsection{Префиксные коды}
-    $A = {a_1, \dots, a_n}$ - алфавит $ n \leq2^k\rightarrow$
-    $\begin{cases}
-            a_1  \sim \underbrace{0\dots0}_{\text{k}} - c_1  \\
-            a_2  \sim \underbrace{0\dots0}_{\text{k}}1 - c_2 \\
-            \dots
-        \end{cases}$
-    \newline$l_1=l_2=l_k$ ; $M:a_{i_1},a_{i_2},\dots,a_{i_s}$ ; $\alpha=ks\geq s\log{n}$
+Сред. длин. код. слова $L = \sum\limits_{i=1}^n l_ip_i $ ; $L \geq H(p_1, \dots, p_s)$
+\subsubsection{Доказательство}
+$\sqsupset q_i=\frac{2^{-l_i}}{\sum\limits_{i=1}^n2^{l_i}}$ ; $L-H(p_1,\dots, p_n)=\sum\limits_{i=1}^nl_ip_i+\sum\limits_{i=1}^np_i\log\limits_2{p_i}=\sum\limits_{i=1}^np_i\log\limits_2(p_i2^{l_i})=$
 
-    \textbf{Шеннон-Фано}
+$=\sum\limits_{i=1}^np_ilog{\frac{p_i}{2^{-l_i}}} \geq \sum\limits_{i=1}^np_i\log\limits_2{\frac{p_i\sum\limits_{j=1}^n2^{-l_j}}{2^{-l_i}}}=\sum\limits_{i=1}^np_i\log\limits_2{\frac{p_i}{q_i}}=D(p||q) \geq 0$
 
-    aabc
+$\rightarrow L \geq H(p_1, \dots, p_n) + D(p||q)$
+\subsection{Алгоритм Хаффмана}
 
-    \includegraphics[width=20mm]{images/tree1.png}
+$a_1, \dots, a_n$ c $p_1, \dots, p_n$
 
-    $\underbrace{0}_{\text{a}}\underbrace{0}_{\text{a}}\underbrace{11}_{\text{b}}\underbrace{01}_{\text{c}}$
+$p_i = \frac{N(a_i)}{N}$
 
-    $\begin{cases}
-            a  \sim 0  \\
-            b  \sim 11 \\
-            c \sim 01
-        \end{cases}$
+$p_1, p_2, \dots, p_s$
 
-    \subsubsection{Определение}
-    Код называется \textit{префиксным}, если ни одно кодовое слово не является началом другого кодового слова.
+$p_i \geq p_j \rightarrow l_i \leq l_j$
 
-    \subsection{Неравенство Крафта}
-    Для префиксного кода с длинами $l_1,\dots,l_s$
+$\sum\limits_{i=1}^s 2^{-l_i} \leq 1 (*)$
 
-    $\sum\limits_{i=1}^s 2^{-l_i} \leq 1$
-    \subsubsection{Доказательство}
-    $l_1\leq l_2 \leq \dots \leq l_s=q$
+$p_{n-1}, p_n$ - наим.вер $\rightarrow l_{n-1} = l_n$
 
-    $A_i=\{\underbrace{(\dots)}_{\text{q двоичных чисел}})|$нач. с $l_i\}$
+[чтобы знам $(*)$ сокращался]
+\subsubsection{Пример}
+$\underbrace{a \sim 0,22 \text{ ; }b \sim 0,2}_{ab \sim 0,42}$ ; $c \sim 0,15$; $\underbrace{d \sim 0,13 \text{ ; }e \sim 0,12}_{de \sim 0,25}$ ; $\underbrace{f \sim 0,1\text{ ; } g \sim 0,18 }_{fg \sim 0,18}$
 
-    $A_i\cap A_j=\emptyset$
+$\underbrace{cfg \sim 0,33 \text{ ; }de \sim 0,25}_{cdefg \sim 0,58}$ ; $ab \sim 0,42$
 
-    \subsubsection{Замечание}
-    $\cup A_i \leq \{ \underbrace{(\dots)}_{\text{q раз p}}\}$
+$\underbrace{ab \sim 0,42 \text{ ; }cdefg \sim 0,58}_{abcdefg \sim 1}$
 
-    $\sum\limits_{i=1}^s 2^{q-l_i} \leq 2^q$
-    \subsubsection{Теорема}
-    $p_1,\dots, p_n$ - вер, с которой встречаются $a_1, \dots, a_n$
+\includegraphics[width=100mm]{images/tree2.png}
 
-    Сред. длин. код. слова $L = \sum\limits_{i=1}^n l_ip_i $ ; $L \geq H(p_1, \dots, p_s)$
-    \subsubsection{Доказательство}
-    $\sqsupset q_i=\frac{2^{-l_i}}{\sum\limits_{i=1}^n2^{l_i}}$ ; $L-H(p_1,\dots, p_n)=\sum\limits_{i=1}^nl_ip_i+\sum\limits_{i=1}^np_i\log\limits_2{p_i}=\sum\limits_{i=1}^np_i\log\limits_2(p_i2^{l_i})=$
+\section{Коды Рида-Соломона:}
+Рассмотрим алгоритм на примере:\par
+Поле $GF(16)$ порождается присоединением к $GF(2)$ корня $a$ многочлена $P(x)$, $P(x) = x^{4}+x^{3}+1$\par
+Пусть порождающий много член имеет вид $G(x) = (x-a)(x-a^2)(x-a^3)(x-a^4)$, тогда количество\par
+ошибок многочлена которое исправит код Рида-Соломона $2t = deg(G(x)) \Rightarrow t = 4/2 = 2.$\par
+Принятое сообщение $S(x) = a^{9}x^14 + a^5x^{13} + a^{12}x^{12} + a^{10}x^{11} + a^7x^9 + a^5x^8 + a^7x^7 + a^{13}x^6 + a^3x^5 +$\par $+ a^{11}x^4 + a^3x^3 + a^{10}x^2 + a^8x + a$\par
+Вырази все $a$ пока они не зациклятся, т.е. $a_{n} = a_{0}$\par
+$a^{0} = a^{0} = 1$\par
+$a^{1} = a$\par
+$a^{2} = a^2$\par
+$a^{3} = a^3$\par
+$a^{4} = a^3+1$\par
+$a^{5} = a*a^{4} = a^{4}+a = a^3 + a +1$\par
+$a^{6} = a^{3} + a^{2} + a + 1$\par
+$a^{7} = a^2 + a + 1$\par
+$a^{8} = a^3 + a^2 + a$\par
+$a^{9} = a^2 + 1$\par
+$a^{10} = a^3 + a$\par
+$a^{11} = a^3 + a^2 +1$\par
+$a^{12} = a + 1$\par
+$a^{13} = a^2 + a$\par
+$a^{14} = a^3 + a^2$\par
+$a^{15} = a^4 + a^3 = 1$\par
+И так как у нас поле $GF(16)$ то $a^{15} = a^{0} = 1$\par
+Из порождающего многочлена выразим корни уравнения и подставим их в принятое сообщение\par S(x).\par
+$S_1(a) = a^4$\par
+$S_2(a^2) = 0$\par
+$S_3(a^3) = a^2$\par
+$S_4(a^4) = a^2$\par
+Теперь строим систему уравнений вида
+\begin{gather}
+    \begin{pmatrix}
+        S_{n}     & S_{n+1} & {...} & S_{n+t-1}  \\
+        S_{n+1}   & S_{n+2} & {...} & S_{n+t}    \\
+        {.}       & {.}     & {.}   & {.}        \\
+        S_{n+t-1} & S_{n+t} & {...} & S_{n+2t-2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \lambda_{t}   \\
+        \lambda_{t-1} \\
+        {.}           \\
+        \lambda_{1}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        S_{n+t}   \\
+        S_{n+t+1} \\
+        {.}       \\
+        S_{n+2t-2}
+    \end{pmatrix}
+\end{gather}
+Где $n=1, t=2$, подставим значения в матрицу и получим:
+\begin{gather}
+    \begin{pmatrix}
+        S_{1} & S_{2} \\
+        S_{2} & S_{3}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \lambda_{2} \\
+        \lambda_{1}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        S_{3} \\
+        S_{4}
+    \end{pmatrix}
+\end{gather}
 
-    $=\sum\limits_{i=1}^np_ilog{\frac{p_i}{2^{-l_i}}} \geq \sum\limits_{i=1}^np_i\log\limits_2{\frac{p_i\sum\limits_{j=1}^n2^{-l_j}}{2^{-l_i}}}=\sum\limits_{i=1}^np_i\log\limits_2{\frac{p_i}{q_i}}=D(p||q) \geq 0$
-
-    $\rightarrow L \geq H(p_1, \dots, p_n) + D(p||q)$
-    \subsection{Алгоритм Хаффмана}
-
-    $a_1, \dots, a_n$ c $p_1, \dots, p_n$
-
-    $p_i = \frac{N(a_i)}{N}$
-
-    $p_1, p_2, \dots, p_s$
-
-    $p_i \geq p_j \rightarrow l_i \leq l_j$
-
-    $\sum\limits_{i=1}^s 2^{-l_i} \leq 1 (*)$
-
-    $p_{n-1}, p_n$ - наим.вер $\rightarrow l_{n-1} = l_n$
-
-    [чтобы знам $(*)$ сокращался]
-    \subsubsection{Пример}
-    $\underbrace{a \sim 0,22 \text{ ; }b \sim 0,2}_{ab \sim 0,42}$ ; $c \sim 0,15$; $\underbrace{d \sim 0,13 \text{ ; }e \sim 0,12}_{de \sim 0,25}$ ; $\underbrace{f \sim 0,1\text{ ; } g \sim 0,18 }_{fg \sim 0,18}$
-
-    $\underbrace{cfg \sim 0,33 \text{ ; }de \sim 0,25}_{cdefg \sim 0,58}$ ; $ab \sim 0,42$
-
-    $\underbrace{ab \sim 0,42 \text{ ; }cdefg \sim 0,58}_{abcdefg \sim 1}$
-
-    \includegraphics[width=100mm]{images/tree2.png}
-
-    \section{Коды Рида-Соломона:}
-    Рассмотрим алгоритм на примере:\par
-    Поле $GF(16)$ порождается присоединением к $GF(2)$ корня $a$ многочлена $P(x)$, $P(x) = x^{4}+x^{3}+1$\par
-    Пусть порождающий много член имеет вид $G(x) = (x-a)(x-a^2)(x-a^3)(x-a^4)$, тогда количество\par
-    ошибок многочлена которое исправит код Рида-Соломона $2t = deg(G(x)) \Rightarrow t = 4/2 = 2.$\par
-    Принятое сообщение $S(x) = a^{9}x^14 + a^5x^{13} + a^{12}x^{12} + a^{10}x^{11} + a^7x^9 + a^5x^8 + a^7x^7 + a^{13}x^6 + a^3x^5 +$\par $+ a^{11}x^4 + a^3x^3 + a^{10}x^2 + a^8x + a$\par
-    Вырази все $a$ пока они не зациклятся, т.е. $a_{n} = a_{0}$\par
-    $a^{0} = a^{0} = 1$\par
-    $a^{1} = a$\par
-    $a^{2} = a^2$\par
-    $a^{3} = a^3$\par
-    $a^{4} = a^3+1$\par
-    $a^{5} = a*a^{4} = a^{4}+a = a^3 + a +1$\par
-    $a^{6} = a^{3} + a^{2} + a + 1$\par
-    $a^{7} = a^2 + a + 1$\par
-    $a^{8} = a^3 + a^2 + a$\par
-    $a^{9} = a^2 + 1$\par
-    $a^{10} = a^3 + a$\par
-    $a^{11} = a^3 + a^2 +1$\par
-    $a^{12} = a + 1$\par
-    $a^{13} = a^2 + a$\par
-    $a^{14} = a^3 + a^2$\par
-    $a^{15} = a^4 + a^3 = 1$\par
-    И так как у нас поле $GF(16)$ то $a^{15} = a^{0} = 1$\par
-    Из порождающего многочлена выразим корни уравнения и подставим их в принятое сообщение\par S(x).\par
-    $S_1(a) = a^4$\par
-    $S_2(a^2) = 0$\par
-    $S_3(a^3) = a^2$\par
-    $S_4(a^4) = a^2$\par
-    Теперь строим систему уравнений вида
-    \begin{gather}
-        \begin{pmatrix}
-            S_{n}     & S_{n+1} & {...} & S_{n+t-1}  \\
-            S_{n+1}   & S_{n+2} & {...} & S_{n+t}    \\
-            {.}       & {.}     & {.}   & {.}        \\
-            S_{n+t-1} & S_{n+t} & {...} & S_{n+2t-2}
-        \end{pmatrix}
-        \begin{pmatrix}
-            \lambda_{t}   \\
-            \lambda_{t-1} \\
-            {.}           \\
-            \lambda_{1}
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            S_{n+t}   \\
-            S_{n+t+1} \\
-            {.}       \\
-            S_{n+2t-2}
-        \end{pmatrix}
-    \end{gather}
-    Где $n=1, t=2$, подставим значения в матрицу и получим:
-    \begin{gather}
-        \begin{pmatrix}
-            S_{1} & S_{2} \\
-            S_{2} & S_{3}
-        \end{pmatrix}
-        \begin{pmatrix}
-            \lambda_{2} \\
-            \lambda_{1}
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            S_{3} \\
-            S_{4}
-        \end{pmatrix}
-    \end{gather}
-
-    \begin{gather}
-        \begin{pmatrix}
-            a^{4} & 0     \\
+\begin{gather}
+    \begin{pmatrix}
+        a^{4} & 0     \\
+        0     & a^{2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \lambda_{2} \\
+        \lambda_{1}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a^2 \\
+        a^2
+    \end{pmatrix}
+\end{gather}
+Решив систему мы получим что $\lambda_{2} = a^{13}, \lambda_{1} = 1$.\par
+$L(x) = 1 + \lambda_{1}x + \lambda_{2}x^2 + ... + \lambda_{t}x^{t}$.
+Подставим значения от $1$ до $a^{15}$ и найдем такие значения $a$ что $L(a^{n}) = 0$.
+В нашем случае такими значениями являются $a^3$ и $a^{14}$.
+Найдем обратные к этим значениям $\gamma_{1} = \frac{a^{15}}{a^{3}} = a^{12}, \gamma_{2} = a$.
+\begin{gather}
+    \begin{pmatrix}
+        {\gamma_{1}}^{s}     & {\gamma_{2}}^{s}     & {...} & {\gamma_{t}}^{s}     \\
+        {\gamma_{1}}^{s+1}   & {\gamma_{2}}^{s+1}   & {...} & {\gamma_{t}}^{s+1}   \\
+        {.}                  & {.}                  & {.}   & {.}                  \\
+        {\gamma_{1}}^{s+t-1} & {\gamma_{2}}^{s+t-1} & {...} & {\gamma_{t}}^{s+t-1}
+    \end{pmatrix}
+    \begin{pmatrix}
+        e_{1} \\
+        e_{2} \\
+        {.}   \\
+        e_{t}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        S_{n}   \\
+        S_{n+1} \\
+        {.}     \\
+        S_{n+t-1}
+    \end{pmatrix}
+\end{gather}
+Подставим значения и получим:
+\begin{gather}
+    \begin{pmatrix}
+        a^{12} & a     \\
+        a^{24} & a^{2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        e_{1} \\
+        e_{2}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a^{4} \\
+        0
+    \end{pmatrix}
+\end{gather}
+Используя метод Крамера найдем $e_{1}$ и $e_{2}$:
+\begin{gather}
+    e_{1}
+    =
+    \frac{
+        \begin{vmatrix}
+            a^{4} & a     \\
             0     & a^{2}
-        \end{pmatrix}
-        \begin{pmatrix}
-            \lambda_{2} \\
-            \lambda_{1}
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            a^2 \\
-            a^2
-        \end{pmatrix}
-    \end{gather}
-    Решив систему мы получим что $\lambda_{2} = a^{13}, \lambda_{1} = 1$.\par
-    $L(x) = 1 + \lambda_{1}x + \lambda_{2}x^2 + ... + \lambda_{t}x^{t}$.
-    Подставим значения от $1$ до $a^{15}$ и найдем такие значения $a$ что $L(a^{n}) = 0$.
-    В нашем случае такими значениями являются $a^3$ и $a^{14}$.
-    Найдем обратные к этим значениям $\gamma_{1} = \frac{a^{15}}{a^{3}} = a^{12}, \gamma_{2} = a$.
-    \begin{gather}
-        \begin{pmatrix}
-            {\gamma_{1}}^{s}     & {\gamma_{2}}^{s}     & {...} & {\gamma_{t}}^{s}     \\
-            {\gamma_{1}}^{s+1}   & {\gamma_{2}}^{s+1}   & {...} & {\gamma_{t}}^{s+1}   \\
-            {.}                  & {.}                  & {.}   & {.}                  \\
-            {\gamma_{1}}^{s+t-1} & {\gamma_{2}}^{s+t-1} & {...} & {\gamma_{t}}^{s+t-1}
-        \end{pmatrix}
-        \begin{pmatrix}
-            e_{1} \\
-            e_{2} \\
-            {.}   \\
-            e_{t}
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            S_{n}   \\
-            S_{n+1} \\
-            {.}     \\
-            S_{n+t-1}
-        \end{pmatrix}
-    \end{gather}
-    Подставим значения и получим:
-    \begin{gather}
-        \begin{pmatrix}
+        \end{vmatrix}
+    }
+    {
+        \begin{vmatrix}
             a^{12} & a     \\
             a^{24} & a^{2}
-        \end{pmatrix}
-        \begin{pmatrix}
-            e_{1} \\
-            e_{2}
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            a^{4} \\
-            0
-        \end{pmatrix}
-    \end{gather}
-    Используя метод Крамера найдем $e_{1}$ и $e_{2}$:
-    \begin{gather}
-        e_{1}
-        =
-        \frac{
-            \begin{vmatrix}
-                a^{4} & a     \\
-                0     & a^{2}
-            \end{vmatrix}
-        }
-        {
-            \begin{vmatrix}
-                a^{12} & a     \\
-                a^{24} & a^{2}
-            \end{vmatrix}
-        }
-        =
-        \frac{a^{6}}{a^{13}}
-        =
-        a^{8}
-    \end{gather}
+        \end{vmatrix}
+    }
+    =
+    \frac{a^{6}}{a^{13}}
+    =
+    a^{8}
+\end{gather}
 
-    \begin{gather}
-        e_{2}
-        =
-        \frac{
-            \begin{vmatrix}
-                a^{12} & a^4 \\
-                a^{24} & 0
-            \end{vmatrix}
-        }
-        {
-            \begin{vmatrix}
-                a^{12} & a     \\
-                a^{24} & a^{2}
-            \end{vmatrix}
-        }
-        =
-        \frac{-a^{28}}{a^{13}}
-        =
-        a^{15}
-        =
-        1
-    \end{gather}
-    Найдем многочлен ошибок $E(x) = e_{1}x^{i_{1}} + e_{2}x^{i_{2}} + e_{3}x^{i_{3}} + ... + e_{t}x^{i_{t}}$, $\gamma_{1} = a^{i_{1}}, ... \gamma_{t} = a^{i_{t}} $, $E(x) = a^{8}x^{12} + x$.
-    Теперь найдем правильный код $V(x) + E(x)$, в нашем случае правильный код $V(x) + E(x) = a^{9}x^{14} + a^{5}x^{13} + a^{11}x^{12} + a^{10}x^{11} + a^{7}x^{9} + a^{5}x^{8} + a^{7}x^{7} + a^{13}x^{6} + a^{3}x^{5} + a^{11}x^{4} + a^{3}x^{3} + a^{10}x^{2} + a^{6}x^{1} + a$ далее используя схему Горнера находим исходное сообщение $A(x)$.
+\begin{gather}
+    e_{2}
+    =
+    \frac{
+        \begin{vmatrix}
+            a^{12} & a^4 \\
+            a^{24} & 0
+        \end{vmatrix}
+    }
+    {
+        \begin{vmatrix}
+            a^{12} & a     \\
+            a^{24} & a^{2}
+        \end{vmatrix}
+    }
+    =
+    \frac{-a^{28}}{a^{13}}
+    =
+    a^{15}
+    =
+    1
+\end{gather}
+Найдем многочлен ошибок $E(x) = e_{1}x^{i_{1}} + e_{2}x^{i_{2}} + e_{3}x^{i_{3}} + ... + e_{t}x^{i_{t}}$, $\gamma_{1} = a^{i_{1}}, ... \gamma_{t} = a^{i_{t}} $, $E(x) = a^{8}x^{12} + x$.
+Теперь найдем правильный код $V(x) + E(x)$, в нашем случае правильный код $V(x) + E(x) = a^{9}x^{14} + a^{5}x^{13} + a^{11}x^{12} + a^{10}x^{11} + a^{7}x^{9} + a^{5}x^{8} + a^{7}x^{7} + a^{13}x^{6} + a^{3}x^{5} + a^{11}x^{4} + a^{3}x^{3} + a^{10}x^{2} + a^{6}x^{1} + a$ далее используя схему Горнера находим исходное сообщение $A(x)$.
 
-    \section{Алгоритм Берлекемпа}
-    $\exists F$ - многочлен, свободный от квадратов. Разложим $F = f_1 * f_2 * f_3, ..., f_s (f_i$ - неприводим над $\mathbb{Z}_p )$
-    \subsection {Алгоритм:}
-    Составить матрицу A, которая имеет вид:
+\section{Алгоритм Берлекемпа}
+$\exists F$ - многочлен, свободный от квадратов. Разложим $F = f_1 * f_2 * f_3, ..., f_s (f_i$ - неприводим над $\mathbb{Z}_p )$
+\subsection {Алгоритм:}
+Составить матрицу A, которая имеет вид:
 
-    \[
-        A =
-        \begin{blockarray}{cccccc}
-            x^0 & x^{1*p} & x^{2*p} & ... & x^{(deg(f) - 1)*p} \\
-            \begin{block}{(ccccc)c}
-                . & . & . & . & . & x^0 \\
-                . & . & . & . & . & x^1 \\
-                . & . & . & . & . & x^2 \\
-                . & . & . & . & . & ... \\
-                . & . & . & . & . & x^{deg(f)-1} \\
-            \end{block}
-        \end{blockarray}
-    \]
+\[
+    A =
+    \begin{blockarray}{cccccc}
+        x^0 & x^{1*p} & x^{2*p} & ... & x^{(deg(f) - 1)*p} \\
+        \begin{block}{(ccccc)c}
+            . & . & . & . & . & x^0 \\
+            . & . & . & . & . & x^1 \\
+            . & . & . & . & . & x^2 \\
+            . & . & . & . & . & ... \\
+            . & . & . & . & . & x^{deg(f)-1} \\
+        \end{block}
+    \end{blockarray}
+\]
 
-    Каждый столбец матрицы соответствует векторному разложению многочленов из множества \\
-    $\{x^0, x^{1*p}, x^{2*p}, ..., x^{(deg(f)-1)*p}\}$ \hspace{0,5cm} (1)\\
-    в базисе $\{x^0, x^1, x^2, ..., x^{deg(f)-1}\}$\\\\
-    Для получения векторного представления каждого из многочленов множества (1) необходимо привести их по модулю f.\\
-    $x_0 \equiv_{f(x)} x^0\\
-        x_1 \equiv_{f(x)}...\\
-        x_2 \equiv_{f(x)}...$\\
+Каждый столбец матрицы соответствует векторному разложению многочленов из множества \\
+$\{x^0, x^{1*p}, x^{2*p}, ..., x^{(deg(f)-1)*p}\}$ \hspace{0,5cm} (1)\\
+в базисе $\{x^0, x^1, x^2, ..., x^{deg(f)-1}\}$\\\\
+Для получения векторного представления каждого из многочленов множества (1) необходимо привести их по модулю f.\\
+$x_0 \equiv_{f(x)} x^0\\
+    x_1 \equiv_{f(x)}...\\
+    x_2 \equiv_{f(x)}...$\\
 
-    Далее необходимо найти собственные векторы матрицы A. Для этого получим матрицу $B = A - E$, где E - единичная матрица. Далее нужно привести матрицу к ступенчатому виду методом Гаусса или же любым другим методом и найти ранг матрицы.\\\\
-    Если $rank B = 1$, то f - неразложим над $\mathbb{Z}_p$.\\
-    Если $1 < rank B$  и $ < deg(f)-1$, то f - разложим над $\mathbb{Z}_p$\\\\
-    Далее решим уравнение для нахождения собственных векторов $h_i$:\\
-    $B*h_i= \begin{pmatrix}
-            0   \\
-            0   \\
-            ... \\
-            0
-        \end{pmatrix}$\\
-    Количество подходящих векторов h можно найти по формуле:\\
-    Кол-во $h_i = deg f - rank B$\\
-    $h_1$ всегда имеет вид $h_1= \begin{pmatrix}
-            1   \\
-            0   \\
-            ... \\
-            0
-        \end{pmatrix}$\\
-    $h_2, h_3$ и т.д. необходимо найти аналитическим методом либо другим методом для нахождения собственных векторов матрицы.\\
+Далее необходимо найти собственные векторы матрицы A. Для этого получим матрицу $B = A - E$, где E - единичная матрица. Далее нужно привести матрицу к ступенчатому виду методом Гаусса или же любым другим методом и найти ранг матрицы.\\\\
+Если $rank B = 1$, то f - неразложим над $\mathbb{Z}_p$.\\
+Если $1 < rank B$  и $ < deg(f)-1$, то f - разложим над $\mathbb{Z}_p$\\\\
+Далее решим уравнение для нахождения собственных векторов $h_i$:\\
+$B*h_i= \begin{pmatrix}
+        0   \\
+        0   \\
+        ... \\
+        0
+    \end{pmatrix}$\\
+Количество подходящих векторов h можно найти по формуле:\\
+Кол-во $h_i = deg f - rank B$\\
+$h_1$ всегда имеет вид $h_1= \begin{pmatrix}
+        1   \\
+        0   \\
+        ... \\
+        0
+    \end{pmatrix}$\\
+$h_2, h_3$ и т.д. необходимо найти аналитическим методом либо другим методом для нахождения собственных векторов матрицы.\\
 
-    После нахождения всех векторов $h_i$ приведем их к виду многочлена.\\
-    \textit{Пример:}\\
-    $h_1= \begin{pmatrix}
-            1 \\
-            0 \\
-            0 \\
-            1 \\
-            0
-        \end{pmatrix} = 1*x^0 + 0 * x^1 + 0 * x^2 + 1 * x^3 + 0 * x^4 = x^3 + 1$\\\\
+После нахождения всех векторов $h_i$ приведем их к виду многочлена.\\
+\textit{Пример:}\\
+$h_1= \begin{pmatrix}
+        1 \\
+        0 \\
+        0 \\
+        1 \\
+        0
+    \end{pmatrix} = 1*x^0 + 0 * x^1 + 0 * x^2 + 1 * x^3 + 0 * x^4 = x^3 + 1$\\\\
 
-    Итоговое разложение будет иметь вид:\\
-    $f(x) = \underset{c \in \mathbb{Z}_p}{\prod}$ НОД $(f(x), h_i - c)$\\
+Итоговое разложение будет иметь вид:\\
+$f(x) = \underset{c \in \mathbb{Z}_p}{\prod}$ НОД $(f(x), h_i - c)$\\
 
-    Примечание: $h_1$ в формуле разложения не рассматривается, т.к. НОД = 1 или $f(x)$ нас не интересует.
+Примечание: $h_1$ в формуле разложения не рассматривается, т.к. НОД = 1 или $f(x)$ нас не интересует.
 
-    \subsection{Пример}
-    $f(x) = x^7 + x^6 + x^5 + x^4 + x^3 + x + 1$ над $\mathbb{Z}_2$\\\\
-    \textbf{Шаг 1}: Проверить, свободен ли f(x) от квадратов\\
-    \textbf{Шаг 2}: Составить матрицу A.\\
-    Для этого приведем элементы из множества $\{x^0, x^2, x^4, x^6, x^8, x^{10}, x^{12}\}$ по модулю $f(x)$.\\
-    $x^0 \equiv_{f(x)} x^0\\
-        x^2 \equiv_{f(x)} x^2\\
-        x^4 \equiv_{f(x)} x^4\\
-        x^6 \equiv_{f(x)} x^6\\
-        x^8 \equiv_{f(x)} x^7 + x^6 + x^5 + x^4 + x^2 + x \equiv x^3 + x^2 + 1\\
-        x^{10} \equiv_{f(x)} x^8 * x^2 \equiv x^2 * (x^3 + x^2 + 1) \equiv x^5 + x^4 + x^2\\
-        x^{12} \equiv_{f(x)} x^{10} * x^2 \equiv x^7 + x^6 + x^4 \equiv x^5 + x^3 + x + 1\\$
-        Тогда A имеет вид:
+\subsection{Пример}
+$f(x) = x^7 + x^6 + x^5 + x^4 + x^3 + x + 1$ над $\mathbb{Z}_2$\\\\
+\textbf{Шаг 1}: Проверить, свободен ли f(x) от квадратов\\
+\textbf{Шаг 2}: Составить матрицу A.\\
+Для этого приведем элементы из множества $\{x^0, x^2, x^4, x^6, x^8, x^{10}, x^{12}\}$ по модулю $f(x)$.\\
+$x^0 \equiv_{f(x)} x^0\\
+x^2 \equiv_{f(x)} x^2\\
+x^4 \equiv_{f(x)} x^4\\
+x^6 \equiv_{f(x)} x^6\\
+x^8 \equiv_{f(x)} x^7 + x^6 + x^5 + x^4 + x^2 + x \equiv x^3 + x^2 + 1\\
+x^{10} \equiv_{f(x)} x^8 * x^2 \equiv x^2 * (x^3 + x^2 + 1) \equiv x^5 + x^4 + x^2\\
+x^{12} \equiv_{f(x)} x^{10} * x^2 \equiv x^7 + x^6 + x^4 \equiv x^5 + x^3 + x + 1\\$
+Тогда A имеет вид:
 
-        \[
-            A =
-            \begin{blockarray}{cccccccc}
-                x^0 & x^2 & x^4 & x^6 & x^8 & x^{10} & x^{12}\\
-                \begin{block}{(ccccccc)c}
-                    1 & 0 & 0 & 0 & 1 & 0 & 1 & x^0\\
-                    0 & 0 & 0 & 0 & 0 & 0 & 1 & x^1\\
-                    0 & 1 & 0 & 0 & 1 & 1 & 0 & x^2\\
-                    0 & 0 & 0 & 0 & 1 & 0 & 1 & x^3\\
-                    0 & 0 & 1 & 0 & 0 & 1 & 0 & x^4\\
-                    0 & 0 & 0 & 0 & 0 & 1 & 1 & x^5\\
-                    0 & 0 & 0 & 1 & 0 & 0 & 0 & x^6\\
-                \end{block}
-            \end{blockarray}
-        \]\\
-        \textbf{Шаг 3}: Найти собственные векторы матрицы A\\
+\[
+    A =
+    \begin{blockarray}{cccccccc}
+        x^0 & x^2 & x^4 & x^6 & x^8 & x^{10} & x^{12}\\
+        \begin{block}{(ccccccc)c}
+            1 & 0 & 0 & 0 & 1 & 0 & 1 & x^0\\
+            0 & 0 & 0 & 0 & 0 & 0 & 1 & x^1\\
+            0 & 1 & 0 & 0 & 1 & 1 & 0 & x^2\\
+            0 & 0 & 0 & 0 & 1 & 0 & 1 & x^3\\
+            0 & 0 & 1 & 0 & 0 & 1 & 0 & x^4\\
+            0 & 0 & 0 & 0 & 0 & 1 & 1 & x^5\\
+            0 & 0 & 0 & 1 & 0 & 0 & 0 & x^6\\
+        \end{block}
+    \end{blockarray}
+\]\\
+\textbf{Шаг 3}: Найти собственные векторы матрицы A\\
 
-        \[
-            B = A - E =
-            \begin{blockarray}{cccccccc}
-                x^0 & x^2 & x^4 & x^6 & x^8 & x^{10} & x^{12}\\
-                \begin{block}{(ccccccc)c}
-                    0 & 0 & 0 & 0 & 1 & 0 & 1 & x^0\\
-                    0 & 1 & 0 & 0 & 0 & 0 & 1 & x^1\\
-                    0 & 1 & 1 & 0 & 1 & 1 & 0 & x^2\\
-                    0 & 0 & 0 & 1 & 1 & 0 & 1 & x^3\\
-                    0 & 0 & 1 & 0 & 1 & 1 & 0 & x^4\\
-                    0 & 0 & 0 & 0 & 0 & 0 & 1 & x^5\\
-                    0 & 0 & 0 & 1 & 0 & 0 & 1 & x^6\\
-                \end{block}
-            \end{blockarray}
-        \]\\
-        Приведенная матрица B будет иметь вид:\\
-        \[
-            B =
-            \begin{blockarray}{cccccccc}
-                x^0 & x^2 & x^4 & x^6 & x^8 & x^{10} & x^{12}\\
-                \begin{block}{(ccccccc)c}
-                    0 & 0 & 0 & 0 & 0 & 0 & 0 & x^0\\
-                    0 & 1 & 0 & 0 & 0 & 0 & 0 & x^1\\
-                    0 & 0 & 1 & 0 & 0 & 1 & 0 & x^2\\
-                    0 & 0 & 0 & 0 & 1 & 0 & 0 & x^3\\
-                    0 & 0 & 0 & 0 & 0 & 0 & 0 & x^4\\
-                    0 & 0 & 0 & 0 & 0 & 0 & 1 & x^5\\
-                    0 & 0 & 0 & 1 & 0 & 0 & 0 & x^6\\
-                \end{block}
-            \end{blockarray}
-        \]\\
-    $rank B = 5\\$
+\[
+    B = A - E =
+    \begin{blockarray}{cccccccc}
+        x^0 & x^2 & x^4 & x^6 & x^8 & x^{10} & x^{12}\\
+        \begin{block}{(ccccccc)c}
+            0 & 0 & 0 & 0 & 1 & 0 & 1 & x^0\\
+            0 & 1 & 0 & 0 & 0 & 0 & 1 & x^1\\
+            0 & 1 & 1 & 0 & 1 & 1 & 0 & x^2\\
+            0 & 0 & 0 & 1 & 1 & 0 & 1 & x^3\\
+            0 & 0 & 1 & 0 & 1 & 1 & 0 & x^4\\
+            0 & 0 & 0 & 0 & 0 & 0 & 1 & x^5\\
+            0 & 0 & 0 & 1 & 0 & 0 & 1 & x^6\\
+        \end{block}
+    \end{blockarray}
+\]\\
+Приведенная матрица B будет иметь вид:\\
+\[
+    B =
+    \begin{blockarray}{cccccccc}
+        x^0 & x^2 & x^4 & x^6 & x^8 & x^{10} & x^{12}\\
+        \begin{block}{(ccccccc)c}
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & x^0\\
+            0 & 1 & 0 & 0 & 0 & 0 & 0 & x^1\\
+            0 & 0 & 1 & 0 & 0 & 1 & 0 & x^2\\
+            0 & 0 & 0 & 0 & 1 & 0 & 0 & x^3\\
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & x^4\\
+            0 & 0 & 0 & 0 & 0 & 0 & 1 & x^5\\
+            0 & 0 & 0 & 1 & 0 & 0 & 0 & x^6\\
+        \end{block}
+    \end{blockarray}
+\]\\
+$rank B = 5\\$
     Решим уравнение: $B * h_i= \begin{pmatrix}
-            0 \\
-            0 \\
-            0 \\
-            0 \\
-            0 \\
-            0 \\
-            0
-        \end{pmatrix}$\\\\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0
+\end{pmatrix}$\\\\
     Кол-во $h_i = deg(f) - rank B = 7 - 5 = 2$\\\\
-    $h_1= \begin{pmatrix}
-            1 \\
-            0 \\
-            0 \\
-            0 \\
-            0 \\
-            0 \\
-            0
-        \end{pmatrix}$
-    $h_2= \begin{pmatrix}
-            0 \\
-            0 \\
-            1 \\
-            0 \\
-            0 \\
-            1 \\
-            0
-        \end{pmatrix}$\\\\
-    $h_1 = 1$\\
-    $h_2 = x^5 + x^2$\\
+$h_1= \begin{pmatrix}
+    1 \\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0
+\end{pmatrix}$
+$h_2= \begin{pmatrix}
+    0 \\
+    0 \\
+    1 \\
+    0 \\
+    0 \\
+    1 \\
+    0
+\end{pmatrix}$\\\\
+$h_1 = 1$\\
+$h_2 = x^5 + x^2$\\
     \textbf{Шаг 4}: Найдем итоговое разложение\\\\
-    $f(x) = \underset{c \in \mathbb{Z}_2}{\prod}$ НОД $(f(x), h_i - c)$\\
+$f(x) = \underset{c \in \mathbb{Z}_2}{\prod}$ НОД $(f(x), h_i - c)$\\
     НОД $(f(x), x^5 + x^2 - 0)$ = $x^2 + x + 1$\\
     НОД $(f(x), x^5 + x^2 - 1)$ = $x^5 + x^2 + 1$\\\\
     Ответ: $f(x) = (x^2 + x + 1)(x^5 + x^2 + 1)$
@@ -1959,11 +1984,11 @@ $= \frac{-15+6-11}{10}x^2 + \frac{75-12-33}{10}x - 9 = -2x^2 + 3x - 9$
     Вторая коробка генерирует меньше информации, так как генерирует меньше неопределённости, меньше неожиданности.
     Это и есть энтропия. Обозначается как $H(p_1,p_2,\cdots ,p_n)$\\
     За единицу измерения был выбран бит - неопределённость о броске монеты, что эквивалентно одному вопросу\\
-    $H=\sum\limits_{i=1}^{n}x_i\cdot amount_i$\\
+$H=\sum\limits_{i=1}^{n}x_i\cdot amount_i$\\
     Количество вопросов$=\log_2(\textbf{количество исходов})$\\
     Количество исходов$=\frac{1}{p}$\\
     Количество вопросов$=\log_2(\frac{1}{p})$\\
-    $H=\sum\limits_{i=1}^n \log_2(\frac{1}{p})$ или $H=-\sum\limits_{i=1}^n log_2(p_i)$
+$H=\sum\limits_{i=1}^n \log_2(\frac{1}{p})$ или $H=-\sum\limits_{i=1}^n log_2(p_i)$
 
 
     \subsection{Максимум энтропии}
@@ -1987,21 +2012,21 @@ $= \frac{-15+6-11}{10}x^2 + \frac{75-12-33}{10}x - 9 = -2x^2 + 3x - 9$
               \\Для целых положительных $b_i,\:$Если$\sum\limits_{i=1}^n b_i=n$
     \end{itemize}
     Шенон показал, что функция выглядит так:
-    $-K\sum\limits _{{i=1}}^{n}p(i)\log _{2}p(i)$\\
+$-K\sum\limits _{{i=1}}^{n}p(i)\log _{2}p(i)$\\
     Коэффицент K нужен для перевода в другую систему исчисления, из бит в нат(основание логарифма e), трит(3), хартли
 
     \subsection{Th:$H=-K\sum\limits _{{i=1}}^{n}p(i)\log _{2}p(i)$}
-    $S^m\leq t^n\leq S^{m+1}$\\
-    $H(\cfrac{1}{S^m}\cdots)\leq H(\cfrac{1}{t^n}\cdots) < H(\cfrac{1}{S^{m+1}}\cdots)$\\
-    $]A(n)\equiv H(\cfrac{1}{n},\cdots,\cfrac{1}{n})$\\
-    $A(S^m)\leq A(t^n) < A(S^{m+1})$\\
-    $A(S^m)=A(S)+\sum\limits_{i=1}^s=A(S)+A(S^{m-1})=2A(S)+A(S^{m-2})=\cdots =(m+1)A(S)\qquad \mid :nA(S)$\\
-    $\cfrac{m}{n}\leq \cfrac{A(t)}{A(S)}\leq \cfrac{m+1}{n}\qquad \mid -\cfrac{m}{n}$\\
-    $0\leq \cfrac{A(t)}{A(S)}-\cfrac{m}{n}\leq \cfrac{1}{n}\qquad $\\
+$S^m\leq t^n\leq S^{m+1}$\\
+$H(\cfrac{1}{S^m}\cdots)\leq H(\cfrac{1}{t^n}\cdots) < H(\cfrac{1}{S^{m+1}}\cdots)$\\
+$]A(n)\equiv H(\cfrac{1}{n},\cdots,\cfrac{1}{n})$\\
+$A(S^m)\leq A(t^n) < A(S^{m+1})$\\
+$A(S^m)=A(S)+\sum\limits_{i=1}^s=A(S)+A(S^{m-1})=2A(S)+A(S^{m-2})=\cdots =(m+1)A(S)\qquad \mid :nA(S)$\\
+$\cfrac{m}{n}\leq \cfrac{A(t)}{A(S)}\leq \cfrac{m+1}{n}\qquad \mid -\cfrac{m}{n}$\\
+$0\leq \cfrac{A(t)}{A(S)}-\cfrac{m}{n}\leq \cfrac{1}{n}\qquad $\\
     \\$m\cdot log(s)\leq n\cdot \log (t)<(m+1)\cdot \log (s)\qquad \mid : n\cdot \log (s)$ - Из начальных условий\\
-    $\cfrac{m}{n}\leq \cfrac{\log (t)}{\log (s)}<\cfrac{m+1}{n}\qquad \mid -\cfrac{m}{n}$\\
-    $0\leq \cfrac{\log (t)}{\log (s)}-\cfrac{m}{n}<\cfrac{1}{n}$
-        \\Заметим, что $\left|\cfrac{A(t)}{A(S)}-\cfrac{\log (t)}{\log (s)}\right|< \cfrac{1}{n} \\
+$\cfrac{m}{n}\leq \cfrac{\log (t)}{\log (s)}<\cfrac{m+1}{n}\qquad \mid -\cfrac{m}{n}$\\
+$0\leq \cfrac{\log (t)}{\log (s)}-\cfrac{m}{n}<\cfrac{1}{n}$
+\\Заметим, что $\left|\cfrac{A(t)}{A(S)}-\cfrac{\log (t)}{\log (s)}\right|< \cfrac{1}{n} \\
     \cfrac{A(t)}{A(S)}=\cfrac{\log (t)}{\log (s)};
     \cfrac{A(t)}{\log (t)}=\cfrac{A(S)}{\log (s)}\implies A(s)=k\log (s) \qquad \sum\limits_{i=1}^s k =N\\
     p_1=\cfrac{k_1}{N}, \ldots,p_s =\cfrac{k_s}{N}\\
@@ -2010,18 +2035,18 @@ $= \frac{-15+6-11}{10}x^2 + \frac{75-12-33}{10}x - 9 = -2x^2 + 3x - 9$
     H(p_1,\ldots,p_n)=k\cdot \bigg ( \log (N)-\sum\limits_{i=1}^s p_i\cdot\log (k_i) \bigg )\\
     k\cdot \bigg ( \log (N)-\sum\limits_{i=1}^s p_i\cdot\log (p_i)
     -\sum\limits_{i=1}^s p_i\cdot\log (N) \bigg ) = -k\cdot\sum\limits_{i=1}^s p_i\cdot\log (p_i)$ч.т.д.
-        \subsection{Относительная энтропия}
-        \[D(p\mid\mid q)=\sum\limits_{i=1}^n p_i\cdot\log \cfrac{p_i}{q_i}\]
-        \subsubsection{Th:$D(p\mid\mid q)\geq 0$ и $D(p\mid\mid q)=0
-                \Leftrightarrow p\equiv q$ - Информационное неравенство}
-    $f\big ( \sum\limits_{i=1}^k p_i\cdot x_i \big ) \geq \sum\limits_{i=1}^k p_i\cdot x_i$\quad-\quad Неравенство Иенсона\\
-    $-f\big ( \sum\limits_{i=1}^k p_i\cdot x_i \big ) \leq -\sum\limits_{i=1}^k p_i\cdot x_i \Leftrightarrow
+\subsection{Относительная энтропия}
+\[D(p\mid\mid q)=\sum\limits_{i=1}^n p_i\cdot\log \cfrac{p_i}{q_i}\]
+\subsubsection{Th:$D(p\mid\mid q)\geq 0$ и $D(p\mid\mid q)=0
+        \Leftrightarrow p\equiv q$ - Информационное неравенство}
+$f\big ( \sum\limits_{i=1}^k p_i\cdot x_i \big ) \geq \sum\limits_{i=1}^k p_i\cdot x_i$\quad-\quad Неравенство Иенсона\\
+$-f\big ( \sum\limits_{i=1}^k p_i\cdot x_i \big ) \leq -\sum\limits_{i=1}^k p_i\cdot x_i \Leftrightarrow
     -\sum\limits_{i=1}^n p_i\cdot \log \cfrac{q_i}{ p_i} \geq -\log\sum\limits_{i=1}^n p_i\cdot  \cfrac{ q_i}{p_i}=0$ч.т.д.
-        \subsubsection{}
-    $H(p_1,\ldots,p_n)\qquad q_1=\ldots =q_n=\cfrac{1}{n}
+\subsubsection{}
+$H(p_1,\ldots,p_n)\qquad q_1=\ldots =q_n=\cfrac{1}{n}
     D(p\mid \mid q)=\sum\limits_{i=1}^n p_i\cdot \log \cfrac{p_i}{ q_i}=\sum\limits_{i=1}^n p_i\cdot \log (n\cdot p_i)=\\=
     \sum\limits_{i=1}^n p_i\cdot \log n+
     \sum\limits_{i=1}^n p_i\cdot \log (p_i)=\log n+
     \sum\limits_{i=1}^n p_i\cdot \log p_i = A(n)-H(p_1,\ldots,p_n)$\\
-        Так как $A(n)\geq H(p_1,\ldots,p_n) \implies$ максимум достигается при равновероятных событиях
+Так как $A(n)\geq H(p_1,\ldots,p_n) \implies$ максимум достигается при равновероятных событиях
 \end{document}
