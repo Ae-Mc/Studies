@@ -1025,23 +1025,20 @@ $x+y = (C_1+d_1,...C_n+d_n)$
 \par \textit{Доказательство.} $(a+b)^{p}\equiv_{p}a+b\equiv_{p}a^{p}+b^{p}$
 
 \subsection{Следствие}
-Если
-\begin{table}[h!]
-    \begin{tabular}{r|c}
-        $a\equiv_{m}b$                                     \\
-        $c\equiv_{\varphi(m)}d$ & $=>a^{c}\equiv_{m}b^{d}$ \\
-        НОД$(a,m)=1$
-    \end{tabular}
-\end{table}
-\par \textit{Доказательство.} $a^{c}\equiv_{m}b^{c}\equiv_{m}b^{k\varphi(m)+d}=(b^{\varphi(m)})^{k}*b^{d}\equiv_{m}b^{d}$
-\par $c\equiv_{\varphi(m)}d=>c=k\varphi(m)+d$
-\par НОД$(a,m)=1=>$ НОД$(b,m)=1$
+Если \begin{tabular}{r|c}
+    $a\equiv_{m}b$                                               \\
+    $c\equiv_{\varphi(m)}d$ & $\Rightarrow a^{c}\equiv_{m}b^{d}$ \\
+    $\gcd(a,m)=1$
+\end{tabular} \par
+\textit{Доказательство.} $a^{c}\equiv_{m}b^{c}\equiv_{m}b^{k\varphi(m)+d}=(b^{\varphi(m)})^{k}*b^{d}\equiv_{m}b^{d}$
+\par $c\equiv_{\varphi(m)}d \Rightarrow c=k\varphi(m)+d$
+\par НОД$(a,m)=1 \Rightarrow$ НОД$(b,m)=1$
 \par НОД$(a,m)=$ НОД$(a-\widetilde{k}m,m)$
-vdotssubsubsection{Пример}
+\subsubsection{Пример}
 $25^{11^{35}}\equiv_{34}(-9)^{3}=81*(-9)\equiv_{34}-13*9=-117\equiv_{34}19$
 \par НОД$(25,34)=1$
-\par $11^{35}\equiv_{16}11^{3}\equiv_{16}(-5)^{3}=-125\equiv_{16}3$
 \par $\varphi(34)=34\biggl(1-\cfrac{1}{2}\biggl)*\biggl(1-\cfrac{1}{17}\biggl)=16$
+\par $11^{35}\equiv_{16}11^{3}\equiv_{16}(-5)^{3}=-125\equiv_{16}3$
 \par НОД$(11,16)=1$
 \par $\varphi(16)=8$
 \par $35\equiv_{8}3$
@@ -1384,7 +1381,7 @@ $|\Leftarrow|$ $\forall g(x) \neq 0$ $\deg g < \deg p$ \\
 $\gcd(g(x), f(x)) = 1\ \Rightarrow$ по расширенному алгоритму Евклида:\\
 $a(x)g(x) + b(x)f(x) = 1$ \\
 $a(x)g(x) \equiv_{f(x)} 1\ \Rightarrow\ a = g^{-1} \ \Rightarrow\ \mathbb{Z}_p$ — поле
-
+,
 \subsubsection{Связь с линейным пространством}
 Поле Галуа образует линейное (векторное) пространство. Его аксиомы:
 \begin{itemize}
@@ -1548,11 +1545,11 @@ $C(x)+E(x)$\par
 \subsection{Префиксные коды}
 $A = {a_1, \dots, a_n}$ - алфавит $ n \leq2^k\rightarrow$
 $\begin{cases}
-        a_1  \sim \underbrace{0\dots0}_{\text{k}} - c_1  \\
-        a_2  \sim \underbrace{0\dots0}_{\text{k}}1 - c_2 \\
+        a_1  \sim \underbrace{0\dots0}_{k} - c_1      \\
+        a_2  \sim \underbrace{0\dots0}_{k - 1}1 - c_2 \\
         \dots
     \end{cases}$
-\newline$l_1=l_2=l_k$ ; $M:a_{i_1},a_{i_2},\dots,a_{i_s}$ ; $\alpha=ks\geq s\log{n}$
+\newline$l_1=l_2=l_k$ ; $M:a_{i_1},a_{i_2},\dots,a_{i_s}$ — слово ; $\alpha=ks\geq s\log{n}$
 
 \textbf{Шеннон-Фано}
 
