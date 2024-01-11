@@ -1211,18 +1211,18 @@ $= \frac{-15+6-11}{10}x^2 + \frac{75-12-33}{10}x - 9 = -2x^2 + 3x - 9$
     \\$K$-поле характеристики ноль
 \subsection{Следствие:}
 \noindent $P(x)=Q_1(x)^{k_1}$$... Q_m(x)^{k_n}$,$Q_i$- неприводимы => $P'(x)=Q_1(x)^{k_1-1}$$... Q_m(x)^{k_n-1}$,$Q$ вз./пр. с $Q_i$
-        \\Доказательство:
-        \\$P'(x)=\sum\limits _{i=1}^{m} K_iQ_1(x)^{k_1}$$...Q_m(x)^{k_n}$$Q'_i(x)=Q_1(x)^{k_1-1}$$...Q_m(x)^{k_m-1}$$\sum\limits _{i=1}^{n}\frac{k_iQ_1(x)...Q_m(x)}{Q_i(x)}Q'_i(x)$
+\\Доказательство:
+\\$P'(x)=\sum\limits _{i=1}^{m} K_iQ_1(x)^{k_1}$$...Q_m(x)^{k_n}$$Q'_i(x)=Q_1(x)^{k_1-1}$$...Q_m(x)^{k_m-1}$$\sum\limits _{i=1}^{n}\frac{k_iQ_1(x)...Q_m(x)}{Q_i(x)}Q'_i(x)$
     \\$\gcd(Q_1,Q_i)\neq 1$
-        \\$\gcd(Q_1,Q_i) = Q_i$
+\\$\gcd(Q_1,Q_i) = Q_i$
     \\$Q \vdots Q_i$
-        \\$Q(x)= k_1Q_2Q_3...Q_mQ'_1+k_2Q_1Q_3...Q_mQ'_2+...+...Q_{m-1}Q'_m\vdots Q_i$
+\\$Q(x)= k_1Q_2Q_3...Q_mQ'_1+k_2Q_1Q_3...Q_mQ'_2+...+...Q_{m-1}Q'_m\vdots Q_i$
     \\$k_iQ'_i\vdots Q_i$
-        \\$Q'_i\vdots Q_i =>$ Противоречие
+\\$Q'_i\vdots Q_i =>$ Противоречие
     \subsection{Алгоритм разложения на свободные от  квадратов множ.:}
     \noindent На языке программирования питон:
     \\$j=1$
-        \\$while$ $deg P>0$
+\\$while$ $deg P>0$
     \\\indent$p' = diff(P)$
     \\\indent$S=\gcd(P,P')$
     \\\indent$r = \dfrac{P}{S}$
@@ -1231,58 +1231,51 @@ $= \frac{-15+6-11}{10}x^2 + \frac{75-12-33}{10}x - 9 = -2x^2 + 3x - 9$
     \\\indent$P=\dfrac{P}{r}$
     \\\indent$j+= 1$
     \\$return$ $P_1P^2_2...P_{j-1}$
-        \\
-        \\Где:
-        \\
-        \\$P=P_1P^2_2P^3_3...P^n_n$
+\\
+\\Где:
+\\
+\\$P=P_1P^2_2P^3_3...P^n_n$
     \\$P'=P_2P^2_3...P_n^{n-1}$
-        \\$\gcd(P,P')=P_2P_3^2...P_n^{n-1}$
+\\$\gcd(P,P')=P_2P_3^2...P_n^{n-1}$
     \\$r=\frac{P}{\gcd(P,P')}=P_1P_2...P_n$
-        \\$\gcd(r,P')=P_2...P_n$
+\\$\gcd(r,P')=P_2...P_n$
     \\$\frac{r}{\gcd(r,P')}=P_1$
-        \\
-        \\Пример:
-        \\$P(x)=x^3+x^2-x-1$
+\\
+\\Пример:
+\\$P(x)=x^3+x^2-x-1$
     \\$P'(x)=3x^2+2x-1$
-        \\$\gcd(P(x),P'(x))=x+1=S(x)$
+\\$\gcd(P(x),P'(x))=x+1=S(x)$
     \\$r(x)= P/S=x^2-1$
-        \\$\gcd(r,P')=x+1=t(x)$
+\\$\gcd(r,P')=x+1=t(x)$
     \\$P_1=x-1$
-        \\new $P=x+1$
-        \\$P'=1$
+\\new $P=x+1$
+\\$P'=1$
     \\$S=1$
-        \\$r = x+1$
+\\$r = x+1$
     \\$t = 1$
-        \\$P_2=x+1$
+\\$P_2=x+1$
     \\$P(x) = P_1(x)P_2(x)^2P_3(x)^3...P_n(x)^n$
-        \\$P_1(x),...,P_n(x)$ попарно вз./пр. и свободные от квадратов множетели
-    \subsection{$P(x) \in\mathbb{Z} P(x)\vdots x - \frac{p}{q}\\NOD(p,q)=1 => a_n \vdots q $, где $p(v)=a_n(x^n)+...+a_0$}
-    \subsection{Теорема Безу}
-    \noindent $P(x) \vdots x - \frac{p}{q} => p(\frac{p}{q} = 0)$
-    \\Доказательство:
-    \\$\frac{a_nP^n}{q_n}+\frac{a_{n-1}P^{n-1}}{q^{n-1}}+\frac{a_1P}{q}+a_0=0$
-        \\$a_nP^n+a_{n-1}P^{n-1}q+...+a_nPq^{n-1}+a_0q^n=0$
-    \\$a_np^n \vdots q => a_n \vdots q$
-        \\$a_0p^n \vdots p => a_0 \vdots q$
+\\$P_1(x),...,P_n(x)$ попарно вз./пр. и свободные от квадратов множетели
+    \subsection{$P(x) \in\mathbb{Z} P(x)\vdots x - \frac{p}{q}\\\gcd(p,q)=1 => a_n \vdots q $, где $p(v)=a_n(x^n)+...+a_0$}
     \subsection{Критерий Эйзенштейна}
     \noindent $P(x) \in \mathbb{Z}[x]$
     \\$P(x) = a_nx^n+...+a_0$
-        \\$a_{n-1}\vdots P, a_{n-2} \vdots P,...,a_0\vdots P$ и $a_n$не$\vdots P=>$ $P(x)$ неприводим над $Q$
+\\$a_{n-1}\vdots P, a_{n-2} \vdots P,...,a_0\vdots P$ и $a_n$не$\vdots P=>$ $P(x)$ неприводим над $Q$
     \\Доказательство:
     \\Пусть $P(x) = f(x)g(x)$
     \\$f(x) = b_mx^m+...+b_0$
-        \\$g(x) = C_{n-m}x^{n-m}+...+C_0$
+\\$g(x) = C_{n-m}x^{n-m}+...+C_0$
     \\$P(x) = a_nx^n+...+a_0=(b_mx^n+...+b_0)(C_{n-m}x^{n-m}+...+C_0)$
-        \\$a_0=b_0C_0 \qquad b_0 \vdots P$
+\\$a_0=b_0C_0 \qquad b_0 \vdots P$
     \\$. \hspace{6em}C_0$ не$ \vdots P$
-        \\$a_1=b_0C_2+b_1C_1+b_2C_0 => b_2\vdots P $
+\\$a_1=b_0C_2+b_1C_1+b_2C_0 => b_2\vdots P $
     \\$a_m=b_nC_m+...+b_mC_0 => b_{n-1}\vdots P $
 
-        \setcounter{section}{12}
-        \section{Неприводимые многочлены. Поля Галуа}
-        \subsection{Неприводимые многочлены}
-        \subsubsection{Определение}
-        Пусть $K$ — поле. Тогда $P(x) \in K[x]$ неприводим, если не существует нетривиальный делитель $Q(x) \in K[x]$, такой, что его степень больше 0, меньше степени многочлена $P$ и $P(x)$ делится на $Q(x)$:
+\setcounter{section}{12}
+\section{Неприводимые многочлены. Поля Галуа}
+\subsection{Неприводимые многочлены}
+\subsubsection{Определение}
+Пусть $K$ — поле. Тогда $P(x) \in K[x]$ неприводим, если не существует нетривиальный делитель $Q(x) \in K[x]$, такой, что его степень больше 0, меньше степени многочлена $P$ и $P(x)$ делится на $Q(x)$:
 \[
     \nexists Q(x) \in K[x] : 0 < \deg Q < \deg P \text{ и } P(x) \vdots Q(x)
 \]
@@ -1557,7 +1550,7 @@ aabc
 
 \includegraphics[width=20mm]{images/tree1.png}
 
-$\underbrace{0}_{\text{a}}\underbrace{0}_{\text{a}}\underbrace{11}_{\text{b}}\underbrace{01}_{\text{c}}$
+$\underbrace{0}_{\text{a}}\underbrace{0}_{\text{a}}\underbrace{11}_{\text{b}}\underbrace{01}_{\text{c}}Теорема Безу$
 
 $\begin{cases}
         a  \sim 0  \\
