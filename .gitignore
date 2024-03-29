@@ -7,3 +7,7 @@
 *.xdv
 *.zip
 svg-inkscape
+*.exe
+*.out
+*.o
+*.dll
