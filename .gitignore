@@ -11,3 +11,8 @@ svg-inkscape
 *.out
 *.o
 *.dll
+*.bbl
+*.bbl-SAVE-ERROR
+*.bcf
+*.run.xml
+*.toc
