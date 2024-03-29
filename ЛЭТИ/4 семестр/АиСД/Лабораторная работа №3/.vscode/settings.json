@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "*.toml": "toml",
+        "*.dart": "dart",
+        "authorized_keys": "plaintext",
+        "iostream": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
+    }
+}

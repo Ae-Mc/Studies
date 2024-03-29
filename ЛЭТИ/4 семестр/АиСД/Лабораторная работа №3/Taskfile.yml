@@ -1,0 +1,23 @@
+version: "3"
+
+vars:
+  FILES: main.cpp
+  OUT_FILENAME:
+    sh: |
+      if [[ {{OS}} == "windows" ]]; then
+        echo "main.exe"
+      else
+        echo "main.out"
+      fi
+
+tasks:
+  default:
+    - task: build
+    - task: run
+  build: g++ -g -std=c++20 -Wall -Wextra -Werror -pedantic {{ .FILES }} -o {{ .OUT_FILENAME }} {{ .CLI_ARGS }}
+  run:
+    cmds:
+      - ./{{ .OUT_FILENAME }}
+    interactive: true
+  list-sources:
+    - echo {{ .FILES }}
