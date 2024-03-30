@@ -64,7 +64,7 @@ template <typename T> class WBBT {
     }
 
     node balanceR(T value, node left, node right) {
-        if (isBalanced(right, left)) {
+        if (isBalanced(left, right)) {
             return new Node(value, left, right);
         }
         return rotateR(value, left, right);

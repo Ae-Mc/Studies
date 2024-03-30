@@ -1,4 +1,5 @@
 #pragma once
 
-const double delta = 3;
-const double gamma = 2;
+#include <cmath>
+const double delta = 1 + std::sqrt(2);
+const double gamma = sqrt(2);
