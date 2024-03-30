@@ -15,11 +15,11 @@ tasks:
     - task: build
     - task: run
   build:
-    cmd: g++ -g -std=c++20 -Wall -Wextra -Werror -pedantic {{ .FILES }} -o {{ .OUT_FILENAME }} {{ .CLI_ARGS }}
+    cmd: g++ -O3 -std=c++20 -Wall -Wextra -Werror -pedantic {{ .FILES }} -o {{ .OUT_FILENAME }} {{ .CLI_ARGS }}
     desc: "Компиляция и сборка программы"
   valgrind:
     cmds:
-      - task: build
+      - task: build -g
       - valgrind ./{{ .OUT_FILENAME }}
     platforms:
       - linux

@@ -1,5 +1,5 @@
 #pragma once
 
-#include <cmath>
-const double delta = 1 + std::sqrt(2);
-const double gamma = sqrt(2);
+#include <cstddef>
+constexpr const size_t DELTA = 3;
+constexpr const size_t GAMMA = 2;

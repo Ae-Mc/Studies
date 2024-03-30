@@ -10,6 +10,8 @@ A ⊕ B \ (C ∪ D) \ E
 WBBT with MERGE, CONCAT, SUBST
 */
 
+constinit int tree_size = 20000;
+
 using namespace std;
 
 template <typename T> void depth_search(const WBBT<T> &tree) {
@@ -24,25 +26,25 @@ template <typename T> void depth_search(const WBBT<T> &tree) {
 
 int main() {
     WBBT<int> A, B, result;
-    for (int i = 500; i < 1000; i++) {
+    for (int i = tree_size / 2; i < tree_size; i++) {
         A.insert(i);
     }
-    for (int i = 0; i < 500; i++) {
+    for (int i = 0; i < tree_size / 2; i++) {
         A.insert(i);
     }
     for (int i = 64; i < 128; i++) {
         B.insert(i);
     }
-    cout << "Tree size: " << A.size() << endl;
+    // cout << "Tree size: " << A.size() << endl;
 
-    cout << A;
-    depth_search(A);
-    for (const auto i : {1, 2, 3, 148, 53, 64, -1024, -1, 0, 23, 62}) {
-        cout << "Tree contains " << i << " is "
-             << (A.contains(i) ? "true" : "false") << endl;
-    }
-
-    merge(cbegin(B), cend(B), cbegin(A), cend(A), begin(result));
+    //cout << A;
+    //depth_search(A);
+//     for (const auto i : {1, 2, 3, 148, 53, 64, -1024, -1, 0, 23, 62, 100001, 100000, 99999, 50000}) {
+//         cout << "Tree contains " << i << " is "
+//              << (A.contains(i) ? "true" : "false") << endl;
+//     }
+// 
+//     merge(cbegin(B), cend(B), cbegin(A), cend(A), begin(result));
     // cout << "Tree merge result:" << endl;
     // cout << result;
     // depth_search(result);

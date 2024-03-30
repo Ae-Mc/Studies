@@ -47,10 +47,17 @@ template <typename T> class WBBT {
     }
 
     node singleL(T value, node left, node right) {
+        // auto result = new Node(right->value, node(nullptr),
+        //                           right->right);
+        // right->value = value;
+        // right->right = right->left;
+        // right->left = left;
+        // right->_size = _node_size(right->left) + _node_size(right->right);
+        // result->left = right;
+        // result->_size += right->size();
         auto result = new Node(right->value, new Node(value, left, right->left),
                                right->right);
-        right->prepare_safe_delete();
-        delete right;
+        right->safe_delete();
         return result;
     }
 
@@ -58,8 +65,7 @@ template <typename T> class WBBT {
         auto result = new Node(
             right->left->value, new Node(value, left, right->left->left),
             new Node(right->value, right->left->right, right->right));
-        right->left->prepare_safe_delete();
-        delete right->left;
+        right->left->safe_delete();
         return result;
     }
 
@@ -81,8 +87,7 @@ template <typename T> class WBBT {
     node singleR(T value, node left, node right) {
         auto result = new Node(left->value, new Node(value, right, left->right),
                                left->left);
-        left->prepare_safe_delete();
-        delete left;
+        left->safe_delete();
         return result;
     }
 
@@ -90,19 +95,18 @@ template <typename T> class WBBT {
         auto result = new Node(
             left->right->value, new Node(value, right, left->right->right),
             new Node(left->value, left->right->left, left->left));
-        left->right->prepare_safe_delete();
-        delete left->right;
+        left->right->safe_delete();
         return result;
     }
 
     size_t _node_size(node x) const { return x == nullptr ? 0 : x->size(); }
 
     bool isBalanced(node a, node b) {
-        return (delta * (_node_size(a) + 1)) >= (_node_size(b) + 1);
+        return (DELTA * (_node_size(a) + 1)) >= (_node_size(b) + 1);
     }
 
     bool isSingle(node a, node b) {
-        return (_node_size(a) + 1) < gamma * (_node_size(b) + 1);
+        return (_node_size(a) + 1) < GAMMA * (_node_size(b) + 1);
     }
 
     Node<T> *_clone_subtree(const Node<T> *source) {
