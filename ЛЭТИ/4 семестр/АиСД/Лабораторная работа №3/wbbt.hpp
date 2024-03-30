@@ -95,16 +95,14 @@ template <typename T> class WBBT {
         return result;
     }
 
+    size_t _node_size(node x) const { return x == nullptr ? 0 : x->size(); }
+
     bool isBalanced(node a, node b) {
-        auto a_size = a == nullptr ? 0 : a->size();
-        auto b_size = b == nullptr ? 0 : b->size();
-        return (delta * (a_size + 1)) >= (b_size + 1);
+        return (delta * (_node_size(a) + 1)) >= (_node_size(b) + 1);
     }
 
     bool isSingle(node a, node b) {
-        auto a_size = a == nullptr ? 0 : a->size();
-        auto b_size = b == nullptr ? 0 : b->size();
-        return (a_size + 1) < gamma * (b_size + 1);
+        return (_node_size(a) + 1) < gamma * (_node_size(b) + 1);
     }
 
     Node<T> *_clone_subtree(const Node<T> *source) {
@@ -146,7 +144,7 @@ template <typename T> class WBBT {
 
     void insert(T value) { _root = _insert(value, _root); }
 
-    size_t size() const { return _root == nullptr ? 0 : _root->size(); }
+    size_t size() const { return _node_size(_root); }
 
     void print(std::ostream &out, const Node<T> &node,
                std::vector<const Node<T> *> &path) const;
