@@ -1,147 +1,116 @@
 #pragma once
+#include "consts.hpp"
 #include "wbbt_iterator.hpp"
 #include "wbbt_node.hpp"
 #include <cstddef>
 #include <ostream>
-#include <utility>
 #include <vector>
 
 // Weight balanced binary tree
 template <typename T> class WBBT {
     using const_iterator = WBBTConstIterator<T>;
     using iterator = WBBTOutIterator<T>;
+    using node = Node<T> *;
 
-    Node<T> *_root;
+    node _root;
 
     explicit WBBT(WBBT<T> &&other) = delete; // delete move constructor
 
-    bool _insert(T value, Node<T> *root) {
+    node _insert(T value, node root) {
         if (root == nullptr) {
-            return false;
+            return new Node(value);
         }
-        if (root->value == value) {
-            return true;
+        if (value < root->value) {
+            return balanceR(root->value, _insert(value, root->left),
+                            root->right);
         }
-        if (root->value < value) {
-            if (!_insert(value, root->right)) {
-                root->right = new Node(value);
-                root->right->parent = root;
-                _balance(root->right);
-            }
-        } else if (!_insert(value, root->left)) {
-            root->left = new Node(value);
-            root->left->parent = root;
-            _balance(root->left);
+        if (value > root->value) {
+            return balanceL(root->value, root->left,
+                            _insert(value, root->right));
         }
-        return true;
+        return root;
     }
 
-    void _balance(Node<T> *z) {
-        // TODO: balancing working not properly
-        typedef Node<T> *(RotationFunc)(Node<T> *, Node<T> *);
-        Node<T> *g, *n, *x = z->parent;
-        RotationFunc *double_rotation_func, *single_rotation_func;
-        bool (*first_comparator)(int value), (*second_comparator)(int value);
-        for (; x != nullptr; x = z->parent) {
-            first_comparator = [](int value) { return value > 0; };
-            second_comparator = [](int value) { return value < 0; };
-            if (z->is_right_child()) {
-                double_rotation_func = rotate_rightLeft;
-                single_rotation_func = rotate_left;
-            } else {
-                double_rotation_func = rotate_leftRight;
-                single_rotation_func = rotate_right;
-                std::swap(first_comparator, second_comparator);
-            }
-            if (first_comparator(x->balance_factor())) {
-                g = x->parent;
-                if (second_comparator(z->balance_factor())) {
-                    n = double_rotation_func(x, z);
-                } else {
-                    n = single_rotation_func(x, z);
-                }
-            } else {
-                if (second_comparator(x->balance_factor())) {
-                    break;
-                }
-                z = x;
-                continue;
-            }
-            n->parent = g;
-            if (g != nullptr) {
-                if (x == g->left) {
-                    g->left = n;
-                } else {
-                    g->right = n;
-                }
-            } else {
-                this->_root = n;
-            }
-            break;
+    node balanceL(T value, node left, node right) {
+        if (isBalanced(left, right)) {
+            return new Node(value, left, right);
+        }
+        return rotateL(value, left, right);
+    };
+
+    node rotateL(T value, node left, node right) {
+        if (isSingle(right->left, right->right)) {
+            return singleL(value, left, right);
+        } else {
+            return doubleL(value, left, right);
         }
     }
 
-    static Node<T> *rotate_left(Node<T> *x, Node<T> *z) {
-        Node<T> *t23;
-        t23 = z->left;
-        x->right = t23;
-        if (t23 != nullptr) {
-            t23->parent = x;
+    node singleL(T value, node left, node right) {
+        auto result = new Node(right->value, new Node(value, left, right->left),
+                               right->right);
+        right->prepare_safe_delete();
+        delete right;
+        return result;
+    }
+
+    node doubleL(T value, node left, node right) {
+        auto result = new Node(
+            right->left->value, new Node(value, left, right->left->left),
+            new Node(right->value, right->left->right, right->right));
+        right->left->prepare_safe_delete();
+        delete right->left;
+        return result;
+    }
+
+    node balanceR(T value, node left, node right) {
+        if (isBalanced(right, left)) {
+            return new Node(value, left, right);
         }
-        z->left = x;
-        x->parent = z;
-        return z;
-    }
+        return rotateR(value, left, right);
+    };
 
-    static Node<T> *rotate_right(Node<T> *x, Node<T> *z) {
-        Node<T> *t23;
-        t23 = z->right;
-        x->left = t23;
-        if (t23 != nullptr) {
-            t23->parent = x;
+    node rotateR(T value, node left, node right) {
+        if (isSingle(left->right, left->left)) {
+            return singleR(value, left, right);
+        } else {
+            return doubleR(value, left, right);
         }
-        z->right = x;
-        x->parent = z;
-        return z;
     }
 
-    static Node<T> *rotate_leftRight(Node<T> *x, Node<T> *z) {
-        z = rotate_left(x, z);
-        return rotate_right(x, z);
-        // auto y = z->right;
-        // auto t3 = y->left;
-        // z->right = t3;
-        // if (t3 != nullptr) {
-        //     t3->parent = z;
-        // }
-        // y->left = z;
-        // z->parent = y;
-        // auto t2 = y->right;
-        // x->left = t2;
-        // if (t2 != nullptr) {
-        //     t2->parent = x;
-        // }
-        // y->right = x;
-        // x->parent = y;
-        // return y;
+    node singleR(T value, node left, node right) {
+        auto result = new Node(left->value, new Node(value, right, left->right),
+                               left->left);
+        left->prepare_safe_delete();
+        delete left;
+        return result;
     }
 
-    static Node<T> *rotate_rightLeft(Node<T> *x, Node<T> *z) {
-        z = rotate_right(x, z);
-        return rotate_left(x, z);
+    node doubleR(T value, node left, node right) {
+        auto result = new Node(
+            left->right->value, new Node(value, right, left->right->right),
+            new Node(left->value, left->right->left, left->left));
+        left->right->prepare_safe_delete();
+        delete left->right;
+        return result;
+    }
+
+    bool isBalanced(node a, node b) {
+        auto a_size = a == nullptr ? 0 : a->size();
+        auto b_size = b == nullptr ? 0 : b->size();
+        return (delta * (a_size + 1)) >= (b_size + 1);
+    }
+
+    bool isSingle(node a, node b) {
+        auto a_size = a == nullptr ? 0 : a->size();
+        auto b_size = b == nullptr ? 0 : b->size();
+        return (a_size + 1) < gamma * (b_size + 1);
     }
 
     Node<T> *_clone_subtree(const Node<T> *source) {
         if (source != nullptr) {
-            auto dest = new Node(source->value);
-            dest->right = _clone_subtree(source->right);
-            if (dest->right != nullptr) {
-                dest->right->parent = dest;
-            }
-            dest->left = _clone_subtree(source->left);
-            if (dest->left != nullptr) {
-                dest->left->parent = dest;
-            }
+            auto dest = new Node(source->value, _clone_subtree(source->left),
+                                 _clone_subtree(source->right));
             return dest;
         }
         return nullptr;
@@ -175,16 +144,7 @@ template <typename T> class WBBT {
         return false;
     }
 
-    void insert(T value) {
-        if (!_insert(value, _root)) {
-            _root = new Node(value);
-        }
-        // if (!_root->balanced()) {
-        //     if (_root->has_right()) {
-        //         _balance(_root->right);
-        //     }
-        // }
-    }
+    void insert(T value) { _root = _insert(value, _root); }
 
     size_t size() const { return _root == nullptr ? 0 : _root->size(); }
 
@@ -212,22 +172,24 @@ void WBBT<T>::print(std::ostream &out, const Node<T> &node,
                     std::vector<const Node<T> *> &path) const {
     path.push_back(&node);
     for (size_t i = 1; i < path.size() - 1; i++) {
-        if (path[i - 1]->has_right() && !path[i]->is_right_child()) {
+        if (path[i - 1]->has_right() && path[i - 1]->right != path[i]) {
             out << "│";
         } else {
             out << " ";
         }
         out << "   ";
     }
-    if (node.is_left_child()) {
-        if (node.has_parent() && node.parent->has_right()) {
-            out << "├";
+    if (path.size() > 1) {
+        if ((*(path.end() - 2))->left == &node) {
+            if (!path.empty() && (*(path.end() - 2))->has_right()) {
+                out << "├";
+            } else {
+                out << "└";
+            }
+            out << "───l:";
         } else {
-            out << "└";
+            out << "└───r:";
         }
-        out << "───l:";
-    } else if (node.is_right_child()) {
-        out << "└───r:";
     }
     out << node.value << std::endl;
     if (node.has_left()) {

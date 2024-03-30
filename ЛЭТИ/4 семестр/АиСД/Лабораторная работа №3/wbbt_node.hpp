@@ -8,9 +8,19 @@ template <typename T> struct Node {
     Node *parent = nullptr;
     Node *left = nullptr;
     Node *right = nullptr;
+    size_t _size;
 
-    explicit Node(T value)
-        : value(value), parent(nullptr), left(nullptr), right(nullptr) {}
+    explicit Node(T value, Node<T> *left = nullptr, Node<T> *right = nullptr)
+        : value(value), parent(nullptr), left(left), right(right), _size(1) {
+        if (right != nullptr) {
+            _size += right->_size;
+            right->parent = this;
+        }
+        if (left != nullptr) {
+            _size += left->_size;
+            left->parent = this;
+        }
+    }
 
     size_t size() const {
         size_t result = 0;
@@ -23,27 +33,6 @@ template <typename T> struct Node {
         return result + 1;
     }
     size_t weight() const { return size() - 1; }
-    int balance_factor() const {
-        size_t left_weight = 0, right_weight = 0;
-        if (left != nullptr) {
-            left_weight = left->weight();
-        }
-        if (right != nullptr) {
-            right_weight = right->weight();
-        }
-        return right_weight - left_weight;
-    }
-    bool balanced() const {
-        size_t left_weight = 0, right_weight = 0, current_weight = weight();
-        if (left != nullptr) {
-            left_weight = left->weight();
-        }
-        if (right != nullptr) {
-            right_weight = right->weight();
-        }
-        return left_weight >= current_weight * WEIGHT_COEFFICIENT &&
-               right_weight >= current_weight * WEIGHT_COEFFICIENT;
-    }
     void prepare_safe_delete() {
         left = nullptr;
         right = nullptr;

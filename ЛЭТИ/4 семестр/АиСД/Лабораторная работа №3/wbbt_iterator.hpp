@@ -7,31 +7,32 @@
 template <typename T> class WBBT;
 
 template <typename T> struct WBBTConstIterator {
-    using self_type = WBBTConstIterator;
+    using self_type = WBBTConstIterator<T>;
     using value_type = const Node<T>;
     using reference = const Node<T> &;
     using pointer = const Node<T> *;
     using difference_type = std::ptrdiff_t;
     using iterator_category = std::forward_iterator_tag;
 
-    WBBTConstIterator(pointer ptr = nullptr) : ptr(ptr){};
+    WBBTConstIterator(pointer ptr = nullptr, self_type *root = nullptr)
+        : ptr(ptr), root(root){};
 
     // prefix increment
     self_type &operator++() {
         if (ptr != nullptr) {
-            if (ptr->left != nullptr) {
+            if (ptr->has_right()) {
+                root = new self_type(ptr, root);
+            }
+            if (ptr->has_left()) {
                 ptr = ptr->left;
-            } else if (ptr->right != nullptr) {
-                ptr = ptr->right;
             } else {
-                bool prev_is_right;
-                do {
-                    prev_is_right = ptr->is_right_child();
-                    ptr = ptr->parent;
-                } while (ptr != nullptr &&
-                         (prev_is_right || ptr->right == nullptr));
-                if (ptr != nullptr) {
-                    ptr = ptr->right;
+                if (root == nullptr) {
+                    ptr = nullptr;
+                } else {
+                    auto temp = root;
+                    ptr = root->ptr->right;
+                    root = root->root;
+                    delete temp;
                 }
             }
         }
@@ -56,13 +57,14 @@ template <typename T> struct WBBTConstIterator {
         return a.ptr != b.ptr;
     };
 
-  private:
+  protected:
     pointer ptr;
+    self_type *root;
 };
 
 static_assert(std::forward_iterator<WBBTConstIterator<int>>);
 
-template <typename T> struct WBBTOutIterator {
+template <typename T> struct WBBTOutIterator : public WBBTConstIterator<T> {
     using self_type = WBBTOutIterator;
     using value_type = Node<T>;
     using reference = Node<T> &;
@@ -70,32 +72,15 @@ template <typename T> struct WBBTOutIterator {
     using difference_type = std::ptrdiff_t;
     using iterator_category = std::output_iterator_tag;
 
-    WBBTOutIterator(WBBT<T> *container, pointer ptr = nullptr)
-        : ptr(ptr), container(container){};
+    WBBTOutIterator(WBBT<T> *container, pointer ptr = nullptr,
+                    self_type *root = nullptr)
+        : WBBTConstIterator<T>(ptr, root), container(container){};
 
-    // prefix increment
     self_type &operator++() {
-        if (ptr != nullptr) {
-            if (ptr->left != nullptr) {
-                ptr = ptr->left;
-            } else if (ptr->right != nullptr) {
-                ptr = ptr->right;
-            } else {
-                bool prev_is_right;
-                do {
-                    prev_is_right = ptr->is_right_child();
-                    ptr = ptr->parent;
-                } while (ptr != nullptr &&
-                         (prev_is_right || ptr->right == nullptr));
-                if (ptr != nullptr) {
-                    ptr = ptr->right;
-                }
-            }
-        }
+        WBBTConstIterator<T>::operator++();
         return *this;
     }
 
-    // postfix increment
     self_type operator++(int) {
         self_type &tmp = *this;
         ++(*this);
@@ -103,7 +88,7 @@ template <typename T> struct WBBTOutIterator {
     }
 
     self_type &operator*() { return *this; }
-    pointer operator->() { return ptr; }
+    pointer operator->() { return WBBTConstIterator<T>::ptr; }
     self_type operator=(const value_type &node) {
         this->container->insert(node.value);
         return *this;
@@ -115,8 +100,7 @@ template <typename T> struct WBBTOutIterator {
         return a.ptr != b.ptr;
     };
 
-  private:
-    pointer ptr;
+  protected:
     WBBT<T> *container;
 };
 

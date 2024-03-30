@@ -14,10 +14,22 @@ tasks:
   default:
     - task: build
     - task: run
-  build: g++ -g -std=c++20 -Wall -Wextra -Werror -pedantic {{ .FILES }} -o {{ .OUT_FILENAME }} {{ .CLI_ARGS }}
+  build:
+    cmd: g++ -g -std=c++20 -Wall -Wextra -Werror -pedantic {{ .FILES }} -o {{ .OUT_FILENAME }} {{ .CLI_ARGS }}
+    desc: "Компиляция и сборка программы"
+  valgrind:
+    cmds:
+      - task: build
+      - valgrind ./{{ .OUT_FILENAME }}
+    platforms:
+      - linux
+    desc: "Поиск утечек памяти с помощью valgrind. Программа будет перекомпилирована"
   run:
     cmds:
       - ./{{ .OUT_FILENAME }}
     interactive: true
+    desc: "Запуск уже скомпилированной до того программы"
   list-sources:
-    - echo {{ .FILES }}
+    cmds:
+      - echo {{ .FILES }}
+    desc: "Вывод списка исходных файлов, передаваемых компилятору"

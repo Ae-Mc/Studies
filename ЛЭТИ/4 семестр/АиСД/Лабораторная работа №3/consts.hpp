@@ -1,3 +1,4 @@
 #pragma once
 
-const double WEIGHT_COEFFICIENT = 0.25;
+const double delta = 3;
+const double gamma = 2;
