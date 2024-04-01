@@ -1,12 +1,15 @@
 #pragma once
-// #include "wbbt.hpp"
+#include "comparable.hpp"
 #include "wbbt_node.hpp"
 #include <cstddef>
 #include <iterator>
+#include <memory>
+#include <ranges>
+#include <type_traits>
 
-template <typename T> class WBBT;
+template <Comparable T> class WBBT;
 
-template <typename T> struct WBBTConstIterator {
+template <Comparable T> struct WBBTConstIterator {
     using self_type = WBBTConstIterator<T>;
     using value_type = const Node<T>;
     using reference = const Node<T> &;
@@ -64,45 +67,43 @@ template <typename T> struct WBBTConstIterator {
 
 static_assert(std::forward_iterator<WBBTConstIterator<int>>);
 
-template <typename T> struct WBBTOutIterator : public WBBTConstIterator<T> {
-    using self_type = WBBTOutIterator;
-    using value_type = Node<T>;
-    using reference = Node<T> &;
-    using pointer = Node<T> *;
-    using difference_type = std::ptrdiff_t;
+template <Comparable T> struct WBBTInsertIterator {
     using iterator_category = std::output_iterator_tag;
+    using value_type = void;
+    using difference_type = std::ptrdiff_t;
+    using pointer = void;
+    using reference = void;
+    using container_type = WBBT<T>;
 
-    WBBTOutIterator(WBBT<T> *container, pointer ptr = nullptr,
-                    self_type *root = nullptr)
-        : WBBTConstIterator<T>(ptr, root), container(container){};
+    constexpr WBBTInsertIterator(container_type &container,
+                                 std::ranges::iterator_t<container_type> i)
+        : container(std::addressof(container)), iter(i){};
 
-    self_type &operator++() {
-        WBBTConstIterator<T>::operator++();
-        return *this;
-    }
-
-    self_type operator++(int) {
-        self_type &tmp = *this;
-        ++(*this);
-        return tmp;
-    }
-
-    self_type &operator*() { return *this; }
-    pointer operator->() { return WBBTConstIterator<T>::ptr; }
-    self_type operator=(const value_type &node) {
+    constexpr std::insert_iterator<container_type> &
+    operator=(const typename container_type::value_type &node) {
         this->container->insert(node.value);
         return *this;
     }
-    friend bool operator==(const WBBTOutIterator &a, const WBBTOutIterator &b) {
-        return a.ptr == b.ptr;
-    };
-    friend bool operator!=(const WBBTOutIterator &a, const WBBTOutIterator &b) {
-        return a.ptr != b.ptr;
-    };
+
+    constexpr std::insert_iterator<container_type> &
+    operator=(const typename container_type::value_type &&node) {
+        this->container->insert(node.value);
+        return *this;
+    }
+
+    constexpr std::insert_iterator<container_type> &operator*() {
+        return *this;
+    }
+
+    constexpr std::insert_iterator<container_type> &operator++() {
+        return *this;
+    }
+
+    constexpr std::insert_iterator<container_type> &operator++(int) {
+        return *this;
+    }
 
   protected:
-    WBBT<T> *container;
+    container_type *container;
+    std::ranges::iterator_t<container_type> iter;
 };
-
-static_assert(std::indirectly_writable<WBBTOutIterator<int>, Node<int>>);
-static_assert(std::output_iterator<WBBTOutIterator<int>, Node<int>>);

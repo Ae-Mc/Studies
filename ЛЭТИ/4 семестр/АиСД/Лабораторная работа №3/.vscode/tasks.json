@@ -6,7 +6,9 @@
             "command": "task",
             "type": "process",
             "args": [
-                "build"
+                "build",
+                "--",
+                "-g"
             ],
             "problemMatcher": [
                 "$tsc"

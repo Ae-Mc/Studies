@@ -19,8 +19,10 @@ tasks:
     desc: "Компиляция и сборка программы"
   valgrind:
     cmds:
-      - task: build -g
-      - valgrind ./{{ .OUT_FILENAME }}
+      - task: build
+        vars:
+          CLI_ARGS: -g
+      - valgrind {{ .CLI_ARGS }} ./{{ .OUT_FILENAME }}
     platforms:
       - linux
     desc: "Поиск утечек памяти с помощью valgrind. Программа будет перекомпилирована"
