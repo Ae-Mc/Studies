@@ -1,14 +1,8 @@
 #include "wbbt.hpp"
 #include "wbbt_iterator.hpp"
-#include <algorithm>
 #include <iostream>
-#include <iterator>
-#include <ranges>
-#include <regex>
-#include <set>
 #include <sstream>
 #include <string>
-#include <vector>
 
 /*
 Task (5):
@@ -42,49 +36,41 @@ ostream &operator<<(ostream &out, std::ranges::range auto list) {
     return out;
 }
 
-template <typename T>
-istream &operator>>(istream &in, std::ranges::output_range<T> auto range) {
+template <template <class> class U, class T>
+concept Insertable =
+    requires(U<T> container, T value) { container.insert(value); };
+
+template <template <class> class U, class T>
+    requires Insertable<U, T>
+istream &operator>>(istream &in, U<T> &container) {
     string line;
     getline(in, line);
     istringstream line_stream(line);
-    insert_iterator<T> iter = begin(range);
     while (!line_stream.eof()) {
-        line_stream >> iter;
+        T x;
+        line_stream >> x;
+        container.insert(x);
     }
     return in;
 }
 
 int main() {
-    WBBT<int> A, B, result;
+    WBBT<int> A, B, C, D, E, result;
+    cout << "Enter A, B, C, D, E (values separated by space, sets separated by "
+            "new lines):"
+         << endl;
+    cout << "A: ";
     cin >> A;
-    cout << "Tree size: " << A.size() << endl;
+    cout << "B: ";
+    cin >> B;
+    cout << "C: ";
+    cin >> C;
+    cout << "D: ";
+    cin >> D;
+    cout << "E: ";
+    cin >> E;
 
-    cout << A;
-    depth_search(A);
-    A.erase(0);
-    // cout << "After deleteion:" << endl;
-    // cout << "Tree size: " << A.size() << endl;
-    // cout << A;
-    for (const auto i :
-         {1, 2, 3, 148, 53, 64, -1024, -1, 0, 23, 62, 54, 52, 51, 63}) {
-        cout << "Tree contains " << i << " is "
-             << (A.contains(i) ? "true" : "false") << endl;
-        A.contains(i);
-    }
-
-    set<int> set_A(cbegin(A), cend(A)), set_B(cbegin(B), cend(B)), set_result;
-
-    merge(begin(set_A), end(set_A), begin(set_B), end(set_B),
-          std::inserter(set_result, set_result.begin()));
-    merge(cbegin(A), cend(A), cbegin(B), cend(B),
-          inserter(result, begin(result)));
-    cout << "Tree merge size: " << result.size() << ". Result:" << endl;
-    cout << result;
-    auto set_predicate = [](const int &a) { return 20 < a && a < 100; };
-    erase_if(set_result, set_predicate);
-    result.erase(begin(set_result), end(set_result));
-    cout << "After deletion of values outside of range (20, 100): Tree size "
-         << result.size() << ". Tree:" << endl;
-    cout << result << endl;
+    result = (A ^ B) - (C | D) - E;
+    cout << "A ⊕ B \\ (C ∪ D) \\ E:" << endl << result;
     return 0;
 }
