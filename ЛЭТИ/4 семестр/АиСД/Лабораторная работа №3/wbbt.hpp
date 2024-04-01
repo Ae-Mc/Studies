@@ -41,13 +41,16 @@ template <Comparable T> class WBBT {
 
     node balanceL(T value, node left, node right) {
         node result;
+
         if (right == nullptr) {
             if (left == nullptr) {
                 return new Node(value);
             }
+
             if (left->size() == 1) {
                 return new Node(value, left);
             }
+
             if (!left->has_left()) {
                 result =
                     new Node(**left->right, new Node(**left), new Node(value));
@@ -66,141 +69,86 @@ template <Comparable T> class WBBT {
             left->safe_delete();
             return result;
         }
+
         if (left == nullptr) {
             return new Node(value, node(nullptr), right);
         }
-        if (_size(left) > DELTA * _size(right)) {
-            if (_size(left->right) < GAMMA * _size(left->left)) {
-                result = new Node(**left, left->left,
-                                  new Node(value, left->right, right));
-            } else {
-                result =
-                    new Node(**left->right,
-                             new Node(**left, left->left, left->right->left),
-                             new Node(value, left->right->right, right));
-                left->right->safe_delete();
-            }
-            left->safe_delete();
-            return result;
-        } else {
+
+        if (isBalanced(left, right)) {
             return new Node(value, left, right);
         }
-    };
 
-    node rotateL(T value, node left, node right) {
-        if (isSingle(right->left, right->right)) {
-            return singleL(value, left, right);
+        if (_size(left->right) < GAMMA * _size(left->left)) {
+            result = new Node(**left, left->left,
+                              new Node(value, left->right, right));
         } else {
-            return doubleL(value, left, right);
+            result = new Node(**left->right,
+                              new Node(**left, left->left, left->right->left),
+                              new Node(value, left->right->right, right));
+            left->right->safe_delete();
         }
-    }
-
-    node singleL(T value, node left, node right) {
-        auto result = new Node(right->value, new Node(value, left, right->left),
-                               right->right);
-        right->safe_delete();
+        left->safe_delete();
         return result;
-    }
-
-    node doubleL(T value, node left, node right) {
-        auto result = new Node(
-            right->left->value, new Node(value, left, right->left->left),
-            new Node(right->value, right->left->right, right->right));
-        right->left->safe_delete();
-        right->safe_delete();
-        return result;
-    }
+    };
 
     node balanceR(T value, node left, node right) {
         node result;
+
         if (left == nullptr) {
             if (right == nullptr) {
                 return new Node(value);
             }
+
             if (right->size() == 1) {
-                return new Node(value, (node) nullptr, right);
+                return new Node(value, node(nullptr), right);
             }
+
             if (!right->has_left()) {
                 result = new Node(right->value, new Node(value), right->right);
             } else if (!right->has_right()) {
                 result = new Node(right->left->value, new Node(value),
                                   new Node(right->value));
-            } else if (_size(right->left) < GAMMA * _size(right->right)) {
+            } else if (isSingle(right->left, right->right)) {
                 result =
                     new Node(right->value, new Node(value, left, right->left),
                              right->right);
             } else {
                 result = new Node(
                     right->left->value,
-                    new Node(value, (node) nullptr, right->left->left),
+                    new Node(value, node(nullptr), right->left->left),
                     new Node(right->value, right->left->right, right->right));
                 right->left->safe_delete();
             }
             right->safe_delete();
             return result;
         }
+
         if (right == nullptr) {
             return new Node(value, left);
         }
-        if (_size(right) > DELTA * _size(left)) {
-            if (_size(right->left) < GAMMA * _size(right->right)) {
-                result = new Node(**right, new Node(value, left, right->left),
-                                  right->right);
-            } else {
-                result = new Node(
-                    **right->left, new Node(value, left, right->left->left),
-                    new Node(**right, right->left->right, right->right));
-                right->left->safe_delete();
-            }
-            right->safe_delete();
-            return result;
-        } else {
+
+        if (isBalanced(left, right)) {
             return new Node(value, left, right);
         }
-    };
 
-    node rotateR(T value, node left, node right) {
-        if (isSingle(left->right, left->left)) {
-            return singleR(value, left, right);
+        if (isSingle(right->left, right->right)) {
+            result = new Node(**right, new Node(value, left, right->left),
+                              right->right);
         } else {
-            return doubleR(value, left, right);
+            result = new Node(
+                **right->left, new Node(value, left, right->left->left),
+                new Node(**right, right->left->right, right->right));
+            right->left->safe_delete();
         }
-    }
-
-    node singleR(T value, node left, node right) {
-        auto result = new Node(left->value, new Node(value, right, left->right),
-                               left->left);
-        left->safe_delete();
+        right->safe_delete();
         return result;
-    }
-
-    node doubleR(T value, node left, node right) {
-        auto result = new Node(
-            left->right->value, new Node(value, right, left->right->right),
-            new Node(left->value, left->right->left, left->left));
-        left->right->safe_delete();
-        left->safe_delete();
-        return result;
-    }
+    };
 
     size_t _size(node x) const { return x == nullptr ? 0 : x->size(); }
 
-    bool isBalanced(node a, node b) {
-        return (DELTA * (_size(a) + 1)) >= (_size(b) + 1);
-    }
+    bool isBalanced(node a, node b) { return DELTA * _size(a) >= _size(b); }
 
-    bool isSingle(node a, node b) {
-        return (_size(a) + 1) < GAMMA * (_size(b) + 1);
-    }
-
-    Node<T> *_clone_subtree(const Node<T> *source) {
-        if (source != nullptr) {
-            auto dest = new Node(source->value, _clone_subtree(source->left),
-                                 _clone_subtree(source->right));
-            return dest;
-        }
-        return nullptr;
-    }
+    bool isSingle(node a, node b) { return _size(a) < GAMMA * _size(b); }
 
     node _remove(T value, node root) {
         if (root == nullptr) {
