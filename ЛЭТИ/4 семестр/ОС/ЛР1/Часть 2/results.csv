@@ -1,0 +1,6 @@
+name;file size;operations;cluster size;duration (ms)
+128K.txt;131072;16;512;79
+128K.txt;131072;16;1024;41
+128K.txt;131072;16;2048;34
+128K.txt;131072;16;131072;5
+128K.txt;131072;16;1073741824;4

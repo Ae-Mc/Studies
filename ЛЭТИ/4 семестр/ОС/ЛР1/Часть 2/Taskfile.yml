@@ -1,0 +1,52 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  FILES: main.cpp
+  LIBS: -lrt
+
+tasks:
+  default:
+    cmds:
+      - task: build
+      - task: run
+    silent: true
+  build: g++ -std=c++17 -Wall -Wextra -Werror -pedantic {{.FILES}} -o main.exe {{.LIBS}} {{ .CLI_ARGS }}
+  run:
+    cmds:
+      - ./main.exe
+    silent: true
+  test:
+    cmds:
+      - echo "name;file size;operations;cluster size;duration (ms)" > "results.csv"
+      - task: build
+      - for: ["512", "1024", "2048", "131072", "1073741824"]
+        task: run_test_for_both_files
+        vars:
+          CLUSTER_SIZE: "{{ .ITEM }}"
+          OP_COUNT: "{{.CLI_ARGS}}"
+  run_test_for_both_files:
+    requires:
+      vars:
+        - CLUSTER_SIZE
+        - OP_COUNT
+    cmds:
+      # - task: run_test
+      #   vars:
+      #     CLUSTER_SIZE: "{{ .CLUSTER_SIZE }}"
+      #     INPUT_FILE: 1G.txt
+      - task: run_test
+        vars:
+          CLUSTER_SIZE: "{{ .CLUSTER_SIZE }}"
+          INPUT_FILE: 128K.txt
+    # internal: true
+  run_test:
+    requires:
+      vars:
+        - INPUT_FILE
+        - CLUSTER_SIZE
+        - OP_COUNT
+    cmds:
+      - ./main.exe {{.INPUT_FILE}} ./out/{{.INPUT_FILE}}-{{.OP_COUNT}}op-{{.CLUSTER_SIZE}}clust_size.txt {{.OP_COUNT}} {{.CLUSTER_SIZE}}
+    # internal: true

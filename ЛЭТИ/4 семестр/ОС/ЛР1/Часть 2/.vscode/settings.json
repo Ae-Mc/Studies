@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "*.toml": "toml",
+        "*.dart": "dart",
+        "authorized_keys": "plaintext",
+        "string": "cpp",
+        "chrono": "cpp",
+        "cstddef": "cpp",
+        "iosfwd": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
+}
