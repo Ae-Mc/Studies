@@ -1,0 +1,42 @@
+version: "3"
+
+vars:
+  OUT_FILENAME:
+    sh: |
+      if [[ {{OS}} == "windows" ]]; then
+        echo "main.exe"
+      else
+        echo "main.out"
+      fi
+
+tasks:
+  default:
+    - task: build
+    - task: run
+  build:
+    cmd: g++ -O3 -std=c++20 -Wall -Wextra -Werror -pedantic {{ .FILES }} -o {{ .OUT_FILENAME }} {{ .CLI_ARGS }}
+    desc: "Компиляция и сборка программы"
+  valgrind:
+    deps:
+      - task: build
+        vars:
+          FILES: client.cpp
+          CLI_ARGS: -g
+      - task: build
+        vars:
+          FILES: server.cpp
+          CLI_ARGS: -g
+    cmds:
+      - valgrind {{ .CLI_ARGS }} ./{{ .OUT_FILENAME }}
+    platforms:
+      - linux
+    desc: "Поиск утечек памяти с помощью valgrind. Программа будет перекомпилирована"
+  run:
+    cmds:
+      - ./{{ .OUT_FILENAME }}
+    interactive: true
+    desc: "Запуск уже скомпилированной до того программы"
+  list-sources:
+    cmds:
+      - echo {{ .FILES }}
+    desc: "Вывод списка исходных файлов, передаваемых компилятору"

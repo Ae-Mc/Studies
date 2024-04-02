@@ -1,0 +1,1 @@
+constinit const auto FILENAME = "file.txt";
