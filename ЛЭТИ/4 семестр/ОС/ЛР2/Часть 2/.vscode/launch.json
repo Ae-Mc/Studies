@@ -7,9 +7,9 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/main.exe",
-            "preLaunchTask": "build",
+            "name": "Launch server",
+            "program": "${workspaceFolder}/server.out",
+            "preLaunchTask": "build_server",
             "args": [],
             "cwd": "${workspaceFolder}"
         }

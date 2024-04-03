@@ -9,8 +9,7 @@
             "command": "task",
             "dependsOn": [],
             "args": [
-                "build",
-                "FILES=client.cpp",
+                "build-clien",
                 "--",
                 "-g"
             ]
@@ -21,11 +20,10 @@
             "command": "task",
             "dependsOn": [],
             "args": [
-                "build",
-                "FILES=server.cpp",
+                "build-server",
                 "--",
                 "-g"
-            ]
+            ],
         },
         {
             "label": "build",
