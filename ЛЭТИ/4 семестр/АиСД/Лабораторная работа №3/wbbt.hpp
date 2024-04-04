@@ -337,7 +337,7 @@ void WBBT<T>::print(std::ostream &out, const Node<T> &node,
     path.push_back(&node);
     for (size_t i = 1; i < path.size() - 1; i++) {
         if (path[i - 1]->has_right() && path[i - 1]->right != path[i]) {
-            out << "│";
+            out << "|";
         } else {
             out << " ";
         }
@@ -346,13 +346,13 @@ void WBBT<T>::print(std::ostream &out, const Node<T> &node,
     if (path.size() > 1) {
         if ((*(path.end() - 2))->left == &node) {
             if (!path.empty() && (*(path.end() - 2))->has_right()) {
-                out << "├";
+                out << "|";
             } else {
-                out << "└";
+                out << "|";
             }
-            out << "───l:";
+            out << "---l:";
         } else {
-            out << "└───r:";
+            out << "|---r:";
         }
     }
     out << node.value << std::endl;

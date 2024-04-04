@@ -71,6 +71,6 @@ int main() {
     cin >> E;
 
     result = (A ^ B) - (C | D) - E;
-    cout << "A ⊕ B \\ (C ∪ D) \\ E:" << endl << result;
+    cout << "A ^ B \\ (C | D) \\ E:" << endl << result;
     return 0;
 }
