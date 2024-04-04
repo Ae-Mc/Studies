@@ -1,42 +1,75 @@
 version: "3"
 
 vars:
-  OUT_FILENAME:
+  CLIENT_FILES: client.cpp
+  SERVER_FILES: server.cpp
+  OUT_EXTENSION:
     sh: |
       if [[ {{OS}} == "windows" ]]; then
-        echo "main.exe"
+        echo "exe"
       else
-        echo "main.out"
+        echo "out"
       fi
+  COMPILER: clang++
 
 tasks:
   default:
-    - task: build
-    - task: run
-  build:
-    cmd: g++ -O3 -std=c++20 -Wall -Wextra -Werror -pedantic {{ .FILES }} -o {{ .OUT_FILENAME }} {{ .CLI_ARGS }}
+    - task: build-server
+    - task: run-server
+  build-something:
+    cmd: "{{ .COMPILER }} -O3 -std=c++20 -Wall -Wextra -Werror -pedantic {{ .FILES }} -o {{ .OUT_FILENAME }} {{ .CLI_ARGS }}"
     desc: "Компиляция и сборка программы"
+    requires:
+      vars:
+        - FILES
+        - OUT_FILENAME
+    internal: true
+  build-client:
+    cmds:
+      - task: build-something
+        vars:
+          FILES: "{{ .CLIENT_FILES }}"
+          OUT_FILENAME: "client.{{ .OUT_EXTENSION }}"
+  build-server:
+    cmds:
+      - task: build-something
+        vars:
+          FILES: "{{ .SERVER_FILES }}"
+          OUT_FILENAME: "server.{{ .OUT_EXTENSION }}"
+  build:
+    deps:
+      - build-client
+      - build-server
   valgrind:
     deps:
-      - task: build
-        vars:
-          FILES: client.cpp
-          CLI_ARGS: -g
       - task: build
         vars:
           FILES: server.cpp
           CLI_ARGS: -g
     cmds:
-      - valgrind {{ .CLI_ARGS }} ./{{ .OUT_FILENAME }}
+      - valgrind {{ .CLI_ARGS }} ./server.{{ .OUT_EXTENSION }}
     platforms:
       - linux
     desc: "Поиск утечек памяти с помощью valgrind. Программа будет перекомпилирована"
-  run:
+  run-client:
     cmds:
-      - ./{{ .OUT_FILENAME }}
+      - ./client.{{ .OUT_EXTENSION }}
+    interactive: true
+    desc: "Запуск уже скомпилированной до того программы"
+  run-server:
+    cmds:
+      - ./server.{{ .OUT_EXTENSION }}
     interactive: true
     desc: "Запуск уже скомпилированной до того программы"
   list-sources:
     cmds:
       - echo {{ .FILES }}
     desc: "Вывод списка исходных файлов, передаваемых компилятору"
+  install-clang:
+    cmds:
+      - wget https://apt.llvm.org/llvm.sh
+      - chmod u+x ./llvm.sh
+      - sudo ./llvm.sh 18
+      - rm ./llvm.sh
+    platforms:
+      - linux
